@@ -52,8 +52,7 @@ extension TreeNodeView {
                     // we have the key of the source node, go find it in the tree
                     let sourceKey = key
                     if let sourceNode = vm.tree?.findById(sourceKey) {
-                        let mover = NodeMover()
-                        mover.move(sourceNode, to: targetNode, inserting: moveRelative, inTree: vm.tree!)
+                        vm.move(sourceNode, to: targetNode, inserting: moveRelative)
                     }
                 }
             }

@@ -122,6 +122,18 @@ class MainViewModel: ObservableObject, Identifiable {
 
 extension MainViewModel {
     
+    func move(_ source: OutlineItem, to targetNode: OutlineItem, inserting: NodeMoveRelativeTo) {
+        let mover = NodeMover()
+        mover.move(source, to: targetNode, inserting: inserting, inTree: self.tree!)
+        
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+}
+
+extension MainViewModel {
+    
     // MARK: - view/edit node
     
     func showNote(_ node: OutlineItem) {

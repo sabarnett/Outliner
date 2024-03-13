@@ -17,6 +17,7 @@ struct TreeNodeParent: View {
     var body: some View {
         DisclosureGroup(isExpanded: $node.isExpanded) {
             TreeNodeView(node: node)
+                .padding(.leading, 8)
         } label: {
             Group {
                 OutlineItemView(node: node)
@@ -55,9 +56,7 @@ extension TreeNodeParent: DropDelegate {
                 // we have the key of the source node, go find it in the tree
                 let sourceKey = UUID(uuidString: key!)!
                 if let sourceNode = vm.tree?.findById(sourceKey) {
-                    let mover = NodeMover()
-                    mover.move(sourceNode, to: targetNode, inserting: .child, inTree: vm.tree!)
-//                    WriteLog.debug("Move ", sourceNode.text, " as a child of ", targetNode.text)
+                    vm.move(sourceNode, to: targetNode, inserting: .child)
                 }
             }
         }

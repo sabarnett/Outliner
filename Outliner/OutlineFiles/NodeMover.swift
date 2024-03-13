@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum NodeMoveRelativeTo {
+enum NodeMoveRelativeTo: String {
     case above
     case below
     case child
@@ -43,12 +43,49 @@ struct NodeMover {
         
         switch position {
         case .above:
-            WriteLog.debug("Moving ", source.text, " above ", target.text)
+            guard let parent = target.parent,
+                  parent.children.firstIndex(where: { $0.id == target.id }) != nil
+            else { return }
+
+            if disconnect(source: source) {
+                // Recalculate the index, as it might change when we disconnect the source
+                let index = parent.children.firstIndex(where: { $0.id == target.id })!
+                parent.children.insert(source, at: index)
+                source.parent = parent
+                source.hasChanged = true
+            }
         case .below:
-            WriteLog.debug("Moving ", source.text, " below ", target.text)
+            guard let parent = target.parent,
+                  parent.children.firstIndex(where: { $0.id == target.id }) != nil
+            else { return }
+
+            if disconnect(source: source) {
+                // Recalculate the index, as it might change when we disconnect the source
+                let index = parent.children.firstIndex(where: { $0.id == target.id })!
+                parent.children.insert(source, at: index + 1)
+                source.parent = parent
+                source.hasChanged = true
+            }
         case .child:
-            WriteLog.debug("Moving ", source.text, " as a child of ", target.text)
+            if disconnect(source: source) {
+                target.children.insert(source, at: 0)
+                source.parent = target
+                source.hasChanged = true
+
+                DispatchQueue.main.async {
+                    target.setExpansionState(to: .expanded)
+                }
+            }
         }
+    }
+    
+    fileprivate func disconnect(source: OutlineItem) -> Bool {
+        guard let parent = source.parent,
+              let sourceIndex = parent.children.firstIndex(where: { $0.id == source.id})
+        else { return false }
+
+        parent.children.remove(at: sourceIndex)
+        return true
     }
     
     fileprivate func nodeHasParent(toMove source: OutlineItem, toMoveTo target: OutlineItem) -> Bool {
