@@ -11,6 +11,8 @@
 		E8040BB92AC35CFE00A164BB /* UTType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8040BB82AC35CFE00A164BB /* UTType+Extensions.swift */; };
 		E80B8D142A8BB1D8000F361A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B8D132A8BB1D8000F361A /* AppDelegate.swift */; };
 		E80C4E472AE1590500ADC2CB /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C4E462AE1590500ADC2CB /* Alerts.swift */; };
+		E80D57492BA1E43700649C95 /* TreeFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D57482BA1E43700649C95 /* TreeFind.swift */; };
+		E80D574B2BA1E7FC00649C95 /* NodeMover.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D574A2BA1E7FC00649C95 /* NodeMover.swift */; };
 		E81646302B654854003CB585 /* OutlineDetailToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816462F2B654854003CB585 /* OutlineDetailToolBarView.swift */; };
 		E81646332B654D1C003CB585 /* OutlineActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81646322B654D1C003CB585 /* OutlineActionButton.swift */; };
 		E81646382B6552B3003CB585 /* TreeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81646372B6552B3003CB585 /* TreeMenu.swift */; };
@@ -84,6 +86,8 @@
 		E8040BB82AC35CFE00A164BB /* UTType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extensions.swift"; sourceTree = "<group>"; };
 		E80B8D132A8BB1D8000F361A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E80C4E462AE1590500ADC2CB /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		E80D57482BA1E43700649C95 /* TreeFind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFind.swift; sourceTree = "<group>"; };
+		E80D574A2BA1E7FC00649C95 /* NodeMover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMover.swift; sourceTree = "<group>"; };
 		E816462F2B654854003CB585 /* OutlineDetailToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDetailToolBarView.swift; sourceTree = "<group>"; };
 		E81646322B654D1C003CB585 /* OutlineActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineActionButton.swift; sourceTree = "<group>"; };
 		E81646372B6552B3003CB585 /* TreeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeMenu.swift; sourceTree = "<group>"; };
@@ -227,7 +231,6 @@
 				E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */,
 				E8FC41A62B99CD060089DED6 /* RecentFile.swift */,
 				E8C000622B921F2F008BFFD3 /* Themes */,
-				E828E9CD2B9623A100DF8477 /* FontPicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -242,6 +245,8 @@
 				E8473DA42AF0064C00D9627D /* OutlineItem.swift */,
 				E8FD66F12B616185004F7812 /* TreeFilter.swift */,
 				E88DE7EA2B82114C00084E95 /* TreeStats.swift */,
+				E80D57482BA1E43700649C95 /* TreeFind.swift */,
+				E80D574A2BA1E7FC00649C95 /* NodeMover.swift */,
 			);
 			path = OutlineFiles;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 		E8C000622B921F2F008BFFD3 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
+				E828E9CD2B9623A100DF8477 /* FontPicker.swift */,
 				E8B98CBD2B8F6E7A002866CF /* ThemeManager.swift */,
 				E8F0B9A22B93687900F8F74F /* ThemeStorage.swift */,
 				E8C000652B9220B1008BFFD3 /* ThemedFont.swift */,
@@ -450,7 +456,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					E87906792A88E13400259501 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -565,6 +571,8 @@
 				E8473DA12AF0063D00D9627D /* OpmlFile.swift in Sources */,
 				E8C88B4D2B275CAE0091F431 /* OpeningView.swift in Sources */,
 				E871CF4C2B7BF2450067F9D2 /* NodeEditViewModel.swift in Sources */,
+				E80D574B2BA1E7FC00649C95 /* NodeMover.swift in Sources */,
+				E80D57492BA1E43700649C95 /* TreeFind.swift in Sources */,
 				E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */,
 				E8C0006C2B922456008BFFD3 /* ThemeDefinitions.swift in Sources */,
 				E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */,

@@ -228,6 +228,18 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         return nextNode
     }
     
+    /// Returns the NSItemProvider required for drag and drop move
+    /// 
+    /// - Returns: An NSItemProvider instance initialised with our object id.
+    func providerEncode() -> NSItemProvider {
+        NSItemProvider(object: id.uuidString as NSString)
+    }
+    
+    func findById(_ id: UUID) -> OutlineItem? {
+        var treeWalker = TreeFind()
+        return treeWalker.find(inTree: self, withKey: id)
+    }
+
     // MARK: - Private helpers
     
     private func itemChanged() {

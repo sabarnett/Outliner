@@ -15,7 +15,8 @@ struct OutlineItemView: View {
     @AppStorage(Constants.previewLineCount) var previewLineCount: Int = 1
     @State var titleEditEnabled: Bool = false
     @State var rowId: UUID = UUID()
-    
+    @State internal var isTargeted: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -39,15 +40,24 @@ struct OutlineItemView: View {
         .padding(.vertical, 4)
         .tag(node)
         .overlay { OutlineItemOverlayIcons(node: node) }
-        .listRowBackground(node.id == vm.selection?.id
-                           ? Color.accentColor.opacity(0.2)
-                           : Color.clear)
+        .listRowBackground(listRowBackgroundColor())
         .onChange(of: vm.selection) { oldValue, newValue in
             if titleEditEnabled {
                 titleEditEnabled = false
                 rowId = UUID()      // Force list to refresh.
             }
         }
+        
+        // Called when we drop a node on top of a leaf node (i.e. with no children)
+        .onDrop(of: [.text], delegate: self)
+    }
+    
+    func listRowBackgroundColor() -> Color {
+        if isTargeted { return Color.accentColor.opacity(0.5)}
+        
+        return node.id == vm.selection?.id
+        ? Color.accentColor.opacity(0.2)
+        : Color.clear
     }
     
     func checkBox() -> some View {
@@ -92,5 +102,40 @@ struct OutlineItemView: View {
         } else {
             EmptyView()
         }
+    }
+}
+
+extension OutlineItemView: DropDelegate {
+
+    func dropEntered(info: DropInfo) {
+        isTargeted = true
+    }
+    
+    func dropExited(info: DropInfo) {
+        isTargeted = false
+    }
+    
+    func validateDrop(info: DropInfo) -> Bool {
+        info.itemProviders(for: [.text]).count >  0 ? true : false
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        // We dropped on a parent node (a disclosure group). The user is asking to move a node
+        // as a child of the parent. Perform some checks that this is a valid move, then we
+        // shift the node to the current parent fom it's original parent.
+        let targetNode = node
+        if let sourceItem = info.itemProviders(for: [.text]).first {
+            _ = sourceItem.loadObject(ofClass: String.self) { key, _ in
+                // we have the key of the source node, go find it in the tree
+                let sourceKey = UUID(uuidString: key!)!
+                if let sourceNode = vm.tree?.findById(sourceKey) {
+                    let mover = NodeMover()
+                    mover.move(sourceNode, to: targetNode, inserting: .child, inTree: vm.tree!)
+//                    WriteLog.debug("Move ", sourceNode.text, " as a child of ", targetNode.text)
+                }
+            }
+        }
+        
+        return true
     }
 }

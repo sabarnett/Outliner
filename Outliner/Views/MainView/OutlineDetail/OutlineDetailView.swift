@@ -29,6 +29,7 @@ struct OutlineDetailView: View {
                             TreeNodeView(node: vm.tree!)
                                 .environmentObject(vm)
                         }
+
                         .alternatingRowBackgrounds(alternatingRows ? .enabled : .disabled)
                         .id(listId)
                         .onReceive(AppNotifications.refreshOutline) { _ in

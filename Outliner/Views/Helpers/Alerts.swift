@@ -63,10 +63,27 @@ struct Alerts {
         return (result.rawValue == 1000) ? .delete : .cancel
     }
     
+    // MARK: - Drag and drop move errors.
+    
+    public static func cannotMoveToYourself() {
+        Alerts().openAlert(
+            title: "Move Failed",
+            message: "You cannot move an item to itself."
+        )
+    }
+    
+    public static func cannotMoveToDecendent() {
+        Alerts().openAlert(
+            title: "Move Failed",
+            message: "You cannot move an item to a position below itself."
+        )
+    }
+    
     // MARK: - Private helper functions
 
     @discardableResult
     fileprivate func openAlert(title: String, message: String, buttonTitles: [String] = []) -> NSApplication.ModalResponse {
+        
         let alert = NSAlert()
         alert.messageText = title
         alert.informativeText = message
