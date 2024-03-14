@@ -21,9 +21,11 @@ struct TreeNodeParent: View {
         } label: {
             Group {
                 OutlineItemView(node: node)
-                    .onDrag {
-                        node.providerEncode()
-                    }
+                    .onDrag({ node.providerEncode() },
+                            preview: {  NodeMovePreview(node: node) })
+//                    .onDrag {
+//                        node.providerEncode()
+//                    }
             }
             
             // Called when we drop onto a parent node - a disclosure group.

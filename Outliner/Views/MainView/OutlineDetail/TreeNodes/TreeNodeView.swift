@@ -18,9 +18,11 @@ struct TreeNodeView: View {
             Group {
                 if childItem.hasChildren == false {
                     OutlineItemView(node: childItem)
-                        .onDrag {
-                            childItem.providerEncode()
-                        }
+                        .onDrag({ childItem.providerEncode() },
+                                preview: {  NodeMovePreview(node: childItem) })
+                    //                        .onDrag {
+                    //                            childItem.providerEncode()
+                    //                        }
                 } else {
                     TreeNodeParent(node: childItem)
                 }
@@ -64,7 +66,7 @@ extension TreeNodeView {
             // Nothing dropped of the type we want.
             return []
         }
-
+        
         // Convert the (possibly) comma separated list of node id's
         // into an array of node UUID's.
         let decodedItems: [UUID] = possibleStringOfNodeIds

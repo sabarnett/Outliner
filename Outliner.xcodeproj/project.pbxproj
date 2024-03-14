@@ -18,6 +18,7 @@
 		E81646382B6552B3003CB585 /* TreeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81646372B6552B3003CB585 /* TreeMenu.swift */; };
 		E81A2A812AC1B1D000965A2A /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81A2A802AC1B1D000965A2A /* FileHelpers.swift */; };
 		E81ED28A2B94719900458A55 /* ThemeFontWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ED2892B94719900458A55 /* ThemeFontWeights.swift */; };
+		E820F95F2BA30F66002A9733 /* NodeMovePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */; };
 		E828E9CC2B9620D700DF8477 /* ThemeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828E9CB2B9620D700DF8477 /* ThemeSettings.swift */; };
 		E828E9CE2B9623A100DF8477 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828E9CD2B9623A100DF8477 /* FontPicker.swift */; };
 		E82BDD262ACB5013004797E9 /* WriteLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82BDD252ACB5013004797E9 /* WriteLog.swift */; };
@@ -93,6 +94,7 @@
 		E81646372B6552B3003CB585 /* TreeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeMenu.swift; sourceTree = "<group>"; };
 		E81A2A802AC1B1D000965A2A /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
 		E81ED2892B94719900458A55 /* ThemeFontWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFontWeights.swift; sourceTree = "<group>"; };
+		E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMovePreview.swift; sourceTree = "<group>"; };
 		E828E9CB2B9620D700DF8477 /* ThemeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettings.swift; sourceTree = "<group>"; };
 		E828E9CD2B9623A100DF8477 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
 		E82BDD252ACB5013004797E9 /* WriteLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteLog.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				E858D4122ADAD3EA0001FA3B /* PasteBoard.swift */,
 				E80C4E462AE1590500ADC2CB /* Alerts.swift */,
 				E86F7AE82B6BE3B500CA3EB8 /* HtmlView.swift */,
+				E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */,
 				E879067E2A88E13400259501 /* OutlinerApp.swift in Sources */,
 				E88552A22AB0E80D00740562 /* Menus.swift in Sources */,
+				E820F95F2BA30F66002A9733 /* NodeMovePreview.swift in Sources */,
 				E8014F022B73E18100A8F751 /* OutlineItemOverlayIcons.swift in Sources */,
 				E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */,
 				E8EDBD722B5BDBE8001F1306 /* OpeningWindowLogoView.swift in Sources */,
