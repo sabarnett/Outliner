@@ -122,11 +122,16 @@ class MainViewModel: ObservableObject, Identifiable {
 
 extension MainViewModel {
     
+    @MainActor
     func move(_ source: OutlineItem, to targetNode: OutlineItem, inserting: NodeMoveRelativeTo) {
         let mover = NodeMover()
         mover.move(source, to: targetNode, inserting: inserting, inTree: self.tree!)
         
         DispatchQueue.main.async {
+            if inserting == .child {
+                targetNode.setExpansionState(to: .expanded)
+            }
+            
             self.objectWillChange.send()
         }
     }

@@ -49,7 +49,22 @@ struct OutlineItemView: View {
         }
         
         // Called when we drop a node on top of a leaf node (i.e. with no children)
-        .onDrop(of: [.text], delegate: self)
+        .onDrop(of: [.text], isTargeted: $isTargeted, perform: { providers in
+            let targetNode = node
+            if let sourceItem = providers.first {
+                _ = sourceItem.loadObject(ofClass: String.self) { key, _ in
+                    // we have the key of the source node, go find it in the tree
+                    let sourceKey = UUID(uuidString: key!)!
+                    if let sourceNode = vm.tree?.findById(sourceKey) {
+                        DispatchQueue.main.async {
+                            vm.move(sourceNode, to: targetNode, inserting: .child)
+                        }
+                    }
+                }
+            }
+            
+            return true
+        })
     }
     
     func listRowBackgroundColor() -> Color {
@@ -102,38 +117,5 @@ struct OutlineItemView: View {
         } else {
             EmptyView()
         }
-    }
-}
-
-extension OutlineItemView: DropDelegate {
-
-    func dropEntered(info: DropInfo) {
-        isTargeted = true
-    }
-    
-    func dropExited(info: DropInfo) {
-        isTargeted = false
-    }
-    
-    func validateDrop(info: DropInfo) -> Bool {
-        info.itemProviders(for: [.text]).count >  0 ? true : false
-    }
-    
-    func performDrop(info: DropInfo) -> Bool {
-        // We dropped on a parent node (a disclosure group). The user is asking to move a node
-        // as a child of the parent. Perform some checks that this is a valid move, then we
-        // shift the node to the current parent fom it's original parent.
-        let targetNode = node
-        if let sourceItem = info.itemProviders(for: [.text]).first {
-            _ = sourceItem.loadObject(ofClass: String.self) { key, _ in
-                // we have the key of the source node, go find it in the tree
-                let sourceKey = UUID(uuidString: key!)!
-                if let sourceNode = vm.tree?.findById(sourceKey) {
-                    vm.move(sourceNode, to: targetNode, inserting: .child)
-                }
-            }
-        }
-        
-        return true
     }
 }

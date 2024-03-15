@@ -23,9 +23,6 @@ struct TreeNodeParent: View {
                 OutlineItemView(node: node)
                     .onDrag({ node.providerEncode() },
                             preview: {  NodeMovePreview(node: node) })
-//                    .onDrag {
-//                        node.providerEncode()
-//                    }
             }
             
             // Called when we drop onto a parent node - a disclosure group.
@@ -48,6 +45,7 @@ extension TreeNodeParent: DropDelegate {
         info.itemProviders(for: [.text]).count >  0 ? true : false
     }
     
+    @MainActor
     func performDrop(info: DropInfo) -> Bool {
         // We dropped on a parent node (a disclosure group). The user is asking to move a node
         // as a child of the parent. Perform some checks that this is a valid move, then we

@@ -71,10 +71,6 @@ struct NodeMover {
                 target.children.insert(source, at: 0)
                 source.parent = target
                 source.hasChanged = true
-
-                DispatchQueue.main.async {
-                    target.setExpansionState(to: .expanded)
-                }
             }
         }
     }

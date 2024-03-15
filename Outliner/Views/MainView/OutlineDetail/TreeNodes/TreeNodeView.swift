@@ -20,9 +20,6 @@ struct TreeNodeView: View {
                     OutlineItemView(node: childItem)
                         .onDrag({ childItem.providerEncode() },
                                 preview: {  NodeMovePreview(node: childItem) })
-                    //                        .onDrag {
-                    //                            childItem.providerEncode()
-                    //                        }
                 } else {
                     TreeNodeParent(node: childItem)
                 }
