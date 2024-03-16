@@ -13,10 +13,11 @@ struct OutlineItemView: View {
     @EnvironmentObject var vm: MainViewModel
     @ObservedObject var node: OutlineItem
     @AppStorage(Constants.previewLineCount) var previewLineCount: Int = 1
+    
     @State var titleEditEnabled: Bool = false
     @State var rowId: UUID = UUID()
     @State internal var isTargeted: Bool = false
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -41,12 +42,15 @@ struct OutlineItemView: View {
         .tag(node)
         .overlay { OutlineItemOverlayIcons(node: node) }
         .listRowBackground(listRowBackgroundColor())
+        
         .onChange(of: vm.selection) { oldValue, newValue in
             if titleEditEnabled {
                 titleEditEnabled = false
                 rowId = UUID()      // Force list to refresh.
             }
         }
+        
+        .onChange(of: isTargeted) { oldValue, newValue in targetChanged(newValue) }
         
         // Called when we drop a node on top of a leaf node (i.e. with no children)
         .onDrop(of: [.text], isTargeted: $isTargeted, perform: { providers in
@@ -118,4 +122,21 @@ struct OutlineItemView: View {
             EmptyView()
         }
     }
+    
+    /// If the node becomes the target of a drag and drop move, we need to expand the
+    /// children if the node has some, they are not expanded already and we have hovered
+    /// over the node for 3/4 of a second.
+    fileprivate func targetChanged(_ newValue: Bool) {
+        if newValue == true
+            && node.hasChildren
+            && !node.isExpanded {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                // Only do this if we are still the target of the drag operation.
+                if isTargeted {
+                    node.setExpansionState(to: .expanded)
+                }
+            }
+        }
+    }
+
 }
