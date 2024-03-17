@@ -235,9 +235,16 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         NSItemProvider(object: id.uuidString as NSString)
     }
     
+    /// Find a node, based on it's id, in the tree at and below this node.
+    ///
+    /// - Parameter id: The id of the OutlineItem to locate
+    /// - Returns: The OutlineItem, if found, else nil
     func findById(_ id: UUID) -> OutlineItem? {
-        var treeWalker = TreeFind()
-        return treeWalker.find(inTree: self, withKey: id)
+        if self.id == id { return self }
+        for child in children {
+            if let found = child.findById(id) { return found }
+        }
+        return nil
     }
 
     // MARK: - Private helpers
