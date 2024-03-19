@@ -25,11 +25,11 @@ struct OutlineDetailView: View {
                 HSplitView(content: {
                     VStack {
                         OutlineDetailToolBarView(vm: vm)
+                        
                         List {
                             TreeNodeView(node: vm.tree!)
                                 .environmentObject(vm)
                         }
-
                         .alternatingRowBackgrounds(alternatingRows ? .enabled : .disabled)
                         .id(listId)
                         .onReceive(AppNotifications.refreshOutline) { _ in

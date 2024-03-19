@@ -14,18 +14,20 @@ struct OutlineDetailToolBarView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            expandAllButton()
-                .padding(.trailing, -10)
+            expandAllButton().padding(.trailing, -10)
             collapseButton()
 
             Spacer().frame(width: 22)
             
-            addAboveButton()
-                .padding(.trailing, -10)
-            addBelowButton()
-                .padding(.trailing, -10)
+            addAboveButton().padding(.trailing, -10)
+            addBelowButton().padding(.trailing, -10)
             addChildButton()
+
+            Spacer().frame(width: 22)
             
+            addIndentButton().padding(.trailing, -10)
+            addPromoteButton()
+
             Spacer().frame(width: 22)
             
             deleteItemButton()
@@ -89,6 +91,28 @@ struct OutlineDetailToolBarView: View {
         .disabled(vm.selection == nil)
     }
     
+    private func addIndentButton() -> some View {
+        OutlineActionButton(
+            imageName: "tree_indent",
+            tint: vm.canIndent ? Color("IconColor") : Color.gray,
+            helpText: "Move the item down a level."
+        ) {
+            vm.indentSelection()
+        }
+        .disabled(!vm.canIndent)
+    }
+    
+    private func addPromoteButton() -> some View {
+        OutlineActionButton(
+            imageName: "tree_promote",
+            tint: vm.canPromote ? Color("IconColor") : Color.gray,
+            helpText: "Move the item to the parent level."
+        ) {
+            vm.promoteSelection()
+        }
+        .disabled(!vm.canPromote)
+    }
+
     private func deleteItemButton() -> some View {
         OutlineActionButton(
             imageName: "tree_delete",

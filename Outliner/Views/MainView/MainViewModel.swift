@@ -135,6 +135,39 @@ extension MainViewModel {
             self.objectWillChange.send()
         }
     }
+    
+    var canIndent: Bool {
+        guard let selection,
+              let parent = selection.parent else { return false }
+        
+        let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id}) ?? 0
+        return selectionIndex > 0
+    }
+    
+    @MainActor func indentSelection() {
+        guard let selection,
+              let parent = selection.parent,
+              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id})
+        else { return }
+        
+        let target = parent.children[selectionIndex-1]
+        move(selection, to: target, inserting: .child)
+    }
+    
+    var canPromote: Bool {
+        guard let selection,
+              let tree,
+              let parent = selection.parent else { return false }
+        
+        return parent.id != tree.id
+    }
+    
+    @MainActor func promoteSelection() {
+        guard let selection,
+              let parent = selection.parent else { return }
+
+        move(selection, to: parent, inserting: .below)
+    }
 }
 
 extension MainViewModel {

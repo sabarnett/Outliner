@@ -27,40 +27,34 @@ public struct TreeCommands: Commands {
     public var body: some Commands {
         
         CommandMenu("Tree") {
-            Button("Expand All") {
-                mainViewModel?.expandSelectedItem()
-            }
+            Button("Expand All") { mainViewModel?.expandSelectedItem() }
             .keyboardShortcut(KeyEquivalent("+"), modifiers: .command)
             .disabled(!hasSelection)
             
-            Button("Collapse Children") {
-                mainViewModel?.collapseSelectedItem()
-            }
+            Button("Collapse Children") { mainViewModel?.collapseSelectedItem() }
             .keyboardShortcut(KeyEquivalent("-"), modifiers: .command)
             .disabled(!hasSelection)
 
             Divider()
             
-            Button("Add Item Above") {
-                mainViewModel?.addAbove()
-            }
+            Button("Add Item Above") { mainViewModel?.addAbove() }
             .disabled(!hasSelection)
 
-            Button("Add Item Below") {
-                mainViewModel?.addBelow()
-            }
+            Button("Add Item Below") { mainViewModel?.addBelow() }
             .disabled(!hasSelection)
 
-            Button("Add Child Item") {
-                mainViewModel?.addChild()
-            }
+            Button("Add Child Item") { mainViewModel?.addChild() }
             .disabled(!hasSelection)
+
+            Button("Move Down One Level") { mainViewModel?.indentSelection() }
+                .disabled(!(mainViewModel?.canIndent ?? false))
+
+            Button("Move Up One Level") { mainViewModel?.promoteSelection() }
+                .disabled(!(mainViewModel?.canPromote ?? true))
 
             Divider()
             
-            Button("Delete Item") {
-                mainViewModel?.deleteSelectedItem()
-            }
+            Button("Delete Item") { mainViewModel?.deleteSelectedItem() }
             .disabled(!hasSelection)
 
         }
