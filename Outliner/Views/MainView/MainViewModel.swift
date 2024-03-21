@@ -26,9 +26,6 @@ class MainViewModel: ObservableObject, Identifiable {
     @Published var completeCount: Int = 0
     @Published var incompleteCount: Int = 0
     
-    @Published var showInspector: Bool = true
-    @Published var inspectorWidth: CGFloat = 450
-    
     // MARK: - Initialisation
     
     init() {

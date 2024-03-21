@@ -1,3 +1,5 @@
+// swiftlint:disable file_length
+
 //
 //  SplitViews.swift
 //  SplitView
@@ -42,7 +44,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
     @ObservedObject private var fraction: FractionHolder
     /// Use to hide/show `secondary` independent of dragging. When value is `false`, will restore to `constrainedFraction`.
     @ObservedObject private var hide: SideHolder
-    /// Fraction that tracks the `splitter` position across full width/height, where 
+    /// Fraction that tracks the `splitter` position across full width/height, where
     /// minPFraction <= constrainedFraction <= (1-minSFraction)
     @State private var constrainedFraction: CGFloat
     /// Fraction that tracks the cursor across full width/height during drag, where 0  <= fullFraction <= 1
@@ -71,12 +73,12 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
             let pHeight = horizontal ? breadth : max(minPLength, min(height - spacing, pLength - spacing / 2))
             let sWidth = horizontal ? max(minSLength, min(width - pLength, sLength - spacing / 2)) : breadth
             let sHeight = horizontal ? breadth : max(minSLength, min(height - pLength, sLength - spacing / 2))
-            let sOffset = horizontal 
-                ? CGSize(width: pWidth + spacing, height: 0)
-                : CGSize(width: 0, height: pHeight + spacing)
-            let dCenter = horizontal 
-                ? CGPoint(x: pWidth + spacing / 2, y: height / 2)
-                : CGPoint(x: width / 2, y: pHeight + spacing / 2)
+            let sOffset = horizontal
+            ? CGSize(width: pWidth + spacing, height: 0)
+            : CGSize(width: 0, height: pHeight + spacing)
+            let dCenter = horizontal
+            ? CGPoint(x: pWidth + spacing / 2, y: height / 2)
+            : CGPoint(x: width / 2, y: pHeight + spacing / 2)
             ZStack(alignment: .topLeading) {
                 if !hidePrimary {
                     primary
@@ -104,13 +106,14 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
             }
             .clipped()  // Can cause problems in some List styles if not clipped
             .environmentObject(layout)
-            .onChange(of: fraction.value) { old, new in constrainedFraction = new }
+            .onChange(of: fraction.value) { old, new in
+                constrainedFraction = new }
         }
     }
-
+    
     /// Public init only allows `primary` and `secondary`, with `splitter` defaulting to Splitter.
     ///
-    /// The `layout`, `fraction`,  `hide` ,  `constraints`, and any 
+    /// The `layout`, `fraction`,  `hide` ,  `constraints`, and any
     /// custom `splitter` must be specified using the modifiers if they are not defaults
     public init(@ViewBuilder primary: @escaping () -> P, @ViewBuilder secondary: @escaping () -> S) where D == Splitter {
         let layout = LayoutHolder()
@@ -122,9 +125,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
                   hide: hide,
                   constraints: constraints,
                   onDrag: nil,
-                  primary: {
-            primary()
-        },
+                  primary: { primary() },
                   splitter: { D() },
                   secondary: { secondary() })
     }
@@ -171,8 +172,8 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
             return styling.visibleThickness
         }
     }
-
-    /// Set the constrainedFraction to maintain the size of the priority side when size 
+    
+    /// Set the constrainedFraction to maintain the size of the priority side when size
     /// changes, as called from task(id:) modifier.
     private func setConstrainedFraction(in size: CGSize) {
         guard let side = constraints.priority else { return }
@@ -284,7 +285,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
         return (constrained: constrainedFraction, full: fullFraction)
     }
     
-    /// Return whether the splitter is draggable. 
+    /// Return whether the splitter is draggable.
     ///
     /// The splitter becomes non-draggable if `splitter.styling.hideSplitter` is `true`
     /// and either side is hidden. It will also be non-draggable when the `primary` side is
@@ -300,7 +301,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
     /// **Important**: You must provide a means to unhide the side (e.g., a hide/show
     /// button) if your splitter can become non-draggable.
     ///
-    /// On a related note, when you use an invisible splitter, you will typically specify min 
+    /// On a related note, when you use an invisible splitter, you will typically specify min
     /// fractions it has to stay within. If you don't, then it can be dragged to the edge, and
     /// your user will have no visual indication that the other side can be re-exposed by dragging
     /// the invisible splitter out again.
@@ -355,7 +356,11 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
         }
     }
     
-    // MARK: Modifiers
+}
+
+// MARK: - Modifiers
+
+extension Split {
     
     /// Return a new Split with the `splitter` set to the `splitter` passed-in.
     public func splitter<T>(@ViewBuilder _ splitter: @escaping () -> T) -> Split<P, T, S> where T: View {
@@ -364,9 +369,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
                               hide: hide,
                               constraints: constraints,
                               onDrag: onDrag,
-                              primary: {
-            primary
-        },
+                              primary: { primary },
                               splitter: splitter,
                               secondary: { secondary })
     }
@@ -391,9 +394,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
                      hide: hide,
                      constraints: constraints,
                      onDrag: onDrag,
-                     primary: {
-            primary
-        },
+                     primary: { primary },
                      splitter: { splitter },
                      secondary: { secondary })
     }
@@ -414,7 +415,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
     /// Return a new instance of Split with `onDrag` set to `callback`.
     ///
     /// The `callback` will be executed as `splitter` is dragged, with the current value of `constrainedFraction`.
-    /// Note that `fraction` is different. It is only set when drag ends, and it is used to determine the 
+    /// Note that `fraction` is different. It is only set when drag ends, and it is used to determine the
     /// initial fraction at open.
     ///
     /// This is a convenience method for HSplit and VSplit.
@@ -424,9 +425,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
                      hide: hide,
                      constraints: constraints,
                      onDrag: callback,
-                     primary: {
-            primary
-        },
+                     primary: { primary },
                      splitter: { splitter },
                      secondary: { secondary })
     }
@@ -454,9 +453,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
                      hide: hide,
                      constraints: constraints,
                      onDrag: onDrag,
-                     primary: {
-            primary
-        },
+                     primary: { primary },
                      splitter: { splitter },
                      secondary: { secondary })
     }
@@ -517,9 +514,7 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
               hide: side,
               constraints: constraints,
               onDrag: onDrag,
-              primary: {
-            primary
-        },
+              primary: { primary },
               splitter: { splitter },
               secondary: { secondary })
     }
@@ -528,7 +523,6 @@ public struct Split<P: View, D: SplitDivider, S: View>: View {
     public func hide(_ side: SplitSide) -> Split {
         self.hide(SideHolder(side))
     }
-    
 }
 
 struct Split_Previews: PreviewProvider {

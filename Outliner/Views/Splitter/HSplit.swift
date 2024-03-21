@@ -97,9 +97,7 @@ public struct HSplit<P: View, D: SplitDivider, S: View>: View {
                       hide: hide,
                       constraints: constraints,
                       onDrag: onDrag,
-                      primary: {
-            primary
-        },
+                      primary: { primary },
                       splitter: { splitter },
                       secondary: { secondary })
     }
@@ -114,9 +112,7 @@ public struct HSplit<P: View, D: SplitDivider, S: View>: View {
                       hide: hide,
                       constraints: constraints,
                       onDrag: callback,
-                      primary: {
-            primary
-        },
+                      primary: { primary },
                       splitter: { splitter },
                       secondary: { secondary })
     }
@@ -141,9 +137,7 @@ public struct HSplit<P: View, D: SplitDivider, S: View>: View {
                       hide: hide,
                       constraints: constraints,
                       onDrag: onDrag,
-                      primary: {
-            primary
-        },
+                      primary: { primary },
                       splitter: { splitter },
                       secondary: { secondary })
     }
@@ -154,9 +148,7 @@ public struct HSplit<P: View, D: SplitDivider, S: View>: View {
                hide: hide,
                constraints: constraints,
                onDrag: onDrag,
-               primary: {
-            primary
-        },
+               primary: { primary },
                splitter: { splitter },
                secondary: { secondary })
     }
@@ -172,9 +164,7 @@ public struct HSplit<P: View, D: SplitDivider, S: View>: View {
                hide: side,
                constraints: constraints,
                onDrag: onDrag,
-               primary: {
-            primary
-        },
+               primary: { primary },
                splitter: { splitter },
                secondary: { secondary })
     }

@@ -32,7 +32,7 @@ class RecentFile: Identifiable, Codable {
         locationY = 0
         
         previewOpen = false
-        previewWidth = 450
+        previewWidth = 0.8
     }
     
     func setFrame(_ frame: NSRect) {
@@ -63,7 +63,7 @@ class RecentFile: Identifiable, Codable {
         self.locationY = try container.decode(CGFloat.self, forKey: .locationY)
         
         self.previewOpen = try container.decodeIfPresent(Bool.self, forKey: .previewOpen) ?? false
-        self.previewWidth = try container.decodeIfPresent(CGFloat.self, forKey: .previewWidth) ?? 450
+        self.previewWidth = try container.decodeIfPresent(CGFloat.self, forKey: .previewWidth) ?? 0.8
     }
     
     func encode(to encoder: Encoder) throws {

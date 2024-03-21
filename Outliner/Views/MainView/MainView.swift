@@ -22,8 +22,6 @@ struct MainView: View {
     @State private var splitValue: CGFloat = 0.7
     @State private var hide = SideHolder()
     
-    @State private var hasInspectorAppeared: Bool = false
-    
     var body: some View {
         ZStack {
             HostingWindowFinder { window in
@@ -47,27 +45,11 @@ struct MainView: View {
                 .hide(hide)
                 .fraction(splitValue)
                 .constraints(minPFraction: 0.25, minSFraction: 0.1)
-                .styling(visibleThickness: 3, invisibleThickness: 5)
+                .splitter(Splitter.invisible)
+                .styling(invisibleThickness: 8)
                 .onDrag({ newFraction in
                     splitValue = newFraction
-                    print("New splitter fraction: \(newFraction)")
                 })
-                
-//                
-//                detailView()
-//                    .inspector(isPresented: $vm.showInspector) {
-//                        notePreviewView()
-//                            .inspectorColumnWidth(min: 200, ideal: vm.inspectorWidth, max: 750)
-//                            .interactiveDismissDisabled()
-//                            .frame(minWidth: hasInspectorAppeared ? nil : vm.inspectorWidth)
-//                            .onAppear {
-//                                // ONLY HAPPENS ONCE, SO TOGGLING THE VISIBLE NEVER RESETS THE HAS APPEARED VALUE
-//                                hasInspectorAppeared = true
-//                            }
-//                    }
-//                    .onChange(of: vm.showInspector) {
-//                        if vm.showInspector { hasInspectorAppeared = true }
-//                    }
             })
             .frame(minWidth: Constants.mainWindowMinWidth,
                    minHeight: Constants.mainWindowMinHeight)
@@ -103,11 +85,15 @@ struct MainView: View {
             .onReceive(SysNotifications.willClose, perform: windowClosing)
             .onReceive(SysNotifications.willTerminate, perform: appTerminating)
             
-            .task {
+            .onAppear {
                 if let recentFile = outlineManager.recentFile(for: outlineFile) {
-                    vm.showInspector = recentFile.previewOpen
-                    vm.inspectorWidth = recentFile.previewWidth
+                    hide.side = recentFile.previewOpen
+                            ? SplitSide(rawValue: "secondary")
+                            : nil
+                    splitValue = recentFile.previewWidth
                 }
+            }
+            .task {
                 vm.load(outline: outlineFile)
             }
             .navigationTitle(vm.windowTitle)
@@ -163,8 +149,8 @@ struct MainView: View {
     func saveWindow() {
         if let outlineFile {
             outlineManager.close(file: outlineFile,
-                                 previewOpen: vm.showInspector,
-                                 previewWidth: vm.inspectorWidth)
+                                 previewOpen: hide.side != nil,
+                                 previewWidth: splitValue)
         }
     }
 }
