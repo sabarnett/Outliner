@@ -19,6 +19,9 @@ class RecentFile: Identifiable, Codable {
     var height: CGFloat
     var locationX: CGFloat
     var locationY: CGFloat
+    
+    var previewOpen: Bool
+    var previewWidth: CGFloat
 
     init(file: URL) {
         fileURL = file
@@ -27,6 +30,9 @@ class RecentFile: Identifiable, Codable {
         height = (NSScreen.main?.frame.size.height ?? Constants.mainWindowHeight) * 0.75
         locationX = 0
         locationY = 0
+        
+        previewOpen = false
+        previewWidth = 450
     }
     
     func setFrame(_ frame: NSRect) {
@@ -43,6 +49,8 @@ class RecentFile: Identifiable, Codable {
         case height
         case locationX
         case locationY
+        case previewOpen
+        case previewWidth
     }
     
     required init(from decoder: Decoder) throws {
@@ -53,6 +61,9 @@ class RecentFile: Identifiable, Codable {
         self.height = try container.decode(CGFloat.self, forKey: .height)
         self.locationX = try container.decode(CGFloat.self, forKey: .locationX)
         self.locationY = try container.decode(CGFloat.self, forKey: .locationY)
+        
+        self.previewOpen = try container.decodeIfPresent(Bool.self, forKey: .previewOpen) ?? false
+        self.previewWidth = try container.decodeIfPresent(CGFloat.self, forKey: .previewWidth) ?? 450
     }
     
     func encode(to encoder: Encoder) throws {
@@ -62,6 +73,9 @@ class RecentFile: Identifiable, Codable {
         try container.encode(self.height, forKey: .height)
         try container.encode(self.locationX, forKey: .locationX)
         try container.encode(self.locationY, forKey: .locationY)
+        
+        try container.encode(self.previewOpen, forKey: .previewOpen)
+        try container.encode(self.previewWidth, forKey: .previewWidth)
     }
 }
 

@@ -119,15 +119,23 @@ class OutlineManager: ObservableObject {
     /// File has been closed, so save the window size and position to the MRUlist.
     ///
     /// - Parameter file: The file that was closed
-    func close(file: URL) {
+    func close(file: URL, previewOpen: Bool, previewWidth: CGFloat) {
         if let recentFile = recentFiles.first(where: {$0.fileURL.path == file.path }) {
             if let window = fileInWindow(fileName: recentFile.fileURL.path) {
                 recentFile.setFrame(window.frame)
+                recentFile.previewOpen = previewOpen
+                recentFile.previewWidth = previewWidth
             }
             saveRecentFilesList()
         }
     }
     
+    func recentFile(for file: URL?) -> RecentFile? {
+        if let file {
+            return recentFiles.first(where: {$0.fileURL.path == file.path })
+        }
+        return nil
+    }
     // MARK: - Helper functions
     
     fileprivate func fileInWindow(fileName: String) -> NSWindow? {

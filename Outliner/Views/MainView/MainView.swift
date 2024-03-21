@@ -12,7 +12,6 @@ struct MainView: View {
     
     @Environment(\.openWindow) private var openWindow
     @EnvironmentObject var outlineManager: OutlineManager
-    @AppStorage("showInspector") private var showInspector: Bool = true
     
     @StateObject var vm: MainViewModel = MainViewModel()
     @State var outlineFile: URL?
@@ -20,11 +19,10 @@ struct MainView: View {
     @State var detailViewStyle: DetailViewType = .outline
     @State private var columnsVisible = NavigationSplitViewVisibility.all
     
+    @State private var splitValue: CGFloat = 0.7
+    @State private var hide = SideHolder()
+    
     @State private var hasInspectorAppeared: Bool = false
-    private var inspectorIdealWidth: CGFloat {
-          // ...loaded from your restoration data or some default
-          return 450
-       }
     
     var body: some View {
         ZStack {
@@ -40,14 +38,36 @@ struct MainView: View {
                 SidebarView(vm: vm, detailView: $detailViewStyle)
                     .frame(minWidth: Constants.mainWindowSidebarMinWidth)
             }, detail: {
-                detailView()
-                    .inspector(isPresented: $showInspector) {
-                        notePreviewView()
-                            .inspectorColumnWidth(min: 200, ideal: self.inspectorIdealWidth, max: 750)
-                            .interactiveDismissDisabled()
-                            .frame(minWidth: hasInspectorAppeared ? nil : self.inspectorIdealWidth)
-                            .onAppear { hasInspectorAppeared = true }
-                    }
+                
+                Split(primary: {
+                    detailView()
+                }, secondary: {
+                    notePreviewView()
+                })
+                .hide(hide)
+                .fraction(splitValue)
+                .constraints(minPFraction: 0.25, minSFraction: 0.1)
+                .styling(visibleThickness: 3, invisibleThickness: 5)
+                .onDrag({ newFraction in
+                    splitValue = newFraction
+                    print("New splitter fraction: \(newFraction)")
+                })
+                
+//                
+//                detailView()
+//                    .inspector(isPresented: $vm.showInspector) {
+//                        notePreviewView()
+//                            .inspectorColumnWidth(min: 200, ideal: vm.inspectorWidth, max: 750)
+//                            .interactiveDismissDisabled()
+//                            .frame(minWidth: hasInspectorAppeared ? nil : vm.inspectorWidth)
+//                            .onAppear {
+//                                // ONLY HAPPENS ONCE, SO TOGGLING THE VISIBLE NEVER RESETS THE HAS APPEARED VALUE
+//                                hasInspectorAppeared = true
+//                            }
+//                    }
+//                    .onChange(of: vm.showInspector) {
+//                        if vm.showInspector { hasInspectorAppeared = true }
+//                    }
             })
             .frame(minWidth: Constants.mainWindowMinWidth,
                    minHeight: Constants.mainWindowMinHeight)
@@ -71,7 +91,9 @@ struct MainView: View {
                 
                 ToolbarItemGroup(placement: .primaryAction) {
                     Button(action: {
-                        showInspector.toggle()
+                        withAnimation {
+                            hide.toggle()
+                        }
                     }, label: {
                         Image(systemName: "sidebar.right")
                     })
@@ -81,7 +103,13 @@ struct MainView: View {
             .onReceive(SysNotifications.willClose, perform: windowClosing)
             .onReceive(SysNotifications.willTerminate, perform: appTerminating)
             
-            .task { vm.load(outline: outlineFile) }
+            .task {
+                if let recentFile = outlineManager.recentFile(for: outlineFile) {
+                    vm.showInspector = recentFile.previewOpen
+                    vm.inspectorWidth = recentFile.previewWidth
+                }
+                vm.load(outline: outlineFile)
+            }
             .navigationTitle(vm.windowTitle)
         }
     }
@@ -134,7 +162,9 @@ struct MainView: View {
     
     func saveWindow() {
         if let outlineFile {
-            outlineManager.close(file: outlineFile)
+            outlineManager.close(file: outlineFile,
+                                 previewOpen: vm.showInspector,
+                                 previewWidth: vm.inspectorWidth)
         }
     }
 }

@@ -60,6 +60,16 @@
 		E8C0006C2B922456008BFFD3 /* ThemeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0006B2B922456008BFFD3 /* ThemeDefinitions.swift */; };
 		E8C78BB22AB73F1900E532FA /* HostingViewFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C78BB12AB73F1900E532FA /* HostingViewFinder.swift */; };
 		E8C88B4D2B275CAE0091F431 /* OpeningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C88B4C2B275CAE0091F431 /* OpeningView.swift */; };
+		E8D009C72BAC811500C08DC9 /* Splitter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009BD2BAC811400C08DC9 /* Splitter+Extensions.swift */; };
+		E8D009C82BAC811500C08DC9 /* SplitStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009BE2BAC811500C08DC9 /* SplitStyling.swift */; };
+		E8D009C92BAC811500C08DC9 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009BF2BAC811500C08DC9 /* Split.swift */; };
+		E8D009CA2BAC811500C08DC9 /* SplitModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C02BAC811500C08DC9 /* SplitModifiers.swift */; };
+		E8D009CB2BAC811500C08DC9 /* VSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C12BAC811500C08DC9 /* VSplit.swift */; };
+		E8D009CC2BAC811500C08DC9 /* HSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C22BAC811500C08DC9 /* HSplit.swift */; };
+		E8D009CD2BAC811500C08DC9 /* SplitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C32BAC811500C08DC9 /* SplitEnums.swift */; };
+		E8D009CE2BAC811500C08DC9 /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C42BAC811500C08DC9 /* Splitter.swift */; };
+		E8D009CF2BAC811500C08DC9 /* SplitHolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C52BAC811500C08DC9 /* SplitHolders.swift */; };
+		E8D009D02BAC811500C08DC9 /* SplitConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C62BAC811500C08DC9 /* SplitConstraints.swift */; };
 		E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D456372B345A3400CE2A93 /* FileMenu.swift */; };
 		E8DBC7F12AAA0CB400EC3559 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */; };
 		E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */; };
@@ -138,6 +148,16 @@
 		E8C0006B2B922456008BFFD3 /* ThemeDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDefinitions.swift; sourceTree = "<group>"; };
 		E8C78BB12AB73F1900E532FA /* HostingViewFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingViewFinder.swift; sourceTree = "<group>"; };
 		E8C88B4C2B275CAE0091F431 /* OpeningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningView.swift; sourceTree = "<group>"; };
+		E8D009BD2BAC811400C08DC9 /* Splitter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Splitter+Extensions.swift"; sourceTree = "<group>"; };
+		E8D009BE2BAC811500C08DC9 /* SplitStyling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitStyling.swift; sourceTree = "<group>"; };
+		E8D009BF2BAC811500C08DC9 /* Split.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
+		E8D009C02BAC811500C08DC9 /* SplitModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitModifiers.swift; sourceTree = "<group>"; };
+		E8D009C12BAC811500C08DC9 /* VSplit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSplit.swift; sourceTree = "<group>"; };
+		E8D009C22BAC811500C08DC9 /* HSplit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSplit.swift; sourceTree = "<group>"; };
+		E8D009C32BAC811500C08DC9 /* SplitEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEnums.swift; sourceTree = "<group>"; };
+		E8D009C42BAC811500C08DC9 /* Splitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
+		E8D009C52BAC811500C08DC9 /* SplitHolders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitHolders.swift; sourceTree = "<group>"; };
+		E8D009C62BAC811500C08DC9 /* SplitConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitConstraints.swift; sourceTree = "<group>"; };
 		E8D456372B345A3400CE2A93 /* FileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMenu.swift; sourceTree = "<group>"; };
 		E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowActionButtons.swift; sourceTree = "<group>"; };
@@ -190,6 +210,7 @@
 		E80B8D162A8BBEAA000F361A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E8D009BC2BAC80FD00C08DC9 /* Splitter */,
 				E8C88B4B2B275C990091F431 /* OpeningView */,
 				E8C78BB02AB73F0900E532FA /* Helpers */,
 				E8F30BA12A8FB403005D41E7 /* Dialogs */,
@@ -389,6 +410,23 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		E8D009BC2BAC80FD00C08DC9 /* Splitter */ = {
+			isa = PBXGroup;
+			children = (
+				E8D009C22BAC811500C08DC9 /* HSplit.swift */,
+				E8D009BF2BAC811500C08DC9 /* Split.swift */,
+				E8D009C62BAC811500C08DC9 /* SplitConstraints.swift */,
+				E8D009C32BAC811500C08DC9 /* SplitEnums.swift */,
+				E8D009C52BAC811500C08DC9 /* SplitHolders.swift */,
+				E8D009C02BAC811500C08DC9 /* SplitModifiers.swift */,
+				E8D009BE2BAC811500C08DC9 /* SplitStyling.swift */,
+				E8D009C42BAC811500C08DC9 /* Splitter.swift */,
+				E8D009BD2BAC811400C08DC9 /* Splitter+Extensions.swift */,
+				E8D009C12BAC811500C08DC9 /* VSplit.swift */,
+			);
+			path = Splitter;
+			sourceTree = "<group>";
+		};
 		E8D456362B345A1600CE2A93 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +589,9 @@
 				E81646302B654854003CB585 /* OutlineDetailToolBarView.swift in Sources */,
 				E8473DA82AF0064C00D9627D /* OutlineBody.swift in Sources */,
 				E893853D2AA22BA100D225F5 /* OutlineDetailView.swift in Sources */,
+				E8D009C82BAC811500C08DC9 /* SplitStyling.swift in Sources */,
+				E8D009C92BAC811500C08DC9 /* Split.swift in Sources */,
+				E8D009D02BAC811500C08DC9 /* SplitConstraints.swift in Sources */,
 				E81A2A812AC1B1D000965A2A /* FileHelpers.swift in Sources */,
 				E871CF522B7BFFFE0067F9D2 /* SidebarViewTypeButton.swift in Sources */,
 				E8C000682B922101008BFFD3 /* View+ThemedFont.swift in Sources */,
@@ -559,21 +600,27 @@
 				E8BDD5D32AFBDDDF00672DCE /* OutlineItemView.swift in Sources */,
 				E8F30BA02A8FB1E7005D41E7 /* Bundle+Extensions.swift in Sources */,
 				E871CF4F2B7BFAB90067F9D2 /* NodeViewViewModel.swift in Sources */,
+				E8D009C72BAC811500C08DC9 /* Splitter+Extensions.swift in Sources */,
 				E8BDD5D12AFBDDAE00672DCE /* TreeNodeView.swift in Sources */,
 				E81ED28A2B94719900458A55 /* ThemeFontWeights.swift in Sources */,
 				E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */,
 				E89800302A8BC59000AE8656 /* Constants.swift in Sources */,
+				E8D009CE2BAC811500C08DC9 /* Splitter.swift in Sources */,
 				E86F7AE92B6BE3B500CA3EB8 /* HtmlView.swift in Sources */,
 				E8B98CBE2B8F6E7A002866CF /* ThemeManager.swift in Sources */,
 				E828E9CE2B9623A100DF8477 /* FontPicker.swift in Sources */,
+				E8D009CD2BAC811500C08DC9 /* SplitEnums.swift in Sources */,
 				E8FC41A72B99CD060089DED6 /* RecentFile.swift in Sources */,
 				E893853B2AA22B9200D225F5 /* SidebarView.swift in Sources */,
+				E8D009CA2BAC811500C08DC9 /* SplitModifiers.swift in Sources */,
 				E81646332B654D1C003CB585 /* OutlineActionButton.swift in Sources */,
 				E8EDBD792B5BEDB6001F1306 /* AdvancedSettings.swift in Sources */,
 				E87906802A88E13400259501 /* MainView.swift in Sources */,
 				E8473DA32AF0064400D9627D /* NodeHelpers.swift in Sources */,
 				E8C000642B92208B008BFFD3 /* ThemeItemType.swift in Sources */,
+				E8D009CF2BAC811500C08DC9 /* SplitHolders.swift in Sources */,
 				E8F0B9A32B93687900F8F74F /* ThemeStorage.swift in Sources */,
+				E8D009CB2BAC811500C08DC9 /* VSplit.swift in Sources */,
 				E8FF50482B6A8D04005823D3 /* NoteView.swift in Sources */,
 				E8EDBD772B5BED51001F1306 /* OutlineSettings.swift in Sources */,
 				E871CF542B7C00490067F9D2 /* SidebarViewTypeHeading.swift in Sources */,
@@ -594,6 +641,7 @@
 				E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */,
 				E8EDBD722B5BDBE8001F1306 /* OpeningWindowLogoView.swift in Sources */,
 				E871CF562B7C00890067F9D2 /* DetailViewType.swift in Sources */,
+				E8D009CC2BAC811500C08DC9 /* HSplit.swift in Sources */,
 				E8473DA72AF0064C00D9627D /* OutlineItem.swift in Sources */,
 				E8FD66F22B616185004F7812 /* TreeFilter.swift in Sources */,
 				E8473DA92AF0064C00D9627D /* OutlineHeader.swift in Sources */,
