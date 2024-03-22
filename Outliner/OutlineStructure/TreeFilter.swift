@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TreeFilter {
     
-    @AppStorage(Constants.recentFileFilters) var recentFileFilters: Int = 5
+    @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
     func listNodes(ofType: DetailViewType, fromTree tree: OutlineItem?) -> [OutlineItem] {
         var result = [OutlineItem]()
@@ -63,8 +63,12 @@ struct TreeFilter {
         return false
     }
     
+    // Age of an item to be included in the filter. The duration we save
+    // to the settings is in days, so we need to convert from a number of
+    // days to a number of seconds.
+    //
+    // duration * Mins * Hrs * Days
     private var timeInterval: Double {
-        //                          Mins,Hrs, Days
-        Double(recentFileFilters) * 60 * 60 * 24
+        Double(recentDuration) * 60 * 60 * 24
     }
 }

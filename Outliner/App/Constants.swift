@@ -34,7 +34,7 @@ struct Constants {
     
     // AppStorage
     static let recentFileCount = "recentFileCount"
-    static let recentFileFilters = "recentFileFilters"
+    static let durationForRecentFilters = "recentFileFilters"
     static let displayMode = "displayMode"
     static let previewLineCount = "previewLineCount"
     static let alternatingRows = "alternatingRows"

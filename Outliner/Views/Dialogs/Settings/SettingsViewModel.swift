@@ -13,7 +13,7 @@ class SettingsViewModel: ObservableObject {
     // General tab options
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .auto
     @AppStorage(Constants.recentFileCount) var recentFileCount: Int = 5
-    @AppStorage(Constants.recentFileFilters) var recentFileFilters: Int = 5
+    @AppStorage(Constants.durationForRecentFilters) var recentFileFilters: Int = 5
 
     // Tree settings
     @AppStorage(Constants.previewLineCount) var previewLineCount: Int = 1
