@@ -253,6 +253,24 @@ extension MainViewModel {
         editItem = NodeEditViewModel(node: newNode, editActtion: .addChild, onSave: editComplete)
     }
     
+    func duplicateItem() {
+        guard let selection,
+              let parent = selection.parent,
+              let selectionIndex = parent.children.firstIndex(where: { $0.id == selection.id })
+        else { return }
+        
+        let newItem = OutlineItem(from: selection)
+
+        objectWillChange.send()
+        parent.children.insert(newItem, at: selectionIndex + 1)
+        
+        calculateStatistics()
+    }
+    
+    func duplicateLeg() {
+        
+    }
+    
     func deleteSelectedItem() {
         if let selection = selection,
            Alerts.confirmDelete(of: selection.text) == .delete {

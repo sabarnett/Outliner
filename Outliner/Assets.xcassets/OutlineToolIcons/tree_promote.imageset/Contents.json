@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "tree_promote.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tree_promote@x2.png",
+      "filename" : "promote@x2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

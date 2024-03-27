@@ -46,6 +46,14 @@ public struct TreeCommands: Commands {
             Button("Add Child Item") { mainViewModel?.addChild() }
             .disabled(!hasSelection)
 
+            Button("Duplicate Item") { mainViewModel?.duplicateItem() }
+            .disabled(!hasSelection)
+
+            Button("Duplicate Leg") { mainViewModel?.duplicateLeg() }
+            .disabled(!hasSelection)
+
+            Divider()
+            
             Button("Move Down One Level") { mainViewModel?.indentSelection() }
                 .disabled(!(mainViewModel?.canIndent ?? false))
 

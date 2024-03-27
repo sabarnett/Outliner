@@ -35,7 +35,7 @@ struct OutlineDetailView: View {
                         .onReceive(AppNotifications.refreshOutline) { _ in
                             listId = UUID()
                         }
-                    }
+                    }.padding(.top, 50)
                 })
             }
         }

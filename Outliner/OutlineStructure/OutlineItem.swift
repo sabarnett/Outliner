@@ -99,6 +99,29 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         hasChanged = false
     }
     
+    /// Creae a new OutlineItem based on the contents of an existing OutlineItem.
+    ///
+    /// The new item will contain the text, notes, completion status and starred status of the
+    /// source item, but will have iyt's creation and updated dates set to the current date/time.
+    ///
+    /// The children array will be cleared, so this node will not be a parent. It's parent node will
+    /// be set to that of the source item.
+    ///
+    /// - Parameter from: The OutlineItem to be copied.
+    init(from: OutlineItem) {
+        self.parent = from.parent
+        hasChanged = true
+        isExpanded = false
+        
+        text = from.text
+        notes = from.notes
+        completed = from.completed
+        starred = from.starred
+        children = []
+        createdDate = Date.now
+        updatedDate = Date.now
+    }
+    
     // MARK: - Public methods
     
     func clearChangedIndicator() {

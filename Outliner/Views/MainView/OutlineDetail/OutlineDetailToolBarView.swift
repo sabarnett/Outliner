@@ -21,12 +21,14 @@ struct OutlineDetailToolBarView: View {
             
             addAboveButton().padding(.trailing, -10)
             addBelowButton().padding(.trailing, -10)
-            addChildButton()
+            addChildButton().padding(.trailing, -10)
+            duplicateItemButton().padding(.trailing, -10)
+            duplicateLegButton()
 
             Spacer().frame(width: 22)
             
-            addIndentButton().padding(.trailing, -10)
-            addPromoteButton()
+            indentButton().padding(.trailing, -10)
+            promoteButton()
 
             Spacer().frame(width: 22)
             
@@ -91,7 +93,29 @@ struct OutlineDetailToolBarView: View {
         .disabled(vm.selection == nil)
     }
     
-    private func addIndentButton() -> some View {
+    private func duplicateLegButton() -> some View {
+        OutlineActionButton(
+            imageName: "duplicate_leg",
+            tint: vm.selection == nil ? Color.gray : Color("IconColor"),
+            helpText: "Duplicate this item and it's children."
+        ) {
+            // vm.promoteSelection()
+        }
+        .disabled(vm.selection == nil)
+    }
+    
+    private func duplicateItemButton() -> some View {
+        OutlineActionButton(
+            imageName: "duplicate_single",
+            tint: vm.selection == nil ? Color.gray : Color("IconColor"),
+            helpText: "Duplicate this item without it's children."
+        ) {
+            vm.duplicateItem()
+        }
+        .disabled(vm.selection == nil)
+    }
+    
+    private func indentButton() -> some View {
         OutlineActionButton(
             imageName: "tree_indent",
             tint: vm.canIndent ? Color("IconColor") : Color.gray,
@@ -102,7 +126,7 @@ struct OutlineDetailToolBarView: View {
         .disabled(!vm.canIndent)
     }
     
-    private func addPromoteButton() -> some View {
+    private func promoteButton() -> some View {
         OutlineActionButton(
             imageName: "tree_promote",
             tint: vm.canPromote ? Color("IconColor") : Color.gray,
