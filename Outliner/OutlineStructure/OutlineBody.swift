@@ -41,6 +41,10 @@ class OutlineBody {
         }
     }
     
+    init(fromItem: OutlineItem) {
+        outlineBody = fromItem
+    }
+    
     func clearChangedIndicator() {
         outlineBody?.clearChangedIndicator()
     }

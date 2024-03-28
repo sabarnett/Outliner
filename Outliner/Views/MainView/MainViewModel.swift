@@ -268,7 +268,22 @@ extension MainViewModel {
     }
     
     func duplicateLeg() {
+        guard let selection,
+              let parent = selection.parent,
+              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })
+        else { return }
         
+        // Convert the hierarchy leg to an OpmlFile XML string
+        let xml = treeFile.outlineXML(forRoot: selection)
+
+        // Convert the xml back to a hierarchy of OutlineItems
+        if let leg = treeFile.itemsFromXML(xml: xml) {
+            leg.parent = parent
+            parent.children.insert(leg, at: selectionIndex + 1)
+            self.selection = leg
+        } else {
+            print("Nothing found")
+        }
     }
     
     func deleteSelectedItem() {

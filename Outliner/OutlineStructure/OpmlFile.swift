@@ -44,7 +44,7 @@ class OpmlFile {
         self.header = OutlineHeader(fromDocument: doc)
         self.outline = OutlineBody(fromDocument: doc)
     }
-
+    
     // MARK: - Load and save API functions
     
     /// Saves the outline to a file. It is assumed that the file e write to is the same
@@ -66,6 +66,32 @@ class OpmlFile {
         outline.outlineBody?.clearChangedIndicator()
     }
     
+    /// Renders the XML for an outline file and returns it as a string.
+    ///
+    /// By default, the XML is for the entire outline. However, you can pass an optional
+    /// OutlineItem and the XML will be rendered using that as t he root node. This gives
+    /// a partial rendering of the file. This XML can be used to create a subset file or to
+    /// create a string containing the subset that can be copied to the clipboard.
+    ///
+    /// - Parameter root: Optional root OutlineItem or nil to use thw whole file.
+    /// - Returns:  A string representation of the OpmlFile
+    func outlineXML(forRoot root: OutlineItem? = nil) -> String {
+        let rootDoc = createDocument(forRoot: root)
+        let content = formatDocument(rootDoc)
+
+        return content
+    }
+    
+    func itemsFromXML(xml: String) -> OutlineItem? {
+        guard let doc = loadDocument(xml: xml) else {
+            print("Document load failure")
+            return nil
+        }
+
+        let outline = OutlineBody(fromDocument: doc)
+        return outline.outlineBody?.children.first
+    }
+    
     // MARK: - Private helpers
     
     private func loadDocument(url: URL) -> XMLDocument? {
@@ -80,12 +106,30 @@ class OpmlFile {
         }
     }
     
-    private func createDocument() -> XMLDocument {
+    private func loadDocument(xml: String) -> XMLDocument? {
+
+        let options = XMLNode.Options()
+        do {
+            return try XMLDocument(xmlString: xml, options: options)
+        } catch {
+            Alerts.loadError(message: error.localizedDescription)
+            return nil
+        }
+    }
+
+    private func createDocument(forRoot root: OutlineItem? = nil) -> XMLDocument {
         let rootElement = XMLElement(name: "opml")
         let rootDoc = XMLDocument(rootElement: rootElement)
         
         self.header.renderXML(rootElement)
-        self.outline.renderXML(rootElement)
+        if let root {
+            let topLevel = OutlineItem()
+            topLevel.children.append(root)
+            let outlineBody = OutlineBody(fromItem: topLevel)
+            outlineBody.renderXML(rootElement)
+        } else {
+            self.outline.renderXML(rootElement)
+        }
         
         return rootDoc
     }

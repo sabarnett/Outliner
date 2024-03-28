@@ -99,7 +99,7 @@ struct OutlineDetailToolBarView: View {
             tint: vm.selection == nil ? Color.gray : Color("IconColor"),
             helpText: "Duplicate this item and it's children."
         ) {
-            // vm.promoteSelection()
+            vm.duplicateLeg()
         }
         .disabled(vm.selection == nil)
     }
