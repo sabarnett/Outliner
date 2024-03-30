@@ -2,7 +2,7 @@
 // File: OutlineItemView.swift
 // Package: Outline Tester
 // Created by: Steven Barnett on 08/11/2023
-// 
+//
 // Copyright © 2023 Steven Barnett. All rights reserved.
 //
 
@@ -24,10 +24,10 @@ struct OutlineItemView: View {
                 VStack(alignment: .leading) {
                     OutlineItemNodeTitle(node: node, titleEditEnabled: $titleEditEnabled)
                     OutlineItemNodeNotes(node: node)
-
                 }
-            }.id(rowId)
+            }
         }
+        .id(rowId)
         .foregroundStyle(node.completed ? Color.primary.opacity(0.6) : Color.primary)
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
@@ -51,7 +51,7 @@ struct OutlineItemView: View {
         ? Color.accentColor.opacity(0.2)
         : Color.clear
     }
-
+    
     /// If the title text is being edited, then close edit mode.
     fileprivate func resetEditMode() {
         if titleEditEnabled {
@@ -75,7 +75,7 @@ struct OutlineItemView: View {
             }
         }
     }
-
+    
     fileprivate func onDropHandler(providers: [NSItemProvider]) -> Bool {
         let targetNode = node
         if let sourceItem = providers.first {

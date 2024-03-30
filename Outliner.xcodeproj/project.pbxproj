@@ -71,6 +71,7 @@
 		E8D009D02BAC811500C08DC9 /* SplitConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D009C62BAC811500C08DC9 /* SplitConstraints.swift */; };
 		E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D456372B345A3400CE2A93 /* FileMenu.swift */; };
 		E8DBC7F12AAA0CB400EC3559 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */; };
+		E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E349092BB868D200C778A6 /* ContextMenuItems.swift */; };
 		E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */; };
 		E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */; };
 		E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */; };
@@ -158,6 +159,7 @@
 		E8D009C62BAC811500C08DC9 /* SplitConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitConstraints.swift; sourceTree = "<group>"; };
 		E8D456372B345A3400CE2A93 /* FileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMenu.swift; sourceTree = "<group>"; };
 		E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		E8E349092BB868D200C778A6 /* ContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItems.swift; sourceTree = "<group>"; };
 		E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowActionButtons.swift; sourceTree = "<group>"; };
 		E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowRecentFilesView.swift; sourceTree = "<group>"; };
 		E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineManager.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				E8BDD5CE2AFBDD5600672DCE /* TreeNodeParent.swift */,
+				E8E349092BB868D200C778A6 /* ContextMenuItems.swift */,
 				E8BDD5D02AFBDDAE00672DCE /* TreeNodeView.swift */,
 				E8BDD5D22AFBDDDF00672DCE /* OutlineItemView.swift */,
 				E8014F012B73E18100A8F751 /* OutlineItemOverlayIcons.swift */,
@@ -652,6 +655,7 @@
 				E80D574B2BA1E7FC00649C95 /* NodeMover.swift in Sources */,
 				E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */,
 				E8C0006C2B922456008BFFD3 /* ThemeDefinitions.swift in Sources */,
+				E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */,
 				E84D0AB92BA5F84100716028 /* OutlineItemCheckBox.swift in Sources */,
 				E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */,
 				E879067E2A88E13400259501 /* OutlinerApp.swift in Sources */,

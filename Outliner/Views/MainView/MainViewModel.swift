@@ -136,11 +136,12 @@ extension MainViewModel {
         }
     }
     
-    var canIndent: Bool {
-        guard let selection,
-              let parent = selection.parent else { return false }
+    func canIndent(item: OutlineItem? = nil) -> Bool {
+        let testItem = item ?? selection
+        guard let testItem,
+              let parent = testItem.parent else { return false }
         
-        let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id}) ?? 0
+        let selectionIndex = parent.children.firstIndex(where: {$0.id == testItem.id}) ?? 0
         return selectionIndex > 0
     }
     
@@ -154,10 +155,11 @@ extension MainViewModel {
         move(selection, to: target, inserting: .child)
     }
     
-    var canPromote: Bool {
-        guard let selection,
+    func canPromote(item: OutlineItem? = nil) -> Bool {
+        let testItem = item ?? selection
+        guard let testItem,
               let tree,
-              let parent = selection.parent else { return false }
+              let parent = testItem.parent else { return false }
         
         return parent.id != tree.id
     }
@@ -263,6 +265,7 @@ extension MainViewModel {
 
         objectWillChange.send()
         parent.children.insert(newItem, at: selectionIndex + 1)
+        self.selection = newItem
         
         calculateStatistics()
     }

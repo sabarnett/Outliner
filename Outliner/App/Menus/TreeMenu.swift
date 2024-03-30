@@ -55,10 +55,10 @@ public struct TreeCommands: Commands {
             Divider()
             
             Button("Move Down One Level") { mainViewModel?.indentSelection() }
-                .disabled(!(mainViewModel?.canIndent ?? false))
+                .disabled(!(mainViewModel?.canIndent() ?? false))
 
             Button("Move Up One Level") { mainViewModel?.promoteSelection() }
-                .disabled(!(mainViewModel?.canPromote ?? true))
+                .disabled(!(mainViewModel?.canPromote() ?? false))
 
             Divider()
             

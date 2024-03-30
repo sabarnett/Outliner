@@ -14,12 +14,16 @@ struct TreeNodeView: View {
     @ObservedObject var node: OutlineItem
     
     var body: some View {
-        ForEach(node.children, id: \.self) { (childItem: OutlineItem) in
+        ForEach(node.children, id: \.self) { childItem in
             Group {
                 if childItem.hasChildren == false {
                     OutlineItemView(node: childItem)
                         .onDrag({ childItem.providerEncode() },
                                 preview: {  NodeMovePreview(node: childItem) })
+                        .contextMenu(menuItems: {
+                            ContextMenuItems(node: childItem)
+                        })
+
                 } else {
                     TreeNodeParent(node: childItem)
                 }

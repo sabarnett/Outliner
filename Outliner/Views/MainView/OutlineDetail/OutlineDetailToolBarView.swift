@@ -118,23 +118,23 @@ struct OutlineDetailToolBarView: View {
     private func indentButton() -> some View {
         OutlineActionButton(
             imageName: "tree_indent",
-            tint: vm.canIndent ? Color("IconColor") : Color.gray,
+            tint: vm.canIndent() ? Color("IconColor") : Color.gray,
             helpText: "Move the item down a level."
         ) {
             vm.indentSelection()
         }
-        .disabled(!vm.canIndent)
+        .disabled(!vm.canIndent())
     }
     
     private func promoteButton() -> some View {
         OutlineActionButton(
             imageName: "tree_promote",
-            tint: vm.canPromote ? Color("IconColor") : Color.gray,
+            tint: vm.canPromote() ? Color("IconColor") : Color.gray,
             helpText: "Move the item to the parent level."
         ) {
             vm.promoteSelection()
         }
-        .disabled(!vm.canPromote)
+        .disabled(!vm.canPromote())
     }
 
     private func deleteItemButton() -> some View {
