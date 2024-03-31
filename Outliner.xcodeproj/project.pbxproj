@@ -228,6 +228,7 @@
 				E893853C2AA22BA100D225F5 /* OutlineDetailView.swift */,
 				E816462F2B654854003CB585 /* OutlineDetailToolBarView.swift */,
 				E81646322B654D1C003CB585 /* OutlineActionButton.swift */,
+				E8E349092BB868D200C778A6 /* ContextMenuItems.swift */,
 			);
 			path = OutlineDetail;
 			sourceTree = "<group>";
@@ -348,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				E8BDD5CE2AFBDD5600672DCE /* TreeNodeParent.swift */,
-				E8E349092BB868D200C778A6 /* ContextMenuItems.swift */,
 				E8BDD5D02AFBDDAE00672DCE /* TreeNodeView.swift */,
 				E8BDD5D22AFBDDDF00672DCE /* OutlineItemView.swift */,
 				E8014F012B73E18100A8F751 /* OutlineItemOverlayIcons.swift */,

@@ -12,7 +12,11 @@ class MainViewModel: ObservableObject, Identifiable {
     var id: UUID = UUID()
     var treeFile: OpmlFile
     var outlineFileUrl: URL
-    var requiresSave: Bool { tree?.dataHasChanged() ?? false }
+    var requiresSave: Bool { tree?.hasDataChanged() ?? false }
+    
+    var lastSortedItem: OutlineItem?
+    var lastSortBy: OutlineItemSort?
+    var sortAscending: Bool = false
 
     @Published var tree: OutlineItem?
     @Published var isLoading: Bool = true
@@ -296,6 +300,33 @@ extension MainViewModel {
             self.objectWillChange.send()
         }
         calculateStatistics()
+    }
+    
+    func sortLevel(by sortBy: OutlineItemSort) {
+        guard let selection,
+              let parent = selection.parent
+        else { return }
+        
+        if let lastSortedItem,
+                lastSortedItem == parent,
+                lastSortBy == sortBy {
+                sortAscending = !sortAscending
+        } else {
+            sortAscending = true
+        }
+        
+        do {
+            try parent.children.sort(by: sortBy.sortComparator)
+            if !sortAscending {
+                parent.children.reverse()
+            }
+
+            lastSortedItem = parent
+            lastSortBy = sortBy
+            parent.hasChanged = true
+        } catch {
+            print("Sort failed: \(error.localizedDescription)")
+        }
     }
 }
 

@@ -136,10 +136,10 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     /// Checks whether this itemor any of it's child items have been changed.
     ///
     /// - Returns: True if this or a child item has been changed, else false
-    func dataHasChanged() -> Bool {
+    func hasDataChanged() -> Bool {
         if hasChanged { return true }
         
-        let hasChanged = children.first(where: { $0.dataHasChanged() })
+        let hasChanged = children.first(where: { $0.hasDataChanged() })
         return hasChanged == nil ? false : true
     }
     
