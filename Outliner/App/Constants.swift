@@ -60,4 +60,7 @@ struct Constants {
   </body>
 </html>
 """
+    
+    // Pasteboard related
+    static let outlinePasteboardType: String = "uk.co.sabarnett.OutlinePasteboardType"
 }

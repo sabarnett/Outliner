@@ -21,6 +21,7 @@ struct Menus: Commands {
     var body: some Commands {
         ToolbarCommands()
         SidebarCommands()
+        EditCommands()
         
         // Replace the About menu item.
         CommandGroup(replacing: CommandGroupPlacement.appInfo) {

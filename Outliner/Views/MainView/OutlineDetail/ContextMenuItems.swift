@@ -19,6 +19,9 @@ struct ContextMenuItems: View {
             Text(node.text).font(.title2)
             Divider()
             
+            editMenu
+            Divider()
+            
             insertMenu
             duplicateMenu
             moveMenu
@@ -48,6 +51,24 @@ struct ContextMenuItems: View {
                 vm.addChild()
             }
         }, label: { Text("Insert") })
+    }
+    
+    private var editMenu: some View {
+        Menu(content: {
+            Button("Cut") {
+                vm.copyToPasteBoard(cut: true)
+            }
+            Button("Copy") {
+                vm.copyToPasteBoard()
+            }
+            Button("Paste") {
+                vm.pasteFromPasteboard()
+            }
+            .disabled(!vm.hasOutlineValue())
+        },
+             label: {
+            Text("Edit")
+        })
     }
     
     private var duplicateMenu: some View {

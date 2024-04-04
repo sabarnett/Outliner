@@ -201,20 +201,44 @@ extension MainViewModel {
     
     // MARK: - Pasteboard handlers
     
-    func copyToPasteBoard() {
-//        PasteBoard.push(selectedItem)
+    func copyToPasteBoard(cut: Bool = false) {
+        // If we 'cut' we also need to delete the leg.
+        guard let selection,
+              let parent = selection.parent,
+              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })
+        else { return }
+        
+        let xml = treeFile.outlineXML(forRoot: selection)
+        let fileName = outlineFileUrl.path(percentEncoded: false)
+        let clipboardContent = OutlinePasteboard(
+            sourceFile: fileName,
+            contentXML: xml
+        )
+        
+        PasteBoard.push(clipboardContent)
+        
+        if cut {
+            // Delete the source item
+        }
+    }
+
+    func pasteFromPasteboard() {
+        guard let pasteData = PasteBoard.pop() else { return }
+//        
+//        WriteLog.info("Paste data received")
+//        WriteLog.debug("From file:", pasteData.sourceFile)
+//        WriteLog.debug("With content: ", pasteData.contentXML)
+    }
+    
+    func hasOutlineValue() -> Bool {
+        if PasteBoard.contains(type: .outlinePasteboardType) {
+            return true
+        }
+        return false
     }
     
     func clearPasteBoard() {
         PasteBoard.clear()
-    }
-
-    func getFromPasteBoard() -> String {
-        PasteBoard.pop() ?? ""
-    }
-    
-    func hasTextValue() -> Bool {
-        PasteBoard.contains(type: .string)
     }
 }
 
