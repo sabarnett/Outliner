@@ -7,12 +7,22 @@
 //
 
 import SwiftUI
+import MarkdownKit
 
 struct NodeEdit: View {
     
     @Environment(\.dismiss) private var dismiss
-    
+    @Environment(\.colorScheme) private var colorScheme
+
     @ObservedObject var vm: NodeEditViewModel
+    @AppStorage("noteFontSize") private var noteFontSize: Double = 16
+
+    @State var viewPreview: Bool = false
+
+    var htmlText: String {
+        let markdown = MarkdownParser.standard.parse(vm.notes)
+        return buildHtml(formattedNote: HtmlGenerator.standard.generate(doc: markdown))
+    }
     
     var body: some View {
         VStack {
@@ -41,10 +51,27 @@ struct NodeEdit: View {
                     .padding(.bottom)
 
                 Section("Notes") {
-                    TextEditor(text: $vm.notes)
-                        .themedFont(for: .nodeEditNotes)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color(nsColor: .tertiarySystemFill), lineWidth: 2))
+                    Picker("", selection: $viewPreview) {
+                        Text("Edit").tag(false)
+                        Text("Preview").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 280)
+                    
+                    if viewPreview {
+                        HTMLView(htmlContent: htmlText)
+                            .frame(
+                                maxWidth: .infinity,
+                                maxHeight: .infinity,
+                                alignment: .topLeading
+                            )
+                            .padding(.horizontal)
+                    } else {
+                        TextEditor(text: $vm.notes)
+                            .themedFont(for: .nodeEditNotes)
+                            .overlay(RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color(nsColor: .tertiarySystemFill), lineWidth: 2))
+                    }
                 }
             }
             
@@ -62,6 +89,24 @@ struct NodeEdit: View {
         .padding()
         .frame(width: 700, height: 600)
     }
+    
+    private func buildHtml(formattedNote: String) -> String {
+        
+        let foreground = colorScheme == .dark ? "whitesmoke" : "black"
+        let background = colorScheme == .dark ? "black" : "white"
+        let zoom = noteFontSize / 16
+        
+        let prefix = Constants.notePreviewPrefixHtml
+            .replacingOccurrences(of: "$$title$$", with: vm.text)
+            .replacingOccurrences(of: "$$bgcolor$$", with: background)
+            .replacingOccurrences(of: "$$fgcolor$$", with: foreground)
+            .replacingOccurrences(of: "$$zoom$$", with: "\(zoom)")
+        
+        let suffix = Constants.notePreviewSuffixHtml
+        
+        return "\(prefix)\n\(formattedNote)\n\(suffix)"
+    }
+
 }
 
 struct ImageToggle: View {
