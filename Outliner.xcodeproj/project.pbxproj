@@ -92,7 +92,7 @@
 		E8FF50462B6A8B43005823D3 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF50452B6A8B43005823D3 /* View+Extensions.swift */; };
 		E8FF50482B6A8D04005823D3 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF50472B6A8D04005823D3 /* NoteView.swift */; };
 		E8FF89532B78FDAE008CF353 /* NodeEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF89522B78FDAE008CF353 /* NodeEdit.swift */; };
-		E8FFE30D2BBD8E0300EFA7B1 /* EditCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFE30C2BBD8E0300EFA7B1 /* EditCommands.swift */; };
+		E8FFE30D2BBD8E0300EFA7B1 /* EditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFE30C2BBD8E0300EFA7B1 /* EditMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,7 +181,7 @@
 		E8FF50452B6A8B43005823D3 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		E8FF50472B6A8D04005823D3 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		E8FF89522B78FDAE008CF353 /* NodeEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEdit.swift; sourceTree = "<group>"; };
-		E8FFE30C2BBD8E0300EFA7B1 /* EditCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommands.swift; sourceTree = "<group>"; };
+		E8FFE30C2BBD8E0300EFA7B1 /* EditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,7 +431,7 @@
 				E8D456372B345A3400CE2A93 /* FileMenu.swift */,
 				E81646372B6552B3003CB585 /* TreeMenu.swift */,
 				E8F8DD592B71126600653F02 /* ViewMenu.swift */,
-				E8FFE30C2BBD8E0300EFA7B1 /* EditCommands.swift */,
+				E8FFE30C2BBD8E0300EFA7B1 /* EditMenu.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -663,7 +663,7 @@
 				E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */,
 				E879067E2A88E13400259501 /* OutlinerApp.swift in Sources */,
 				E88552A22AB0E80D00740562 /* Menus.swift in Sources */,
-				E8FFE30D2BBD8E0300EFA7B1 /* EditCommands.swift in Sources */,
+				E8FFE30D2BBD8E0300EFA7B1 /* EditMenu.swift in Sources */,
 				E820F95F2BA30F66002A9733 /* NodeMovePreview.swift in Sources */,
 				E8014F022B73E18100A8F751 /* OutlineItemOverlayIcons.swift in Sources */,
 				E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */,

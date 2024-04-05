@@ -224,10 +224,20 @@ extension MainViewModel {
 
     func pasteFromPasteboard() {
         guard let pasteData = PasteBoard.pop() else { return }
-//        
-//        WriteLog.info("Paste data received")
-//        WriteLog.debug("From file:", pasteData.sourceFile)
-//        WriteLog.debug("With content: ", pasteData.contentXML)
+        guard let selection,
+              let parent = selection.parent,
+              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })
+        else { return }
+        
+        // Convert the xml back to a hierarchy of OutlineItems
+        if let leg = treeFile.itemsFromXML(xml: pasteData.contentXML) {
+            leg.parent = parent
+            parent.children.insert(leg, at: selectionIndex + 1)
+            parent.hasChanged = true
+            self.selection = leg
+        } else {
+            print("Nothing found")
+        }
     }
     
     func hasOutlineValue() -> Bool {

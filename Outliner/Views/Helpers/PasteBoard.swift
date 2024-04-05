@@ -31,7 +31,7 @@ struct PasteBoard {
 
     public static func pop() -> OutlinePasteboard? {
         if let item = NSPasteboard.general
-            .readObjects(forClasses: [OutlinePasteboardWrapper.self],options: nil)
+            .readObjects(forClasses: [OutlinePasteboardWrapper.self], options: nil)
                 as? [OutlinePasteboardWrapper] {
             
             if let outlineData = item.first {
