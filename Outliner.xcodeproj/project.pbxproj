@@ -212,13 +212,11 @@
 		E80B8D162A8BBEAA000F361A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E8E52FEC2BADE1A7003B0877 /* Components */,
 				E8C88B4B2B275C990091F431 /* OpeningView */,
+				E8CD080C2AAE20D600436631 /* MainView */,
+				E8E52FEC2BADE1A7003B0877 /* Components */,
 				E8C78BB02AB73F0900E532FA /* Helpers */,
 				E8F30BA12A8FB403005D41E7 /* Dialogs */,
-				E8CD080C2AAE20D600436631 /* MainView */,
-				E871CF4D2B7BFA890067F9D2 /* NoteView */,
-				E871CF4A2B7BF22F0067F9D2 /* NodeEdit */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +258,7 @@
 				E81A2A802AC1B1D000965A2A /* FileHelpers.swift */,
 				E8F88BBB2AC42F040072B972 /* Notifications.swift */,
 				E80C4E462AE1590500ADC2CB /* Alerts.swift */,
+				E858D4122ADAD3EA0001FA3B /* PasteBoard.swift */,
 				E8E52FEA2BADE04F003B0877 /* OutlineFileManager */,
 				E8C000622B921F2F008BFFD3 /* Themes */,
 			);
@@ -290,13 +289,13 @@
 			path = NodeEdit;
 			sourceTree = "<group>";
 		};
-		E871CF4D2B7BFA890067F9D2 /* NoteView */ = {
+		E871CF4D2B7BFA890067F9D2 /* NotePreview */ = {
 			isa = PBXGroup;
 			children = (
 				E8FF50472B6A8D04005823D3 /* NoteView.swift */,
 				E871CF4E2B7BFAB90067F9D2 /* NodeViewViewModel.swift */,
 			);
-			path = NoteView;
+			path = NotePreview;
 			sourceTree = "<group>";
 		};
 		E871CF502B7BFC210067F9D2 /* AboutView */ = {
@@ -376,7 +375,6 @@
 		E8C78BB02AB73F0900E532FA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				E858D4122ADAD3EA0001FA3B /* PasteBoard.swift */,
 				E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */,
 			);
 			path = Helpers;
@@ -403,6 +401,7 @@
 				E81646352B654DF3003CB585 /* Sidebar View */,
 				E81646312B654CF4003CB585 /* OutlineDetail */,
 				E81646362B654E02003CB585 /* ListDetailView */,
+				E871CF4D2B7BFA890067F9D2 /* NotePreview */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -491,6 +490,7 @@
 		E8F30BA12A8FB403005D41E7 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
+				E871CF4A2B7BF22F0067F9D2 /* NodeEdit */,
 				E871CF502B7BFC210067F9D2 /* AboutView */,
 				E8EDBD732B5BEC75001F1306 /* Settings */,
 			);
