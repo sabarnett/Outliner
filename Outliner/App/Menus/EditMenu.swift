@@ -12,25 +12,44 @@ public struct EditMenu: Commands {
     
     @FocusedObject private var mainViewModel: MainViewModel?
     
+    var hasSelection: Bool {
+        guard let mainViewModel,
+              mainViewModel.selection != nil
+        else { return false }
+        
+        return true
+    }
+    
     public var body: some Commands {
         CommandGroup(replacing: .pasteboard) {
+            Button("Edit Item") {
+                if let mainViewModel, 
+                    let selection = mainViewModel.selection {
+                    mainViewModel.editNode(selection)
+                }
+            }
+            .keyboardShortcut("e", modifiers: .command)
+            .disabled(!hasSelection)
+            
+            Divider()
+            
             Button("Cut") {
                 mainViewModel?.copyToPasteBoard(cut: true)
             }
             .keyboardShortcut("x", modifiers: .command)
-            .disabled(mainViewModel?.selection == nil)
-            
+            .disabled(!hasSelection)
+
             Button("Copy") {
                 mainViewModel?.copyToPasteBoard()
             }
             .keyboardShortcut("c", modifiers: .command)
-            .disabled(mainViewModel?.selection == nil)
+            .disabled(!hasSelection)
 
             Button("Paste") {
                 mainViewModel?.pasteFromPasteboard()
             }
             .keyboardShortcut("v", modifiers: .command)
-            .disabled(!(mainViewModel?.hasOutlineValue() ?? true))
+            .disabled(!hasSelection)
         }
     }
 }

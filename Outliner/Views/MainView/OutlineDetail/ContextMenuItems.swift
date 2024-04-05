@@ -55,6 +55,13 @@ struct ContextMenuItems: View {
     
     private var editMenu: some View {
         Menu(content: {
+            Button("Edit Item") {
+                vm.editNode(vm.selection!)
+            }
+            .disabled(vm.selection == nil)
+            
+            Divider()
+            
             Button("Cut") {
                 vm.copyToPasteBoard(cut: true)
             }
