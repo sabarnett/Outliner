@@ -203,10 +203,7 @@ extension MainViewModel {
     
     func copyToPasteBoard(cut: Bool = false) {
         // If we 'cut' we also need to delete the leg.
-        guard let selection,
-              let parent = selection.parent,
-              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })
-        else { return }
+        guard let selection else { return }
         
         let xml = treeFile.outlineXML(forRoot: selection)
         let fileName = outlineFileUrl.path(percentEncoded: false)
@@ -218,7 +215,8 @@ extension MainViewModel {
         PasteBoard.push(clipboardContent)
         
         if cut {
-            // Delete the source item
+            self.objectWillChange.send()
+            self.selection = selection.delete()
         }
     }
 
@@ -330,8 +328,8 @@ extension MainViewModel {
     func deleteSelectedItem() {
         if let selection = selection,
            Alerts.confirmDelete(of: selection.text) == .delete {
-            self.selection = selection.delete()
             self.objectWillChange.send()
+            self.selection = selection.delete()
         }
         calculateStatistics()
     }
