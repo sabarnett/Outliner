@@ -14,9 +14,23 @@ struct ListDetailView: View {
     @ObservedObject var vm: MainViewModel
     var detailViewStyle: DetailViewType
     @State private var listId: UUID = UUID()
+    @State private var filterText: String = ""
     
     var listItems: [OutlineItem] {
-        vm.outlineItems(detailViewStyle)
+        vm.outlineItems(detailViewStyle).filter { item in
+            if filterText.isEmpty { return true }
+            
+            if item.text.range(of: filterText, options: .caseInsensitive) != nil {
+                return true
+            }
+            
+            if item.notes.range(of: filterText, options: .caseInsensitive) != nil {
+                return true
+            }
+            
+            return false
+        }
+        
     }
 
     var body: some View {
@@ -32,6 +46,7 @@ struct ListDetailView: View {
         .onReceive(AppNotifications.refreshOutline) { _ in
             listId = UUID()
         }
+        .searchable(text: $filterText, prompt: "Filter results")
     }
 }
 

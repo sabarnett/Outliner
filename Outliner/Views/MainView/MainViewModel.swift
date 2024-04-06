@@ -66,7 +66,6 @@ class MainViewModel: ObservableObject, Identifiable {
     }
 
     func outlineItems(_ ofType: DetailViewType) -> [OutlineItem] {
-        // Walk the tree.
         let filter = TreeFilter()
         return filter.listNodes(ofType: ofType, fromTree: tree)
     }
