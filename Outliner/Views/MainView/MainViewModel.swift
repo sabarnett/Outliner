@@ -65,9 +65,9 @@ class MainViewModel: ObservableObject, Identifiable {
         self.isLoading = false
     }
 
-    func outlineItems(_ ofType: DetailViewType, withOptions options: TreeFilterOptions) -> [OutlineItem] {
+    func outlineItemsListFilter(withOptions options: TreeFilterOptions) -> [OutlineItem] {
         let filter = TreeFilter()
-        return filter.listNodes(ofType: ofType, fromTree: tree, withOptions: options)
+        return filter.listNodes(fromTree: tree, withOptions: options)
     }
 
     func calculateStatistics() {

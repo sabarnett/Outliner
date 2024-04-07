@@ -11,6 +11,7 @@ import SwiftUI
 struct TreeFilterOptions {
     var searchFor: String = ""
     var searchFields: SearchAppliesTo = .titleAndNotes
+    var typeFilter: DetailViewType = .outline
     
     var hasTextFilter: Bool { !searchFor.isEmpty }
 }
@@ -19,40 +20,35 @@ struct TreeFilter {
     
     @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
-    func listNodes(
-        ofType: DetailViewType, fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions
-    ) -> [OutlineItem] {
+    func listNodes(fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions) -> [OutlineItem] {
         
         var result = [OutlineItem]()
         
         if let rootNode = tree, rootNode.hasChildren {
             for child in rootNode.children {
-                filterItems(&result, node: child, ofType: ofType, withOptions: options)
+                filterItems(&result, node: child, withOptions: options)
             }
         }
         
         return result
     }
     
-    private func filterItems(
-        _ matchingItems: inout [OutlineItem], node: OutlineItem,
-        ofType: DetailViewType, withOptions options: TreeFilterOptions
-    ) {
-        if shouldKeep(node, withType: ofType, options: options) {
+    private func filterItems(_ matchingItems: inout [OutlineItem], node: OutlineItem, withOptions options: TreeFilterOptions) {
+        if shouldKeep(node, options: options) {
             matchingItems.append(node)
         }
         
         if node.hasChildren {
             for child in node.children {
-                filterItems(&matchingItems, node: child, ofType: ofType, withOptions: options)
+                filterItems(&matchingItems, node: child, withOptions: options)
             }
         }
     }
     
-    private func shouldKeep(_ node: OutlineItem, withType ofType: DetailViewType, options: TreeFilterOptions) -> Bool {
+    private func shouldKeep(_ node: OutlineItem, options: TreeFilterOptions) -> Bool {
         
         if textFilter(node, options) == false { return false }
-        return typeFilter(node, ofType)
+        return typeFilter(node, options.typeFilter)
     }
     
     // Age of an item to be included in the filter. The duration we save
