@@ -88,8 +88,8 @@ struct MainView: View {
             .onAppear {
                 if let recentFile = outlineManager.recentFile(for: outlineFile) {
                     hide.side = recentFile.previewOpen
-                            ? SplitSide(rawValue: "secondary")
-                            : nil
+                    ? SplitSide(rawValue: "secondary")
+                    : nil
                     splitValue = recentFile.previewWidth
                 }
             }

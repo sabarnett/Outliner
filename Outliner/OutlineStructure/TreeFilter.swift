@@ -8,36 +8,78 @@
 
 import SwiftUI
 
+struct TreeFilterOptions {
+    var searchFor: String = ""
+    var searchFields: SearchAppliesTo = .titleAndNotes
+    
+    var hasTextFilter: Bool { !searchFor.isEmpty }
+}
+
 struct TreeFilter {
     
     @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
-    func listNodes(ofType: DetailViewType, fromTree tree: OutlineItem?) -> [OutlineItem] {
+    func listNodes(
+        ofType: DetailViewType, fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions
+    ) -> [OutlineItem] {
+        
         var result = [OutlineItem]()
         
         if let rootNode = tree, rootNode.hasChildren {
             for child in rootNode.children {
-                filterItems(&result, node: child, ofType: ofType)
+                filterItems(&result, node: child, ofType: ofType, withOptions: options)
             }
         }
         
         return result
     }
     
-    private func filterItems(_ matchingItems: inout [OutlineItem], node: OutlineItem, ofType: DetailViewType) {
-        if shouldKeep(node, ofType) {
+    private func filterItems(
+        _ matchingItems: inout [OutlineItem], node: OutlineItem,
+        ofType: DetailViewType, withOptions options: TreeFilterOptions
+    ) {
+        if shouldKeep(node, withType: ofType, options: options) {
             matchingItems.append(node)
         }
         
         if node.hasChildren {
             for child in node.children {
-                filterItems(&matchingItems, node: child, ofType: ofType)
+                filterItems(&matchingItems, node: child, ofType: ofType, withOptions: options)
             }
         }
     }
     
-    private func shouldKeep(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
+    private func shouldKeep(_ node: OutlineItem, withType ofType: DetailViewType, options: TreeFilterOptions) -> Bool {
         
+        if textFilter(node, options) == false { return false }
+        return typeFilter(node, ofType)
+    }
+    
+    // Age of an item to be included in the filter. The duration we save
+    // to the settings is in days, so we need to convert from a number of
+    // days to a number of seconds.
+    //
+    // duration * Mins * Hrs * Days
+    private var timeInterval: Double {
+        Double(recentDuration) * 60 * 60 * 24
+    }
+    
+    func textFilter(_ node: OutlineItem, _ options: TreeFilterOptions) -> Bool {
+        
+        if options.hasTextFilter == false { return true }
+        
+        switch options.searchFields {
+        case .titleAndNotes:
+            return node.text.localizedCaseInsensitiveContains(options.searchFor)
+            || node.notes.localizedCaseInsensitiveContains(options.searchFor)
+        case .titleOnly:
+            return node.text.localizedCaseInsensitiveContains(options.searchFor)
+        case .notesOnly:
+            return node.notes.localizedCaseInsensitiveContains(options.searchFor)
+        }
+    }
+    
+    func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
         switch ofType {
         case .outline:
             return false
@@ -48,7 +90,7 @@ struct TreeFilter {
         case .starred:
             return node.starred
         case .recentlyAdded:
-            if let added = node.createdDate {                
+            if let added = node.createdDate {
                 return abs(added.timeIntervalSinceNow) <  timeInterval
             }
         case .recentlyCompleted:
@@ -61,14 +103,5 @@ struct TreeFilter {
             }
         }
         return false
-    }
-    
-    // Age of an item to be included in the filter. The duration we save
-    // to the settings is in days, so we need to convert from a number of
-    // days to a number of seconds.
-    //
-    // duration * Mins * Hrs * Days
-    private var timeInterval: Double {
-        Double(recentDuration) * 60 * 60 * 24
     }
 }

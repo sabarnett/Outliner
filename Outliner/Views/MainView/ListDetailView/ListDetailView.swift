@@ -15,6 +15,7 @@ struct ListDetailView: View {
 
     @ObservedObject var vm: MainViewModel
     var detailViewStyle: DetailViewType
+    
     @State private var listId: UUID = UUID()
     @State private var filterText: String = ""
 
@@ -35,25 +36,12 @@ struct ListDetailView: View {
     }
 
     var listItems: [OutlineItem] {
-        let searchText = filterText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let searchOptions = TreeFilterOptions(
+            searchFor: filterText.trimmingCharacters(in: .whitespacesAndNewlines),
+            searchFields: searchAppliesTo
+            )
         
-        return vm.outlineItems(detailViewStyle).filter { item in
-            if filterText.isEmpty { return true }
-            
-            if text(of: item, contains: searchText) { return true }
-            if note(of: item, contains: searchText) { return true }
-            return false
-        }
-    }
-
-    func text(of item: OutlineItem, contains searchText: String) -> Bool {
-        if searchAppliesTo == .notesOnly { return false }
-        return item.text.localizedCaseInsensitiveContains(searchText)
-    }
-    
-    func note(of item: OutlineItem, contains searchText: String) -> Bool {
-        if searchAppliesTo == .titleOnly { return false }
-        return item.notes.localizedCaseInsensitiveContains(searchText)
+        return vm.outlineItems(detailViewStyle, withOptions: searchOptions)
     }
 }
 
