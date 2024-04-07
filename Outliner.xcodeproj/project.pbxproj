@@ -74,6 +74,7 @@
 		E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E349092BB868D200C778A6 /* ContextMenuItems.swift */; };
 		E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */; };
 		E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */; };
+		E8E742512BC2C874007F4B57 /* SearchAppliesTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */; };
 		E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */; };
 		E8EA24642AACA7F5001210F4 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA24632AACA7F5001210F4 /* DisplayMode.swift */; };
 		E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDBD6F2B5BDBA1001F1306 /* OpeningWindowButtonsView.swift */; };
@@ -163,6 +164,7 @@
 		E8E349092BB868D200C778A6 /* ContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItems.swift; sourceTree = "<group>"; };
 		E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowActionButtons.swift; sourceTree = "<group>"; };
 		E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowRecentFilesView.swift; sourceTree = "<group>"; };
+		E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppliesTo.swift; sourceTree = "<group>"; };
 		E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineManager.swift; sourceTree = "<group>"; };
 		E8EA24632AACA7F5001210F4 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
 		E8EDBD6F2B5BDBA1001F1306 /* OpeningWindowButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowButtonsView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		E8CD080C2AAE20D600436631 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */,
 				E871CF552B7C00890067F9D2 /* DetailViewType.swift */,
 				E879067F2A88E13400259501 /* MainView.swift */,
 				E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */,
@@ -604,6 +607,7 @@
 				E80C4E472AE1590500ADC2CB /* Alerts.swift in Sources */,
 				E8BDD5CF2AFBDD5600672DCE /* TreeNodeParent.swift in Sources */,
 				E8FE12A02B6008260079959E /* ListDetailView.swift in Sources */,
+				E8E742512BC2C874007F4B57 /* SearchAppliesTo.swift in Sources */,
 				E8345E5A2A910B1400E36B82 /* SettingsView.swift in Sources */,
 				E8C78BB22AB73F1900E532FA /* HostingViewFinder.swift in Sources */,
 				E80B8D142A8BB1D8000F361A /* AppDelegate.swift in Sources */,

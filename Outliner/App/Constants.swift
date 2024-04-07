@@ -39,6 +39,7 @@ struct Constants {
     static let previewLineCount = "previewLineCount"
     static let alternatingRows = "alternatingRows"
     static let closeAppWhenLastWindowCloses = "closeAppWhenLastWindowCloses"
+    static let searchAppliesTo = "searchAppliesTo"
     
     // Note preview
     static let notePreviewPrefixHtml = """

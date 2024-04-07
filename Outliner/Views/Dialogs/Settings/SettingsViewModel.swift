@@ -18,6 +18,7 @@ class SettingsViewModel: ObservableObject {
     // Tree settings
     @AppStorage(Constants.previewLineCount) var previewLineCount: Int = 1
     @AppStorage(Constants.alternatingRows) var alternatingRows: Bool = true
+    @AppStorage(Constants.searchAppliesTo) var searchAppliesTo: SearchAppliesTo = .titleAndNotes
 
     // Advanced Settings extra options
     @AppStorage(Constants.closeAppWhenLastWindowCloses) var closeAppWhenLastWindowCloses: Bool = true

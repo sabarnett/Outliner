@@ -27,6 +27,12 @@ struct OutlineSettings: View {
                 Text("\(settings.previewLineCount.formatted())")
             }
             .padding(.bottom, 12)
+            
+            Picker("Search looks at", selection: $settings.searchAppliesTo) {
+                ForEach(SearchAppliesTo.allCases) { search in
+                    Text(search.description).tag(search)
+                }
+            }
         }
         .padding()
     }
