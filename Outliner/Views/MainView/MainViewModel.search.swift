@@ -40,7 +40,7 @@ extension MainViewModel {
                 self.searchResults = result
                 self.searchIndex = 0
                 if result.count > 0 {
-                    self.selection = result[0]
+                    self.selectAndMakeVisible(item: result[0])
                 }
             }
         }
@@ -66,7 +66,7 @@ extension MainViewModel {
                     searchIndex > 0
         else { return }
         searchIndex -= 1
-        selection = searchResults[searchIndex]
+        selectAndMakeVisible(item: searchResults[searchIndex])
     }
     
     func searchMoveNext() {
@@ -74,7 +74,22 @@ extension MainViewModel {
               searchIndex <= searchResults.count
         else { return }
         searchIndex += 1
-        selection = searchResults[searchIndex]
+        selectAndMakeVisible(item: searchResults[searchIndex])
     }
 
+    func selectAndMakeVisible(item: OutlineItem) {
+        // loop up the parent tree, ensuring the parent is expanded
+        var current = item
+        while current.parent != nil {
+            guard let parent = current.parent else { break }
+            if parent.isExpanded { break }
+            parent.isExpanded = true
+            current = parent
+        }
+        
+        self.selection = item
+        
+        // TODO: Get the list to scroll to the correct position. We are selecting
+        // the node, but the list is not scrolling it into position on screen.
+    }
 }
