@@ -382,6 +382,17 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		E8C433732BC5325D0074E13C /* MainVierwModel */ = {
+			isa = PBXGroup;
+			children = (
+				E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */,
+				E8C4336F2BC52D370074E13C /* MainViewModel.structure.swift */,
+				E8C4336D2BC52C9B0074E13C /* MainViewModel.pasteboard.swift */,
+				E8C4336B2BC52BBE0074E13C /* MainViewModel.search.swift */,
+			);
+			path = MainVierwModel;
+			sourceTree = "<group>";
+		};
 		E8C78BB02AB73F0900E532FA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +419,7 @@
 				E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */,
 				E871CF552B7C00890067F9D2 /* DetailViewType.swift */,
 				E879067F2A88E13400259501 /* MainView.swift */,
-				E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */,
-				E8C4336F2BC52D370074E13C /* MainViewModel.structure.swift */,
-				E8C4336D2BC52C9B0074E13C /* MainViewModel.pasteboard.swift */,
-				E8C4336B2BC52BBE0074E13C /* MainViewModel.search.swift */,
+				E8C433732BC5325D0074E13C /* MainVierwModel */,
 				E81646352B654DF3003CB585 /* Sidebar View */,
 				E81646312B654CF4003CB585 /* OutlineDetail */,
 				E81646362B654E02003CB585 /* ListDetailView */,
