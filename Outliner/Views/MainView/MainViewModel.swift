@@ -30,6 +30,9 @@ class MainViewModel: ObservableObject, Identifiable {
     @Published var completeCount: Int = 0
     @Published var incompleteCount: Int = 0
     
+    @Published var searchResults: [OutlineItem]?
+    @Published var searchIndex: Int = 0
+    
     // MARK: - Initialisation
     
     init() {
@@ -63,11 +66,6 @@ class MainViewModel: ObservableObject, Identifiable {
         calculateStatistics()
         
         self.isLoading = false
-    }
-
-    func outlineItemsListFilter(withOptions options: TreeFilterOptions) -> [OutlineItem] {
-        let filter = TreeFilter()
-        return filter.listNodes(fromTree: tree, withOptions: options)
     }
 
     func calculateStatistics() {
@@ -125,58 +123,6 @@ class MainViewModel: ObservableObject, Identifiable {
 
 extension MainViewModel {
     
-    @MainActor
-    func move(_ source: OutlineItem, to targetNode: OutlineItem, inserting: NodeMoveRelativeTo) {
-        let mover = NodeMover()
-        mover.move(source, to: targetNode, inserting: inserting, inTree: self.tree!)
-        
-        DispatchQueue.main.async {
-            if inserting == .child {
-                targetNode.setExpansionState(to: .expanded)
-            }
-            
-            self.objectWillChange.send()
-        }
-    }
-    
-    func canIndent(item: OutlineItem? = nil) -> Bool {
-        let testItem = item ?? selection
-        guard let testItem,
-              let parent = testItem.parent else { return false }
-        
-        let selectionIndex = parent.children.firstIndex(where: {$0.id == testItem.id}) ?? 0
-        return selectionIndex > 0
-    }
-    
-    @MainActor func indentSelection() {
-        guard let selection,
-              let parent = selection.parent,
-              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id})
-        else { return }
-        
-        let target = parent.children[selectionIndex-1]
-        move(selection, to: target, inserting: .child)
-    }
-    
-    func canPromote(item: OutlineItem? = nil) -> Bool {
-        let testItem = item ?? selection
-        guard let testItem,
-              let tree,
-              let parent = testItem.parent else { return false }
-        
-        return parent.id != tree.id
-    }
-    
-    @MainActor func promoteSelection() {
-        guard let selection,
-              let parent = selection.parent else { return }
-
-        move(selection, to: parent, inserting: .below)
-    }
-}
-
-extension MainViewModel {
-    
     // MARK: - view/edit node
     
     func showNote(_ node: OutlineItem) {
@@ -196,60 +142,8 @@ extension MainViewModel {
     }
 }
 
-extension MainViewModel {
-    
-    // MARK: - Pasteboard handlers
-    
-    func copyToPasteBoard(cut: Bool = false) {
-        // If we 'cut' we also need to delete the leg.
-        guard let selection else { return }
-        
-        let xml = treeFile.outlineXML(forRoot: selection)
-        let fileName = outlineFileUrl.path(percentEncoded: false)
-        let clipboardContent = OutlinePasteboard(
-            sourceFile: fileName,
-            contentXML: xml
-        )
-        
-        PasteBoard.push(clipboardContent)
-        
-        if cut {
-            self.objectWillChange.send()
-            self.selection = selection.delete()
-        }
-    }
+// MARK: - Handlers for the menus we added.
 
-    func pasteFromPasteboard() {
-        guard let pasteData = PasteBoard.pop() else { return }
-        guard let selection,
-              let parent = selection.parent,
-              let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })
-        else { return }
-        
-        // Convert the xml back to a hierarchy of OutlineItems
-        if let leg = treeFile.itemsFromXML(xml: pasteData.contentXML) {
-            leg.parent = parent
-            parent.children.insert(leg, at: selectionIndex + 1)
-            parent.hasChanged = true
-            self.selection = leg
-        } else {
-            print("Nothing found")
-        }
-    }
-    
-    func hasOutlineValue() -> Bool {
-        if PasteBoard.contains(type: .outlinePasteboardType) {
-            return true
-        }
-        return false
-    }
-    
-    func clearPasteBoard() {
-        PasteBoard.clear()
-    }
-}
-
-// Handlers for the menus we added.
 extension MainViewModel {
 
     // MARK: - Tree function handlers

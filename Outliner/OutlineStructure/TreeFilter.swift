@@ -78,7 +78,7 @@ struct TreeFilter {
     func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
         switch ofType {
         case .outline:
-            return false
+            return true
         case .completed:
             return node.completed
         case .incomplete:
