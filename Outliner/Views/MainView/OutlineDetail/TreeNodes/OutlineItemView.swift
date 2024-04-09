@@ -14,7 +14,6 @@ struct OutlineItemView: View {
     @ObservedObject var node: OutlineItem
     
     @State var titleEditEnabled: Bool = false
-    @State var rowId: UUID = UUID()
     @State internal var isTargeted: Bool = false
     
     var body: some View {
@@ -27,7 +26,7 @@ struct OutlineItemView: View {
                 }
             }
         }
-        .id(rowId)
+        .id(node.id)
         .foregroundStyle(node.completed ? Color.primary.opacity(0.6) : Color.primary)
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
@@ -56,7 +55,6 @@ struct OutlineItemView: View {
     fileprivate func resetEditMode() {
         if titleEditEnabled {
             titleEditEnabled = false
-            rowId = UUID()      // Force list to refresh.
         }
     }
     

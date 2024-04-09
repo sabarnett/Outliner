@@ -14,7 +14,7 @@ struct OutlineDetailView: View {
     @AppStorage(Constants.alternatingRows) private var alternatingRows: Bool = true
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var vm: MainViewModel
-    @State private var listId: UUID = UUID()
+    
     @State private var filterText: String = ""
     
     var body: some View {
@@ -28,14 +28,22 @@ struct OutlineDetailView: View {
                     VStack {
                         OutlineDetailToolBarView(vm: vm)
                         
-                        List {
-                            TreeNodeView(node: vm.tree!)
-                                .environmentObject(vm)
-                        }
-                        .alternatingRowBackgrounds(alternatingRows ? .enabled : .disabled)
-                        .id(listId)
-                        .onReceive(AppNotifications.refreshOutline) { _ in
-                            listId = UUID()
+                        ScrollViewReader { proxy in
+                            List {
+                                TreeNodeView(node: vm.tree!)
+                                    .environmentObject(vm)
+                            }
+                            .alternatingRowBackgrounds(alternatingRows ? .enabled : .disabled)
+                            .id(vm.listId)
+                            .onReceive(AppNotifications.refreshOutline) { _ in
+                                vm.listId = UUID()
+                            }
+                            .onChange(of: vm.scrollTo) {
+                                if let scroll = vm.scrollTo {
+                                    proxy.scrollTo(scroll)
+                                    vm.scrollTo = nil
+                                }
+                            }
                         }
                         .toolbar { searchBar() }
                         .onChange(of: filterText) {

@@ -33,6 +33,9 @@ class MainViewModel: ObservableObject, Identifiable {
     @Published var searchResults: [OutlineItem]?
     @Published var searchIndex: Int = 0
     
+    @Published var listId: UUID = UUID()
+    @Published var scrollTo: UUID?
+    
     // MARK: - Initialisation
     
     init() {

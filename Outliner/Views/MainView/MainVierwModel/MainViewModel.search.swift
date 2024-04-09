@@ -6,7 +6,7 @@
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
         
-import Foundation
+import SwiftUI
 
 extension MainViewModel {
 
@@ -89,7 +89,7 @@ extension MainViewModel {
         
         self.selection = item
         
-        // TODO: Get the list to scroll to the correct position. We are selecting
-        // the node, but the list is not scrolling it into position on screen.
+        // This will cause the selected node to scroll into view.
+        self.scrollTo = item.id
     }
 }
