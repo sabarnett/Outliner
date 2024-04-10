@@ -100,6 +100,7 @@ class MainViewModel: ObservableObject, Identifiable {
     func save() -> String? {
         if outlineFileUrl.path != "newFile" {
             treeFile.saveOutline()
+            notify.showPopup(.success, title: "File saved", description: "Outline file has been saved")
             return outlineFileUrl.path
         } else {
             // No file name, so call save-as
@@ -119,7 +120,8 @@ class MainViewModel: ObservableObject, Identifiable {
             outlineFileUrl = saveFile
             treeFile.saveOutline(to: saveFile)
             windowTitle = treeFile.fileNameWithExtension
-            
+            notify.showPopup(.success, title: "File saved", description: "Outline file has been saved")
+
             return (oldFilePath: oldFile.path, newFilePath: saveFile.path)
         }
         
