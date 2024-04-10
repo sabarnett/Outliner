@@ -23,7 +23,7 @@ struct OutlineItemNodeTitle: View {
                     titleEditEnabled = false
                 }
         } else {
-            Text(node.text)
+            HilightedTextView(text: node.text, highlight: vm.searchFor)
                 .themedFont(for: .itemTitle)
                 .onTapGesture {
                     titleEditEnabled = true

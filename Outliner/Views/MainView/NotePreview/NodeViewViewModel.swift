@@ -11,4 +11,5 @@ import Foundation
 struct NodeViewViewModel: Identifiable {
     var id: UUID = UUID()
     var node: OutlineItem
+    var highlightText: String
 }

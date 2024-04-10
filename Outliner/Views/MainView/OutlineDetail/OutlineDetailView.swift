@@ -15,8 +15,6 @@ struct OutlineDetailView: View {
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var vm: MainViewModel
     
-    @State private var filterText: String = ""
-    
     var body: some View {
         VStack(alignment: .leading) {
             if vm.isLoading {
@@ -46,9 +44,9 @@ struct OutlineDetailView: View {
                             }
                         }
                         .toolbar { searchBar() }
-                        .onChange(of: filterText) {
-                            vm.performOutlineSearch(searchFor: filterText,
-                                             lookingIn: searchAppliesTo)
+                        .onChange(of: vm.searchFor) {
+                            vm.performOutlineSearch(searchFor: vm.searchFor,
+                                lookingIn: searchAppliesTo)
                         }
                     }.padding(.top, 50)
                 })
@@ -60,7 +58,7 @@ struct OutlineDetailView: View {
     
     @ViewBuilder
     func searchBar() -> some View {
-        SearchBar(text: $filterText)
+        SearchBar(text: $vm.searchFor)
             .frame(width: 360)
         
         if vm.searchResultCount > 0 {

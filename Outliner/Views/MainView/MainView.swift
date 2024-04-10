@@ -129,7 +129,7 @@ struct MainView: View {
     
     @ViewBuilder func notePreviewView() -> some View {
         if let selection = vm.selection {
-            NoteViewPreview(vm: NodeViewViewModel(node: selection))
+            NoteViewPreview(vm: NodeViewViewModel(node: selection, highlightText: vm.searchFor))
                 .padding(.bottom, 12)
         } else {
             ContentUnavailableView("Nothing Selected",

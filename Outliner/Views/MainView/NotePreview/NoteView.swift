@@ -50,7 +50,7 @@ struct NoteViewPreview: View {
             previewToolbar()
                 .disabled(node.notes.isEmpty)
             
-            Text(node.text)
+            HilightedTextView(text: node.text, highlight: vm.highlightText)
                 .themedFont(for: .nodePreviewTitle)
             
             previewDisplay()
@@ -103,7 +103,7 @@ struct NoteViewPreview: View {
             )
         } else if showNoteSource {
             ScrollView {
-                Text(node.notes)
+                HilightedTextView(text: node.notes, highlight: vm.highlightText)
                     .themedFont(for: .nodePreviewBody,
                         size: noteFontSize)
                     .frame(
@@ -202,5 +202,5 @@ struct NoteViewPreview: View {
 }
 
 #Preview {
-    NoteView(vm: NodeViewViewModel(node: OutlineItem()))
+    NoteView(vm: NodeViewViewModel(node: OutlineItem(), highlightText: ""))
 }

@@ -34,6 +34,7 @@ class MainViewModel: ObservableObject, Identifiable {
     
     @Published var searchResults: [OutlineItem]?
     @Published var searchIndex: Int = 0
+    @Published var searchFor: String = ""
     
     @Published var listId: UUID = UUID()
     @Published var scrollTo: UUID?
@@ -131,7 +132,7 @@ extension MainViewModel {
     // MARK: - view/edit node
     
     func showNote(_ node: OutlineItem) {
-        viewNote = NodeViewViewModel(node: node)
+        viewNote = NodeViewViewModel(node: node, highlightText: searchFor)
     }
     
     func editNode(_ node: OutlineItem) {

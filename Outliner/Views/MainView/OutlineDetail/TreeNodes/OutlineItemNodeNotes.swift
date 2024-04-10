@@ -17,7 +17,7 @@ struct OutlineItemNodeNotes: View {
     
     var body: some View {
         if !node.notes.isEmpty {
-            Text(node.notes)
+            HilightedTextView(text: node.notes, highlight: vm.searchFor)
                 .lineLimit(0...previewLineCount)
                 .themedFont(for: .itemNotes)
         } else {

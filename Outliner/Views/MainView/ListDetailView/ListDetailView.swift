@@ -17,7 +17,6 @@ struct ListDetailView: View {
     var detailViewStyle: DetailViewType
     
     @State private var listId: UUID = UUID()
-    @State private var filterText: String = ""
 
     var body: some View {
         List(listItems) { item in
@@ -32,12 +31,12 @@ struct ListDetailView: View {
         .onReceive(AppNotifications.refreshOutline) { _ in
             listId = UUID()
         }
-        .searchable(text: $filterText, prompt: "Filter results")
+        .searchable(text: $vm.searchFor, prompt: "Filter results")
     }
 
     var listItems: [OutlineItem] {
         let searchOptions = TreeFilterOptions(
-            searchFor: filterText.trimmingCharacters(in: .whitespacesAndNewlines),
+            searchFor: vm.searchFor.trimmingCharacters(in: .whitespacesAndNewlines),
             searchFields: searchAppliesTo,
             typeFilter: detailViewStyle
             )
