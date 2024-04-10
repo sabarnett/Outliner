@@ -17,6 +17,8 @@ class MainViewModel: ObservableObject, Identifiable {
     var lastSortedItem: OutlineItem?
     var lastSortBy: OutlineItemSort?
     var sortAscending: Bool = false
+    
+    var notify = PopupNotificationCentre.shared
 
     @Published var tree: OutlineItem?
     @Published var isLoading: Bool = true

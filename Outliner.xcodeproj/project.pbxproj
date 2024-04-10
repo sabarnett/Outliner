@@ -18,6 +18,8 @@
 		E81A2A812AC1B1D000965A2A /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81A2A802AC1B1D000965A2A /* FileHelpers.swift */; };
 		E81ED28A2B94719900458A55 /* ThemeFontWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ED2892B94719900458A55 /* ThemeFontWeights.swift */; };
 		E820F95F2BA30F66002A9733 /* NodeMovePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */; };
+		E822271F2BC6DE080094B441 /* BHBezelNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E822271E2BC6DE080094B441 /* BHBezelNotification.swift */; };
+		E82227212BC6DE390094B441 /* PopupNotificationCentre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82227202BC6DE390094B441 /* PopupNotificationCentre.swift */; };
 		E828E9CC2B9620D700DF8477 /* ThemeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828E9CB2B9620D700DF8477 /* ThemeSettings.swift */; };
 		E828E9CE2B9623A100DF8477 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828E9CD2B9623A100DF8477 /* FontPicker.swift */; };
 		E82BDD262ACB5013004797E9 /* WriteLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82BDD252ACB5013004797E9 /* WriteLog.swift */; };
@@ -112,6 +114,8 @@
 		E81A2A802AC1B1D000965A2A /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
 		E81ED2892B94719900458A55 /* ThemeFontWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFontWeights.swift; sourceTree = "<group>"; };
 		E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMovePreview.swift; sourceTree = "<group>"; };
+		E822271E2BC6DE080094B441 /* BHBezelNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHBezelNotification.swift; sourceTree = "<group>"; };
+		E82227202BC6DE390094B441 /* PopupNotificationCentre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNotificationCentre.swift; sourceTree = "<group>"; };
 		E828E9CB2B9620D700DF8477 /* ThemeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettings.swift; sourceTree = "<group>"; };
 		E828E9CD2B9623A100DF8477 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
 		E82BDD252ACB5013004797E9 /* WriteLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteLog.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 		E81A2A7F2AC1B1B800965A2A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E822271D2BC6DDE50094B441 /* PopupAlerts */,
 				E82BDD252ACB5013004797E9 /* WriteLog.swift */,
 				E81A2A802AC1B1D000965A2A /* FileHelpers.swift */,
 				E8F88BBB2AC42F040072B972 /* Notifications.swift */,
@@ -273,6 +278,15 @@
 				E8C000622B921F2F008BFFD3 /* Themes */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E822271D2BC6DDE50094B441 /* PopupAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				E822271E2BC6DE080094B441 /* BHBezelNotification.swift */,
+				E82227202BC6DE390094B441 /* PopupNotificationCentre.swift */,
+			);
+			path = PopupAlerts;
 			sourceTree = "<group>";
 		};
 		E8473D972AF002CF00D9627D /* OutlineStructure */ = {
@@ -672,6 +686,7 @@
 				E8473DA32AF0064400D9627D /* NodeHelpers.swift in Sources */,
 				E8C000642B92208B008BFFD3 /* ThemeItemType.swift in Sources */,
 				E8D009CF2BAC811500C08DC9 /* SplitHolders.swift in Sources */,
+				E82227212BC6DE390094B441 /* PopupNotificationCentre.swift in Sources */,
 				E8F0B9A32B93687900F8F74F /* ThemeStorage.swift in Sources */,
 				E8D009CB2BAC811500C08DC9 /* VSplit.swift in Sources */,
 				E8FF50482B6A8D04005823D3 /* NoteView.swift in Sources */,
@@ -702,6 +717,7 @@
 				E8473DA92AF0064C00D9627D /* OutlineHeader.swift in Sources */,
 				E8EDBD752B5BECA5001F1306 /* GeneralSettings.swift in Sources */,
 				E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */,
+				E822271F2BC6DE080094B441 /* BHBezelNotification.swift in Sources */,
 				E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */,
 				E82BDD262ACB5013004797E9 /* WriteLog.swift in Sources */,
 				E8C4336E2BC52C9B0074E13C /* MainViewModel.pasteboard.swift in Sources */,

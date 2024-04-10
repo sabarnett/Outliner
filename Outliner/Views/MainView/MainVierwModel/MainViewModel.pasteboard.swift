@@ -29,6 +29,10 @@ extension MainViewModel {
             self.objectWillChange.send()
             self.selection = selection.delete()
         }
+        
+        notify.showPopup(.success,
+                         title: "Copied to Pasteboard",
+                         description: "Copied to the pasteboard")
     }
 
     func pasteFromPasteboard() {
@@ -44,8 +48,16 @@ extension MainViewModel {
             parent.children.insert(leg, at: selectionIndex + 1)
             parent.hasChanged = true
             self.selection = leg
+
+            notify.showPopup(.success,
+                             title: "Paste From Pasteboard",
+                             description: "Paste from pasteboard")
+
         } else {
-            print("Nothing found")
+            
+            notify.showPopup(.failure,
+                             title: "Nothing To Paste",
+                             description: "Nothing on the pasteboard")
         }
     }
     
