@@ -69,7 +69,7 @@ struct OutlineDetailView: View {
         Button(action: {
             vm.searchMovePrevious()
         }, label: {
-            Image(systemName: "arrow.backward.square.fill")
+            Image(systemName: "chevron.left")
         })
         .padding(.horizontal, -8)
         .help("Find previous")
@@ -78,7 +78,7 @@ struct OutlineDetailView: View {
         Button(action: {
             vm.searchMoveNext()
         }, label: {
-            Image(systemName: "arrow.forward.square.fill")
+            Image(systemName: "chevron.right")
         })
         .padding(.leading, -8)
         .help("Find next")
