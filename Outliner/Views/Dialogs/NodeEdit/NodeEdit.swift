@@ -104,6 +104,7 @@ struct NodeEdit: View {
         
         let suffix = Constants.notePreviewSuffixHtml
         
+        print("\(prefix)\n\(formattedNote)\n\(suffix)")
         return "\(prefix)\n\(formattedNote)\n\(suffix)"
     }
 

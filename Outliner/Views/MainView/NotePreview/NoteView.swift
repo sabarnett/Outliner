@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MarkdownKit
+import RegexBuilder
 
 struct NoteView: View {
     @Environment(\.dismiss) private var dismiss
@@ -40,8 +41,49 @@ struct NoteViewPreview: View {
     @AppStorage("noteFontSize") private var noteFontSize: Double = 16
     @Environment(\.colorScheme) private var colorScheme
     
+    private func createHilight(text: String, highlight: String) -> String {
+        let regexText = "(\(highlight))"
+        let replaceText = "<span class='highlight'>$search</span>"
+        
+        guard let regex = try? NSRegularExpression(pattern: regexText,
+                                                   options: .caseInsensitive) else {
+            // failed to create regex, return the original string
+            return text
+        }
+        
+        // Get the matches, so we have access to the original text
+        let textRange = NSRange(location: 0, length: text.count)
+        let resultValues = regex.matches(in: text, range: textRange)
+        
+        // Do the replacement
+        var resultText = regex.stringByReplacingMatches(
+            in: text,
+            options: .withTransparentBounds,
+            range: textRange,
+            withTemplate: replaceText
+        )
+                
+        // Now put the original text back
+        for match in resultValues {
+            if let textRange = Range(match.range, in: text) {
+                let originalValue = text[textRange]
+                resultText = resultText.replacing("$search", with: originalValue, maxReplacements: 1)
+            }
+        }
+        
+        return resultText
+
+    }
+    
     var htmlText: String {
-        let markdown = MarkdownParser.standard.parse(node.notes)
+        var noteText = node.notes
+        
+        // Do we need to highlight anything?
+        if !vm.highlightText.isEmpty {
+            noteText = createHilight(text: noteText, highlight: vm.highlightText)
+        }
+
+        let markdown = MarkdownParser.standard.parse(noteText)
         return buildHtml(formattedNote: HtmlGenerator.standard.generate(doc: markdown))
     }
     

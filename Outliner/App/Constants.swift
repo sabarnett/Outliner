@@ -52,6 +52,11 @@ struct Constants {
         body {
           background-color: $$bgcolor$$; color: $$fgcolor$$; zoom: $$zoom$$
         }
+        .highlight {
+            font-size: 1em;
+            background-color: yellow;
+            color: black;
+        }
       </style>
     </head>
   <body>
