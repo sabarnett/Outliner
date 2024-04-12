@@ -8,7 +8,6 @@
 
 import SwiftUI
 import MarkdownKit
-import RegexBuilder
 
 struct NoteView: View {
     @Environment(\.dismiss) private var dismiss
@@ -32,55 +31,19 @@ struct NoteView: View {
 struct NoteViewPreview: View {
     
     var vm: NodeViewViewModel
-    private var node: OutlineItem {
-        vm.node
-    }
+    private var node: OutlineItem { vm.node }
 
     @State var pageId: UUID = UUID()
     @State var showNoteSource: Bool = false
     @AppStorage("noteFontSize") private var noteFontSize: Double = 16
     @Environment(\.colorScheme) private var colorScheme
     
-    private func createHilight(text: String, highlight: String) -> String {
-        let regexText = "(\(highlight))"
-        let replaceText = "<span class='highlight'>$search</span>"
-        
-        guard let regex = try? NSRegularExpression(pattern: regexText,
-                                                   options: .caseInsensitive) else {
-            // failed to create regex, return the original string
-            return text
-        }
-        
-        // Get the matches, so we have access to the original text
-        let textRange = NSRange(location: 0, length: text.count)
-        let resultValues = regex.matches(in: text, range: textRange)
-        
-        // Do the replacement
-        var resultText = regex.stringByReplacingMatches(
-            in: text,
-            options: .withTransparentBounds,
-            range: textRange,
-            withTemplate: replaceText
-        )
-                
-        // Now put the original text back
-        for match in resultValues {
-            if let textRange = Range(match.range, in: text) {
-                let originalValue = text[textRange]
-                resultText = resultText.replacing("$search", with: originalValue, maxReplacements: 1)
-            }
-        }
-        
-        return resultText
-
-    }
-    
     var htmlText: String {
         var noteText = node.notes
         
         // Do we need to highlight anything?
         if !vm.highlightText.isEmpty {
-            noteText = createHilight(text: noteText, highlight: vm.highlightText)
+            noteText = createHighlight(text: noteText, highlight: vm.highlightText)
         }
 
         let markdown = MarkdownParser.standard.parse(noteText)
@@ -241,6 +204,34 @@ struct NoteViewPreview: View {
         
         return "\(prefix)\n\(formattedNote)\n\(suffix)"
     }
+
+    fileprivate func createHighlight(text: String, highlight: String) -> String {
+        let regexText = "(\(highlight))"
+        
+        guard let regex = try? NSRegularExpression(
+            pattern: regexText,
+            options: .caseInsensitive
+        )
+        else {
+            // Regex failed, so return the original string unchanged
+            return text
+        }
+        
+        let range = NSRange(
+            text.startIndex..<text.endIndex,
+            in: text
+        )
+        
+        let result = regex.stringByReplacingMatches(
+            in: text,
+            options: [],
+            range: range,
+            withTemplate: #"<span class='highlight'>$1</span>"#
+        )
+        
+        return result
+    }
+
 }
 
 #Preview {
