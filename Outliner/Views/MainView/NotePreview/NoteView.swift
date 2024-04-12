@@ -207,6 +207,7 @@ struct NoteViewPreview: View {
 
     fileprivate func createHighlight(text: String, highlight: String) -> String {
         let regexText = "(\(highlight))"
+        let regexReplacement = #"<span class='highlight'>$1</span>"#
         
         guard let regex = try? NSRegularExpression(
             pattern: regexText,
@@ -226,7 +227,7 @@ struct NoteViewPreview: View {
             in: text,
             options: [],
             range: range,
-            withTemplate: #"<span class='highlight'>$1</span>"#
+            withTemplate: regexReplacement
         )
         
         return result
