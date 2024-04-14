@@ -207,32 +207,23 @@ struct NoteViewPreview: View {
 
     fileprivate func createHighlight(text: String, highlight: String) -> String {
         let regexText = "(\(highlight))"
-        let regexReplacement = #"<span class='highlight'>$1</span>"#
+        let replacement = #"<span class='highlight'>$1</span>"#
         
-        guard let regex = try? NSRegularExpression(
-            pattern: regexText,
-            options: .caseInsensitive
-        )
-        else {
-            // Regex failed, so return the original string unchanged
-            return text
-        }
+        // If we try to create the regex and it fails (possibly because
+        // of the data), wewill return the original text. This is fine
+        // since it's not a vital function to highlight te text.
+        guard let regex = try? NSRegularExpression(pattern: regexText, options: .caseInsensitive)
+        else { return text }
         
-        let range = NSRange(
-            text.startIndex..<text.endIndex,
-            in: text
-        )
+        let range = NSRange(text.startIndex..<text.endIndex, in: text)
         
-        let result = regex.stringByReplacingMatches(
+        return regex.stringByReplacingMatches(
             in: text,
             options: [],
             range: range,
-            withTemplate: regexReplacement
+            withTemplate: replacement
         )
-        
-        return result
     }
-
 }
 
 #Preview {
