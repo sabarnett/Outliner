@@ -1,31 +1,19 @@
-# Mac Template
+# Outliner
 
-I'm a bit new to writing Mac applications with SwiftUI. I've written a few iOS apps (entirely for my
-own amusement) but my exposure to Mac development is minimal. As an ex-Windows developer
-it's a natural progression to do Mac development, so I need to pull together some of the basic
-concepts.
+For many years, I have managed projects, both big and small, using a simple
+outliner application. Sadly, this was on Windows and my conversion to Mac came with 
+a small issue in that I didn't have an outliner. In the end, I went with My-Life-Organized which
+gave me a PC app and an iOS app. The iOS app ran on the Mac, so I hd an interim solution.
 
-The best way to document this stuff is to create a template for a Mac application that includes all of
-the basics like window layout, dialogs, menus and a few other things.
+This has worked 'ok' for me, but I had a desire for a much simpler system and a system that ran
+natively on the Mac. So, I set about my first substantial Mac application; Outliner. 
 
-That's what this project is. It's a template that I am developing along side the creation of some
-documentation on Mac development with SwiftUI. 
+The only requirement was that I allow me to manage outlines in the same way I used to on 
+the PC. File format compatibility with the PC was a nice to have. The result is the Outliner App:
 
-## Documentation
+![The Main Window](images/screenshots/mainWindow.png "The Main Window")
 
-The documentation is in a Scrivener file, which I have not included here. It's a work in progress
-and a long way from public release. However, in the Docs folder, you will find the latest PDF version
-of the file. Until I get all the basic elements sorted out I'm not intending to do a proper review of the
-content, so it's a little rough and the language isn't necessarily what you would expect of a 
-professional publication. But, then, this isn't a professional publication and I have no intention of
-publishing it, so that's all good.
-
-## Updates
-
-I intend to update this on a regular basis. The document may lag behind the code just because it's easier
-to push the code than it is to re-generate the document. Sorry about that.
-
-
+## Documentation to follow...
 
 
 
