@@ -11,10 +11,6 @@ natively on the Mac. So, I set about my first substantial Mac application; Outli
 The only requirement was that I allow me to manage outlines in the same way I used to on 
 the PC. File format compatibility with the PC was a nice to have. The result is the Outliner App:
 
-![The Main Window](images/ScreenShots/mainWindow.png)
+![The Main Window](Images/ScreenShots/mainWindow.png)
 
 ## Documentation to follow...
-
-
-
-
