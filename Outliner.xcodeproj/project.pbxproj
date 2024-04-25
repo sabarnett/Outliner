@@ -138,7 +138,7 @@
 		E871CF512B7BFFFE0067F9D2 /* SidebarViewTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewTypeButton.swift; sourceTree = "<group>"; };
 		E871CF532B7C00490067F9D2 /* SidebarViewTypeHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewTypeHeading.swift; sourceTree = "<group>"; };
 		E871CF552B7C00890067F9D2 /* DetailViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewType.swift; sourceTree = "<group>"; };
-		E879067A2A88E13400259501 /* Outline Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Outline Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E879067A2A88E13400259501 /* Outliner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outliner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E879067D2A88E13400259501 /* OutlinerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinerApp.swift; sourceTree = "<group>"; };
 		E879067F2A88E13400259501 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E87906812A88E13400259501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 		E879067B2A88E13400259501 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E879067A2A88E13400259501 /* Outline Tester.app */,
+				E879067A2A88E13400259501 /* Outliner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,9 +540,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E87906792A88E13400259501 /* Outline Tester */ = {
+		E87906792A88E13400259501 /* Outliner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E87906892A88E13400259501 /* Build configuration list for PBXNativeTarget "Outline Tester" */;
+			buildConfigurationList = E87906892A88E13400259501 /* Build configuration list for PBXNativeTarget "Outliner" */;
 			buildPhases = (
 				E87906762A88E13400259501 /* Sources */,
 				E87906772A88E13400259501 /* Frameworks */,
@@ -553,13 +553,13 @@
 			);
 			dependencies = (
 			);
-			name = "Outline Tester";
+			name = Outliner;
 			packageProductDependencies = (
 				E86F7AE42B6BE30500CA3EB8 /* MarkdownKit */,
 				E86F7AE62B6BE30500CA3EB8 /* MarkdownKitProcess */,
 			);
 			productName = Outliner;
-			productReference = E879067A2A88E13400259501 /* Outline Tester.app */;
+			productReference = E879067A2A88E13400259501 /* Outliner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -593,7 +593,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E87906792A88E13400259501 /* Outline Tester */,
+				E87906792A88E13400259501 /* Outliner */,
 			);
 		};
 /* End PBXProject section */
@@ -857,7 +857,7 @@
 				CODE_SIGN_ENTITLEMENTS = Outliner/Outliner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Outliner/Preview Content\"";
 				DEVELOPMENT_TEAM = MH62Y8D74P;
@@ -887,7 +887,7 @@
 				CODE_SIGN_ENTITLEMENTS = Outliner/Outliner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Outliner/Preview Content\"";
 				DEVELOPMENT_TEAM = MH62Y8D74P;
@@ -921,7 +921,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E87906892A88E13400259501 /* Build configuration list for PBXNativeTarget "Outline Tester" */ = {
+		E87906892A88E13400259501 /* Build configuration list for PBXNativeTarget "Outliner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E879068A2A88E13400259501 /* Debug */,
