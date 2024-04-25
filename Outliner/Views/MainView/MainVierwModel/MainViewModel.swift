@@ -71,6 +71,7 @@ class MainViewModel: ObservableObject, Identifiable {
         windowTitle = treeFile.fileNameWithExtension
         calculateStatistics()
         
+        notify.showPopup(.success, title: "File loaded", description: "Outline file has been loaded")
         self.isLoading = false
     }
 

@@ -31,7 +31,7 @@ extension MainViewModel {
         }
         
         notify.showPopup(.success,
-                         title: "Copied to Pasteboard",
+                         title: "Copied",
                          description: "Copied to the pasteboard")
     }
 
@@ -50,7 +50,7 @@ extension MainViewModel {
             self.selection = leg
 
             notify.showPopup(.success,
-                             title: "Paste From Pasteboard",
+                             title: "Paste Complete",
                              description: "Paste from pasteboard")
 
         } else {
