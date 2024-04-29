@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OutlinerViews
 
 class MainViewModel: ObservableObject, Identifiable {
     var id: UUID = UUID()

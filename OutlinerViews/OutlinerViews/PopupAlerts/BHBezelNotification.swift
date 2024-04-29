@@ -15,11 +15,11 @@ import AppKit
 private var bezelWindows = Set<BHBezelWindow>()
 
 /// The Cocoa-style public interface for showing a notification bezel
-public enum BezelNotification {
+enum BezelNotification {
     // Empty on-purpose; all members are static
 }
 
-public extension BezelNotification {
+extension BezelNotification {
     
     /// Shows a BHBezel notification using the given parameters.
     /// See `BHBezelParameters` for documentation of each parameter.
@@ -75,28 +75,28 @@ public extension BezelNotification {
     /// - Returns: A delegate that allows control of the bezel after it's shown
     /// - SeeAlso: BHBezelParameters
     static func show(with parameters: BezelParameters
-        ) -> BezelDelegate {
+    ) -> BezelDelegate {
         
         let bezelWindow = BHBezelWindow(parameters: parameters)
         bezelWindows.insert(bezelWindow)
-
+        
         class BHBezelDelegateImpl: BezelDelegate {
-
+            
             var shouldFadeOut = true
             weak var bezelWindow: BHBezelWindow?
-
+            
             init(bezelWindow: BHBezelWindow) {
                 self.bezelWindow = bezelWindow
             }
-
+            
             func donePresentingBezel() {
                 guard
                     shouldFadeOut,
                     let bezelWindow = bezelWindow
-                    else { return }
+                else { return }
                 
                 shouldFadeOut = false
-
+                
                 bezelWindow.fadeOut(sender: nil,
                                     duration: bezelWindow.parameters.fadeOutAnimationDuration,
                                     closeSelector: .close) {
@@ -104,7 +104,7 @@ public extension BezelNotification {
                 }
             }
         }
-
+        
         let delegate = BHBezelDelegateImpl(bezelWindow: bezelWindow)
         
         bezelWindow.fadeIn(sender: nil,
@@ -120,14 +120,14 @@ public extension BezelNotification {
 }
 
 /// Use this to interact with a bezel after it's been shown
-public protocol BezelDelegate: AnyObject {
+protocol BezelDelegate: AnyObject {
     /// Called when the bezel is done and should be faded out, closed, and destroyed.
     /// This is useful for hiding it early or manually.
     func donePresentingBezel()
 }
 
 /// A set of parameters used to configure and present a bezel notification
-public struct BezelParameters {
+struct BezelParameters {
     
     public static let defaultLocation: BezelLocation = .normal
     public static let defaultSize: BezelSize = .normal
@@ -143,7 +143,7 @@ public struct BezelParameters {
     public static let defaultMessageLabelFontSize: CGFloat = 18
     public static let defaultMessageLabelFont = NSFont.systemFont(ofSize: defaultMessageLabelFontSize)
     public static let defaultMessageLabelColor = NSColor.labelColor
-
+    
     // MARK: Basics
     
     /// The text to show in the bezel notification's message area
@@ -151,7 +151,7 @@ public struct BezelParameters {
     
     /// The icon to show in the bezel notification's icon area
     let icon: NSImage?
-
+    
     // MARK: Presentation
     
     /// The location on the screen at which to display the bezel notification
@@ -162,7 +162,7 @@ public struct BezelParameters {
     
     /// The number of seconds to display the bezel notification on the screen
     let timeToLive: BezelTimeToLive
-
+    
     // MARK: Animations
     
     /// The number of seconds that it takes to fade in the bezel notification
@@ -170,7 +170,7 @@ public struct BezelParameters {
     
     /// The number of seconds that it takes to fade out the bezel notification
     let fadeOutAnimationDuration: TimeInterval
-
+    
     // MARK: Drawing
     
     /// The radius of the bezel notification's corners, in points
@@ -182,30 +182,30 @@ public struct BezelParameters {
     /// The distance from the bottom of the bezel notification's bottom at which the baseline of the message label sits
     let messageLabelBaselineOffsetFromBottomOfBezel: CGFloat
     // swiftlint:disable:previous identifier_name
-
+    
     /// The font used for the message label
     let messageLabelFont: NSFont
     
     /// The text color of the message label
     let messageLabelColor: NSColor
-
-    public init(messageText: String,
-                icon: NSImage? = nil,
-                
-                location: BezelLocation = defaultLocation,
-                size: BezelSize = defaultSize,
-                timeToLive: BezelTimeToLive = defaultTimeToLive,
-                
-                fadeInAnimationDuration: TimeInterval = defaultFadeInAnimationDuration,
-                fadeOutAnimationDuration: TimeInterval = defaultFadeOutAnimationDuration,
-                
-                cornerRadius: CGFloat = defaultCornerRadius,
-                backgroundTint: NSColor = defaultBackgroundTint,
-                // swiftlint:disable:next identifier_name
-                messageLabelBaselineOffsetFromBottomOfBezel: CGFloat = defaultMessageLabelBaselineOffsetFromBottomOfBezel,
-                messageLabelFont: NSFont = defaultMessageLabelFont,
-                messageLabelColor: NSColor = defaultMessageLabelColor
-        ) {
+    
+    init(messageText: String,
+         icon: NSImage? = nil,
+         
+         location: BezelLocation = defaultLocation,
+         size: BezelSize = defaultSize,
+         timeToLive: BezelTimeToLive = defaultTimeToLive,
+         
+         fadeInAnimationDuration: TimeInterval = defaultFadeInAnimationDuration,
+         fadeOutAnimationDuration: TimeInterval = defaultFadeOutAnimationDuration,
+         
+         cornerRadius: CGFloat = defaultCornerRadius,
+         backgroundTint: NSColor = defaultBackgroundTint,
+         // swiftlint:disable:next identifier_name
+         messageLabelBaselineOffsetFromBottomOfBezel: CGFloat = defaultMessageLabelBaselineOffsetFromBottomOfBezel,
+         messageLabelFont: NSFont = defaultMessageLabelFont,
+         messageLabelColor: NSColor = defaultMessageLabelColor
+    ) {
         self.messageText = messageText
         self.icon = icon
         
@@ -225,7 +225,7 @@ public struct BezelParameters {
 }
 
 /// How long a bezel notification should stay on screen
-public enum BezelTimeToLive {
+enum BezelTimeToLive {
     /// Bezel is shown for just a couple seconds
     case short
     
@@ -250,7 +250,7 @@ public enum BezelTimeToLive {
 
 /// The window used to present a bezel notification.
 /// If you _really_ need minute control, you may use this.
-public class BHBezelWindow: NSWindow {
+class BHBezelWindow: NSWindow {
     
     private lazy var bezelContentView: BHBezelContentView = {
         let bezelContentView = BHBezelContentView(parameters: self.parameters)
@@ -266,7 +266,7 @@ public class BHBezelWindow: NSWindow {
     /// Creates a new bezel window with the given parameters
     ///
     /// - Parameter parameters: Those parameters that dictate how this window appears
-    public init(parameters: BezelParameters) {
+    init(parameters: BezelParameters) {
         
         self.parameters = parameters
         
@@ -278,7 +278,7 @@ public class BHBezelWindow: NSWindow {
                    defer: false)
         
         contentView = makeVisualEffectsBackingView()
-
+        
         self.minSize = contentRect.size
         self.maxSize = contentRect.size
         
@@ -308,7 +308,7 @@ public class BHBezelWindow: NSWindow {
             bezelContentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-
+    
     private func makeVisualEffectsBackingView() -> NSVisualEffectView {
         let visualEffectView = NSVisualEffectView()
         visualEffectView.wantsLayer = true
@@ -323,7 +323,7 @@ public class BHBezelWindow: NSWindow {
 
 /// The view powering the `BHBezelWindow`'s appearance.
 /// If you _really, really_ need _extreme_ control, you may use this. Don't, though, if you can avoid it.
-public class BHBezelContentView: NSView {
+class BHBezelContentView: NSView {
     
     let parameters: BezelParameters
     
@@ -345,9 +345,11 @@ public class BHBezelContentView: NSView {
             return
         }
         
-        let textBounds = parameters.messageText.findBezelLabelBoundingBox(within: bounds,
-                offsetFromBottom: parameters.messageLabelBaselineOffsetFromBottomOfBezel,
-                font: parameters.messageLabelFont)
+        let textBounds = parameters.messageText.findBezelLabelBoundingBox(
+            within: bounds,
+            offsetFromBottom: parameters.messageLabelBaselineOffsetFromBottomOfBezel,
+            font: parameters.messageLabelFont
+        )
         
         if let icon = parameters.icon {
             let bezelSize = parameters.size.cgSize
@@ -359,7 +361,7 @@ public class BHBezelContentView: NSView {
             let iconSize = NSSize(scaling: icon.size,
                                   toFitWithin: bezelSize * 0.6,
                                   approach: .scaleProportionallyDown)
-
+            
             let iconBottomLeftCorner = NSPoint(x: bezelCenterX - (iconSize.width / 2),
                                                y: halfwayBetweenLabelTopAndBezelTop - (iconSize.height / 2))
             
@@ -372,7 +374,7 @@ public class BHBezelContentView: NSView {
                 hints: [.interpolation: NSNumber(value: NSImageInterpolation.high.rawValue)]
             )
         }
-
+        
         context.setTextDrawingMode(.fill)
         context.draw(text: parameters.messageText,
                      at: textBounds.origin,
@@ -391,7 +393,7 @@ private extension String {
         let textLeftX = parentBounds.midX - textBounds.midX
         return NSRect(origin: NSPoint(x: textLeftX, y: textBaselineY), size: textBounds.size)
     }
-
+    
     func findBezelLabelTextStartPoint(within parentBounds: NSRect,
                                       offsetFromBottom: CGFloat,
                                       font: NSFont) -> NSPoint {
@@ -400,11 +402,11 @@ private extension String {
 }
 
 /// The semantic size of a bezel notification
-public enum BezelSize {
+enum BezelSize {
     case normal
 }
 
-public extension BezelSize {
+extension BezelSize {
     
     private var width: CGFloat {
         switch self {
@@ -419,25 +421,27 @@ public extension BezelSize {
             return 200
         }
     }
-
+    
     var cgSize: CGSize {
         CGSize(width: width, height: height)
     }
 }
 
 /// The semantic location of a bezel notification
-public enum BezelLocation {
+enum BezelLocation {
     case normal
 }
+
 extension BezelLocation {
-    public func bezelWindowContentRect(atSize size: BezelSize) -> NSRect {
+    
+    func bezelWindowContentRect(atSize size: BezelSize) -> NSRect {
         switch self {
         case .normal:
             return screen?.lowerCenterRect(ofSize: size.cgSize) ?? NSRect(origin: NSPoint(x: 48, y: 48), size: size.cgSize)
         }
     }
-
-    public var screen: NSScreen? {
+    
+    var screen: NSScreen? {
         switch self {
         case .normal:
             return .main ?? NSScreen.screens.first
@@ -462,7 +466,7 @@ internal extension NSWindow {
     
     /// Called when an animation completes
     typealias AnimationCompletionHandler = () -> Void
-
+    
     /// Represents a function called to make a window be presented
     enum PresentationFunction {
         /// Calls `NSWindow.makeKey()`
@@ -476,7 +480,7 @@ internal extension NSWindow {
         
         /// Calls `NSWindow.orderFrontRegardless()`
         case orderFrontRegardless
-
+        
         /// Runs the function represented by this case on the given window, passing the given selector if needed
         func run(on window: NSWindow, sender: Any? = nil) {
             switch self {
@@ -487,7 +491,7 @@ internal extension NSWindow {
             }
         }
     }
-
+    
     /// Represents a function called to make a window be closed
     enum CloseFunction {
         
@@ -499,7 +503,7 @@ internal extension NSWindow {
         
         /// Calls `NSWindow.performClose()`
         case performClose
-
+        
         /// Runs the function represented by this case on the given window, passing the given selector if needed
         func run(on window: NSWindow, sender: Any? = nil) {
             switch self {
@@ -509,7 +513,7 @@ internal extension NSWindow {
             }
         }
     }
-
+    
     /// Fades this window in using the given configuration
     ///
     /// - Parameters:
@@ -538,7 +542,7 @@ internal extension NSWindow {
             animator().alphaValue = targetAlpha
         }, completionHandler: completionHandler)
     }
-
+    
     /// Fades this window out using the given configuration
     ///
     /// - Note: Unlike `fadeIn`, this does not take a starting alpha value. This is because the window's current
@@ -582,7 +586,7 @@ internal extension NSWindow {
     }
 }
 
-public extension CAMediaTimingFunction {
+extension CAMediaTimingFunction {
     static let easeIn = CAMediaTimingFunction(name: .easeIn)
     static let easeOut = CAMediaTimingFunction(name: .easeOut)
     static let easenInEaseOut = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -592,7 +596,7 @@ public extension CAMediaTimingFunction {
 
 internal extension NSImage {
     static func roundedRectMask(size: NSSize, cornerRadius: CGFloat) -> NSImage {
-
+        
         let maskImage = NSImage(size: size, flipped: false) { rect in
             let bezierPath = NSBezierPath(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius)
             NSColor.black.set()
@@ -643,19 +647,19 @@ internal extension CGSize {
             self = original
         }
     }
-
+    
     init(scaling original: CGSize, proportionallyToFitHeight newHeight: CGFloat) {
         let percentChange = newHeight / original.height
         self.init(width: original.width * percentChange,
                   height: newHeight)
     }
-
+    
     init(scaling original: CGSize, proportionallyToFitWidth newWidth: CGFloat) {
         let percentChange = newWidth / original.width
         self.init(width: newWidth,
                   height: original.height * percentChange)
     }
-
+    
     var aspectRatio: CGFloat {
         return width / height
     }
@@ -665,16 +669,16 @@ internal extension CGSize {
     static func * (lhs: Double, rhs: CGSize) -> CGSize {
         return CGFloat(lhs) * rhs
     }
-
+    
     static func * (lhs: CGSize, rhs: Double) -> CGSize {
         return lhs * CGFloat(rhs)
     }
-
+    
     static func * (lhs: CGFloat, rhs: CGSize) -> CGSize {
         return CGSize(width: lhs * rhs.width,
                       height: lhs * rhs.height)
     }
-
+    
     static func * (lhs: CGSize, rhs: CGFloat) -> CGSize {
         return CGSize(width: lhs.width * rhs,
                       height: lhs.height * rhs)
@@ -695,7 +699,7 @@ extension CGContext {
                                   withAttributes: [
                                     .foregroundColor: color,
                                     .font: font
-            ])
+                                  ])
     }
 }
 // swiftlint:enable file_length

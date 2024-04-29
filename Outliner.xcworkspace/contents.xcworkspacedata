@@ -4,4 +4,7 @@
    <FileRef
       location = "group:Outliner.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:OutlinerViews/OutlinerViews.xcodeproj">
+   </FileRef>
 </Workspace>
