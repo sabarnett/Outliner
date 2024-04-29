@@ -1,0 +1,15 @@
+{
+  "originHash" : "cc59911c3300eee8d20a78997f83e2e5766ae5487816ca1f59a5386c52baf65b",
+  "pins" : [
+    {
+      "identity" : "swift-markdownkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/objecthub/swift-markdownkit.git",
+      "state" : {
+        "revision" : "69b44cd50c683527643baa1d78ef71cda40ff65e",
+        "version" : "1.1.7"
+      }
+    }
+  ],
+  "version" : 3
+}
