@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Outliner.xcodeproj">
+      location = "group:Outliner/Outliner.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OutlinerViews/OutlinerViews.xcodeproj">

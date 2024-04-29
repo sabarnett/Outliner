@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8BB02B72BE045DA00C9AF68 /* SplitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02B62BE045DA00C9AF68 /* SplitEnums.swift */; };
+		E8BB02B92BE045FF00C9AF68 /* SplitHolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02B82BE045FF00C9AF68 /* SplitHolders.swift */; };
+		E8BB02BB2BE0461F00C9AF68 /* SplitStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02BA2BE0461F00C9AF68 /* SplitStyling.swift */; };
+		E8BB02BD2BE0463F00C9AF68 /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02BC2BE0463F00C9AF68 /* Splitter.swift */; };
+		E8BB02BF2BE0465F00C9AF68 /* Splitter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02BE2BE0465F00C9AF68 /* Splitter+Extensions.swift */; };
+		E8BB02C12BE0467D00C9AF68 /* SplitViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02C02BE0467D00C9AF68 /* SplitViewModifiers.swift */; };
+		E8BB02C32BE0469400C9AF68 /* VSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB02C22BE0469400C9AF68 /* VSplit.swift */; };
+		E8D357AC2BE01E6A00B6F5F7 /* HSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D357AB2BE01E6A00B6F5F7 /* HSplit.swift */; };
+		E8D357AE2BE01E9100B6F5F7 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D357AD2BE01E9100B6F5F7 /* Split.swift */; };
+		E8D357B02BE01EB200B6F5F7 /* SplitConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D357AF2BE01EB200B6F5F7 /* SplitConstraints.swift */; };
 		E8DFDB9F2BDFEDF500D5FD44 /* OutlinerViews.docc in Sources */ = {isa = PBXBuildFile; fileRef = E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */; };
 		E8DFDBA02BDFEDF500D5FD44 /* OutlinerViews.h in Headers */ = {isa = PBXBuildFile; fileRef = E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DFDBAD2BDFEE6900D5FD44 /* PopupNotificationCentre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFDBAC2BDFEE6900D5FD44 /* PopupNotificationCentre.swift */; };
@@ -14,6 +24,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E8BB02B62BE045DA00C9AF68 /* SplitEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitEnums.swift; sourceTree = "<group>"; };
+		E8BB02B82BE045FF00C9AF68 /* SplitHolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitHolders.swift; sourceTree = "<group>"; };
+		E8BB02BA2BE0461F00C9AF68 /* SplitStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitStyling.swift; sourceTree = "<group>"; };
+		E8BB02BC2BE0463F00C9AF68 /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
+		E8BB02BE2BE0465F00C9AF68 /* Splitter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Extensions.swift"; sourceTree = "<group>"; };
+		E8BB02C02BE0467D00C9AF68 /* SplitViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModifiers.swift; sourceTree = "<group>"; };
+		E8BB02C22BE0469400C9AF68 /* VSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSplit.swift; sourceTree = "<group>"; };
+		E8D357AB2BE01E6A00B6F5F7 /* HSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSplit.swift; sourceTree = "<group>"; };
+		E8D357AD2BE01E9100B6F5F7 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
+		E8D357AF2BE01EB200B6F5F7 /* SplitConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitConstraints.swift; sourceTree = "<group>"; };
 		E8DFDB9A2BDFEDF500D5FD44 /* OutlinerViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OutlinerViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutlinerViews.h; sourceTree = "<group>"; };
 		E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = OutlinerViews.docc; sourceTree = "<group>"; };
@@ -32,6 +52,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8580BFD2BDFF3CD00EA4DCE /* Splitter */ = {
+			isa = PBXGroup;
+			children = (
+				E8D357AB2BE01E6A00B6F5F7 /* HSplit.swift */,
+				E8D357AD2BE01E9100B6F5F7 /* Split.swift */,
+				E8D357AF2BE01EB200B6F5F7 /* SplitConstraints.swift */,
+				E8BB02B62BE045DA00C9AF68 /* SplitEnums.swift */,
+				E8BB02B82BE045FF00C9AF68 /* SplitHolders.swift */,
+				E8BB02BA2BE0461F00C9AF68 /* SplitStyling.swift */,
+				E8BB02BC2BE0463F00C9AF68 /* Splitter.swift */,
+				E8BB02BE2BE0465F00C9AF68 /* Splitter+Extensions.swift */,
+				E8BB02C02BE0467D00C9AF68 /* SplitViewModifiers.swift */,
+				E8BB02C22BE0469400C9AF68 /* VSplit.swift */,
+			);
+			path = Splitter;
+			sourceTree = "<group>";
+		};
 		E8DFDB902BDFEDF400D5FD44 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +90,7 @@
 			children = (
 				E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */,
 				E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */,
+				E8580BFD2BDFF3CD00EA4DCE /* Splitter */,
 				E8DFDBB02BDFEE8400D5FD44 /* PopupAlerts */,
 			);
 			path = OutlinerViews;
@@ -147,8 +185,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8DFDB9F2BDFEDF500D5FD44 /* OutlinerViews.docc in Sources */,
+				E8BB02C32BE0469400C9AF68 /* VSplit.swift in Sources */,
+				E8BB02BB2BE0461F00C9AF68 /* SplitStyling.swift in Sources */,
+				E8BB02BF2BE0465F00C9AF68 /* Splitter+Extensions.swift in Sources */,
 				E8DFDBAF2BDFEE7C00D5FD44 /* BHBezelNotification.swift in Sources */,
+				E8BB02C12BE0467D00C9AF68 /* SplitViewModifiers.swift in Sources */,
+				E8BB02B92BE045FF00C9AF68 /* SplitHolders.swift in Sources */,
+				E8BB02BD2BE0463F00C9AF68 /* Splitter.swift in Sources */,
+				E8BB02B72BE045DA00C9AF68 /* SplitEnums.swift in Sources */,
 				E8DFDBAD2BDFEE6900D5FD44 /* PopupNotificationCentre.swift in Sources */,
+				E8D357AC2BE01E6A00B6F5F7 /* HSplit.swift in Sources */,
+				E8D357AE2BE01E9100B6F5F7 /* Split.swift in Sources */,
+				E8D357B02BE01EB200B6F5F7 /* SplitConstraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +348,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -333,6 +382,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";

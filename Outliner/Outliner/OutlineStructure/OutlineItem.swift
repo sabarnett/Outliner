@@ -35,15 +35,15 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
         lhs.id == rhs.id
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         return hasher.combine(id)
     }
-    
+
     // MARK: - Publically available data
-    
+
     @Published var id: UUID = UUID()
-    
+
     @Published var text: String = "" {
         didSet { itemChanged() }
     }
@@ -64,7 +64,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     @Published var isExpanded: Bool = false
 
     // MARK: - Internal state
-    
+
     var parent: OutlineItem?
     var children: [OutlineItem] = []
     var attributes: [String: String] = [:]
@@ -78,10 +78,10 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     var completedDate: Date?
 
     // MARK: - Initialisation
-    
+
     init() {
         self.parent = nil
-        
+
         text = "New Outline"
         notes = ""
         completed = false
@@ -89,7 +89,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         children = []
         createdDate = Date.now
     }
-    
+
     init(fromOutlineNode: XMLElement, withParent: OutlineItem?) {
         self.parent = withParent
 
@@ -98,7 +98,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         
         hasChanged = false
     }
-    
+
     /// Creae a new OutlineItem based on the contents of an existing OutlineItem.
     ///
     /// The new item will contain the text, notes, completion status and starred status of the
@@ -112,7 +112,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         self.parent = from.parent
         hasChanged = true
         isExpanded = false
-        
+
         text = from.text
         notes = from.notes
         completed = from.completed
@@ -121,9 +121,9 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         createdDate = Date.now
         updatedDate = Date.now
     }
-    
+
     // MARK: - Public methods
-    
+
     func clearChangedIndicator() {
         hasChanged = false
         if hasChildren {
@@ -132,17 +132,17 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
             }
         }
     }
-    
+
     /// Checks whether this itemor any of it's child items have been changed.
     ///
     /// - Returns: True if this or a child item has been changed, else false
     func hasDataChanged() -> Bool {
         if hasChanged { return true }
-        
+
         let hasChanged = children.first(where: { $0.hasDataChanged() })
         return hasChanged == nil ? false : true
     }
-    
+
     /// Creates an XML representation of the current item, which includes all of
     /// it's child items if any exist.
     ///
@@ -155,14 +155,14 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
             itemNode.addAttribute(attr)
             attributes.removeValue(forKey: attr.name!)
         }
-        
+
         // Handle attributes that are not used by us but that may be in the file.
         if attributes.count > 0 {
             for attr in attributes {
                 itemNode.addAttribute(XMLNode.attribute(withName: attr.key, stringValue: attr.value) as! XMLNode)
             }
         }
-        
+
         parent.addChild(itemNode)
         if hasChildren {
             for child in children {
@@ -170,7 +170,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
             }
         }
     }
-    
+
     /// Set the expansion state of this node and all of it's child nodes to expanded or collapsed.
     /// 
     /// - Parameter state: Expand or Collapse the nodes
@@ -180,10 +180,10 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
                 child.setExpansionState(to: state)
             }
         }
-        
+
         isExpanded = state == .expanded
     }
-    
+
     /// Creates a new item in the hierrchy
     ///
     /// - Parameters:
@@ -193,7 +193,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     ///
     /// - Returns: The new node that was created.
     func addNewNode(node: OutlineItem, relativePosition: NodeInsertionPoint = .below) -> OutlineItem {
-        
+
         let newNode = node
         newNode.hasChanged = true
         newNode.parent = parent
@@ -202,13 +202,13 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         case .above:
             if let parentNode = parent,
                let parentIndex = parentNode.children.firstIndex(where: {$0.id == id}) {
-                
+
                 parentNode.children.insert(newNode, at: parentIndex)
             }
         case .below:
             if let parentNode = parent,
                let parentIndex = parentNode.children.firstIndex(where: {$0.id == id}) {
-                
+
                 parentNode.children.insert(newNode, at: parentIndex + 1)
             }
         case .child:
@@ -219,14 +219,14 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
 
         return newNode
     }
-    
+
     /// Deletes this item and all of it's child items from the hierarchy.
     func delete() -> OutlineItem? {
         var nextNode: OutlineItem?
-        
+
         if let parentNode = parent,
            let parentIndex = parentNode.children.firstIndex(where: { $0.id == id }) {
-            
+
             // work out what the next node will be
             if parentNode.children.count == 1 {
                 // We are about to delete the only child, so the next selected
@@ -242,22 +242,22 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
                 // node at the child level.
                 nextNode = parent?.children[parentIndex - 1]
             }
-            
+
             parentNode.children.remove(at: parentIndex)
             parentNode.hasChanged = true
         }
-        
+
         nextNode?.objectWillChange.send()
         return nextNode
     }
-    
+
     /// Returns the NSItemProvider required for drag and drop move
     /// 
     /// - Returns: An NSItemProvider instance initialised with our object id.
     func providerEncode() -> NSItemProvider {
         NSItemProvider(object: id.uuidString as NSString)
     }
-    
+
     /// Find a node, based on it's id, in the tree at and below this node.
     ///
     /// - Parameter id: The id of the OutlineItem to locate
@@ -271,17 +271,17 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     }
 
     // MARK: - Private helpers
-    
+
     private func itemChanged() {
         updatedDate = Date.now
         hasChanged = true
-        
+
         // Send out a message in case there is a preview loaded
         let notificationName = Notification.Name(AppNotifications.RefreshPreviewNotification)
         let notification = Notification(name: notificationName, object: nil, userInfo: nil)
         NotificationCenter.default.post(notification)
     }
-    
+
     // MARK: - Private helpers - load the item
 
     fileprivate func populateFromAttributes(fromElement: XMLElement) {
@@ -293,12 +293,12 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         completed = (attributes[OutlineItemField.completed] ?? "") == "checked"
         starred = (attributes[OutlineItemField.starred] ?? "") == "yes"
         isExpanded = (attributes[OutlineItemField.expanded] ?? "") == "yes"
-        
+
         createdDate = dateFrom(attributes: attributes, forItem: OutlineItemField.createdDate)
         updatedDate = dateFrom(attributes: attributes, forItem: OutlineItemField.updatedDate)
         completedDate = dateFrom(attributes: attributes, forItem: OutlineItemField.completedDate)
     }
-    
+
     fileprivate func dateFrom(attributes: [String: String], forItem key: String) -> Date? {
         if let value = attributes[key] {
             return try? Date(value, strategy: .iso8601)
@@ -317,12 +317,12 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
             children.append(childNode)
         }
     }
-    
+
     // MARK: - Private helpers - save the item
-    
+
     fileprivate func createAttributes() -> [XMLNode] {
         var attributeArray: [XMLNode] = []
-        
+
         attributeArray.append(XMLNode.attribute(withName: OutlineItemField.text, stringValue: text) as! XMLNode)
         if !notes.isEmpty {
             // Ok, this is a bit screwy. Creating the node will escape the stuff
@@ -358,10 +358,10 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         addDateAttribute(&attributeArray, from: completedDate, withName: OutlineItemField.completedDate)
         addDateAttribute(&attributeArray, from: createdDate, withName: OutlineItemField.createdDate)
         addDateAttribute(&attributeArray, from: updatedDate, withName: OutlineItemField.updatedDate)
-        
+
         return attributeArray
     }
-    
+
     fileprivate func addDateAttribute(_ attributeArray: inout [XMLNode], from dateField: Date?, withName: String) {
         if let dateField {
             attributeArray.append(
@@ -369,11 +369,11 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
             )
         }
     }
-    
+
     fileprivate func newAttribute(withName: String, value: String) -> XMLNode {
         XMLNode.attribute(withName: withName, stringValue: value) as! XMLNode
     }
-    
+
     // MARK: - Sample record
     static var example: OutlineItem {
         let sample = OutlineItem()
