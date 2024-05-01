@@ -21,6 +21,11 @@
 		E8DFDBA02BDFEDF500D5FD44 /* OutlinerViews.h in Headers */ = {isa = PBXBuildFile; fileRef = E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DFDBAD2BDFEE6900D5FD44 /* PopupNotificationCentre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFDBAC2BDFEE6900D5FD44 /* PopupNotificationCentre.swift */; };
 		E8DFDBAF2BDFEE7C00D5FD44 /* BHBezelNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFDBAE2BDFEE7C00D5FD44 /* BHBezelNotification.swift */; };
+		E8F0E6532BE290A900496461 /* HTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E6522BE290A900496461 /* HTMLView.swift */; };
+		E8F0E6552BE291EA00496461 /* HilightedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E6542BE291EA00496461 /* HilightedTextView.swift */; };
+		E8F0E6582BE2923300496461 /* StringProtocol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E6572BE2923300496461 /* StringProtocol+Extension.swift */; };
+		E8F0E65B2BE292F300496461 /* HostingWindowFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E65A2BE292F300496461 /* HostingWindowFinder.swift */; };
+		E8F0E65E2BE2937800496461 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E65D2BE2937800496461 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,11 @@
 		E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = OutlinerViews.docc; sourceTree = "<group>"; };
 		E8DFDBAC2BDFEE6900D5FD44 /* PopupNotificationCentre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNotificationCentre.swift; sourceTree = "<group>"; };
 		E8DFDBAE2BDFEE7C00D5FD44 /* BHBezelNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHBezelNotification.swift; sourceTree = "<group>"; };
+		E8F0E6522BE290A900496461 /* HTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLView.swift; sourceTree = "<group>"; };
+		E8F0E6542BE291EA00496461 /* HilightedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HilightedTextView.swift; sourceTree = "<group>"; };
+		E8F0E6572BE2923300496461 /* StringProtocol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Extension.swift"; sourceTree = "<group>"; };
+		E8F0E65A2BE292F300496461 /* HostingWindowFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingWindowFinder.swift; sourceTree = "<group>"; };
+		E8F0E65D2BE2937800496461 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +98,14 @@
 		E8DFDB9C2BDFEDF500D5FD44 /* OutlinerViews */ = {
 			isa = PBXGroup;
 			children = (
+				E8F0E65C2BE2936700496461 /* SearchBar */,
+				E8F0E6592BE292E700496461 /* HostingWindowFinder */,
+				E8F0E6562BE291F100496461 /* HilightedTextView */,
+				E8F0E6512BE2909800496461 /* HTMLView */,
+				E8DFDBB02BDFEE8400D5FD44 /* PopupAlerts */,
+				E8580BFD2BDFF3CD00EA4DCE /* Splitter */,
 				E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */,
 				E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */,
-				E8580BFD2BDFF3CD00EA4DCE /* Splitter */,
-				E8DFDBB02BDFEE8400D5FD44 /* PopupAlerts */,
 			);
 			path = OutlinerViews;
 			sourceTree = "<group>";
@@ -103,6 +117,39 @@
 				E8DFDBAE2BDFEE7C00D5FD44 /* BHBezelNotification.swift */,
 			);
 			path = PopupAlerts;
+			sourceTree = "<group>";
+		};
+		E8F0E6512BE2909800496461 /* HTMLView */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0E6522BE290A900496461 /* HTMLView.swift */,
+			);
+			path = HTMLView;
+			sourceTree = "<group>";
+		};
+		E8F0E6562BE291F100496461 /* HilightedTextView */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0E6542BE291EA00496461 /* HilightedTextView.swift */,
+				E8F0E6572BE2923300496461 /* StringProtocol+Extension.swift */,
+			);
+			path = HilightedTextView;
+			sourceTree = "<group>";
+		};
+		E8F0E6592BE292E700496461 /* HostingWindowFinder */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0E65A2BE292F300496461 /* HostingWindowFinder.swift */,
+			);
+			path = HostingWindowFinder;
+			sourceTree = "<group>";
+		};
+		E8F0E65C2BE2936700496461 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0E65D2BE2937800496461 /* SearchBar.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,15 +234,20 @@
 				E8DFDB9F2BDFEDF500D5FD44 /* OutlinerViews.docc in Sources */,
 				E8BB02C32BE0469400C9AF68 /* VSplit.swift in Sources */,
 				E8BB02BB2BE0461F00C9AF68 /* SplitStyling.swift in Sources */,
+				E8F0E6532BE290A900496461 /* HTMLView.swift in Sources */,
 				E8BB02BF2BE0465F00C9AF68 /* Splitter+Extensions.swift in Sources */,
+				E8F0E65E2BE2937800496461 /* SearchBar.swift in Sources */,
 				E8DFDBAF2BDFEE7C00D5FD44 /* BHBezelNotification.swift in Sources */,
+				E8F0E6552BE291EA00496461 /* HilightedTextView.swift in Sources */,
 				E8BB02C12BE0467D00C9AF68 /* SplitViewModifiers.swift in Sources */,
 				E8BB02B92BE045FF00C9AF68 /* SplitHolders.swift in Sources */,
 				E8BB02BD2BE0463F00C9AF68 /* Splitter.swift in Sources */,
+				E8F0E6582BE2923300496461 /* StringProtocol+Extension.swift in Sources */,
 				E8BB02B72BE045DA00C9AF68 /* SplitEnums.swift in Sources */,
 				E8DFDBAD2BDFEE6900D5FD44 /* PopupNotificationCentre.swift in Sources */,
 				E8D357AC2BE01E6A00B6F5F7 /* HSplit.swift in Sources */,
 				E8D357AE2BE01E9100B6F5F7 /* Split.swift in Sources */,
+				E8F0E65B2BE292F300496461 /* HostingWindowFinder.swift in Sources */,
 				E8D357B02BE01EB200B6F5F7 /* SplitConstraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

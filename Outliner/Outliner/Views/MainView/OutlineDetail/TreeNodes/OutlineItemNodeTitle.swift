@@ -7,6 +7,7 @@
 //
         
 import SwiftUI
+import OutlinerViews
 
 struct OutlineItemNodeTitle: View {
     

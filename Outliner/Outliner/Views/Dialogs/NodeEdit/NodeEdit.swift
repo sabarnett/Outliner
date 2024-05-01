@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MarkdownKit
+import OutlinerViews
 
 struct NodeEdit: View {
     
