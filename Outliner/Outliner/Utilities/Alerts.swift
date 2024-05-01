@@ -7,19 +7,9 @@
 //
 
 import SwiftUI
+import OutlinerViews
 
-// swiftlint:disable identifier_name
-enum AlertResponse {
-    case yes
-    case no
-    case delete
-    case cancel
-    case save
-    case discard
-}
-// swiftlint:enable identifier_name
-
-struct Alerts {
+extension Alerts {
     public static func saveChangesPrompt() -> AlertResponse {
         let captions = ["Save", "Discard"]
         let result = Alerts().openAlert(title: "Save Changes?",
@@ -77,31 +67,5 @@ struct Alerts {
             title: "Move Failed",
             message: "You cannot move an item to a position below itself."
         )
-    }
-    
-    // MARK: - Private helper functions
-
-    @discardableResult
-    fileprivate func openAlert(title: String, message: String, buttonTitles: [String] = []) -> NSApplication.ModalResponse {
-        
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.informativeText = message
-        
-        for buttonTitle in buttonTitles {
-            if buttonTitle.starts(with: "*") {
-                let button = alert.addButton(withTitle: buttonTitle.replacing("*", with: "", maxReplacements: 1))
-                button.bezelStyle = .rounded
-                button.bezelColor = NSColor.systemRed
-            } else {
-                
-                alert.addButton(withTitle: buttonTitle)
-            }
-        }
-        
-        NSApp.activate(ignoringOtherApps: true)
-        
-        let response = alert.runModal()
-        return response
     }
 }

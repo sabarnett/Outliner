@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OutlinerViews
 
 enum NodeMoveRelativeTo: String {
     case above
