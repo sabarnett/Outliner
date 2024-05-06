@@ -8,6 +8,7 @@
         
 import Foundation
 import OutlinerViews
+import OutlinerFile
 
 extension MainViewModel {
     
@@ -72,7 +73,7 @@ extension MainViewModel {
         let xml = treeFile.outlineXML(forRoot: selection)
 
         // Convert the xml back to a hierarchy of OutlineItems
-        if let leg = treeFile.itemsFromXML(xml: xml) {
+        if let leg = try? treeFile.itemsFromXML(xml: xml) {
             leg.parent = parent
             parent.children.insert(leg, at: selectionIndex + 1)
             self.selection = leg

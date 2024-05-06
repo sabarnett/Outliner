@@ -2,7 +2,7 @@
 // File: SearchAppliesTo.swift
 // Package: Outline Tester
 // Created by: Steven Barnett on 07/04/2024
-// 
+//
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
 

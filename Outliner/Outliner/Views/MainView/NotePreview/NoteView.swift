@@ -9,6 +9,7 @@
 import SwiftUI
 import MarkdownKit
 import OutlinerViews
+import OutlinerFile
 
 struct NoteView: View {
     @Environment(\.dismiss) private var dismiss

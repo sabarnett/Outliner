@@ -43,7 +43,7 @@ extension MainViewModel {
         else { return }
         
         // Convert the xml back to a hierarchy of OutlineItems
-        if let leg = treeFile.itemsFromXML(xml: pasteData.contentXML) {
+        if let leg = try? treeFile.itemsFromXML(xml: pasteData.contentXML) {
             leg.parent = parent
             parent.children.insert(leg, at: selectionIndex + 1)
             parent.hasChanged = true

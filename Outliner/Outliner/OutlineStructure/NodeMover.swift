@@ -8,6 +8,7 @@
 
 import SwiftUI
 import OutlinerViews
+import OutlinerFile
 
 enum NodeMoveRelativeTo: String {
     case above

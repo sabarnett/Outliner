@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OutlinerFile
 
 struct NodeViewViewModel: Identifiable {
     var id: UUID = UUID()

@@ -1,24 +1,25 @@
 // Project: MacOutliner
 //
-// Copyright © 2019 Steven Barnett. All rights reserved. 
+// Copyright © 2019 Steven Barnett. All rights reserved.
 //
 // Created by Steven Barnett on 29/01/2019
-// 
+//
 
 import Foundation
+import Combine
 
-enum NodeExpansionState {
+public enum NodeExpansionState {
     case expanded
     case collapsed
 }
 
-enum NodeInsertionPoint {
+public enum NodeInsertionPoint {
     case above
     case below
     case child
 }
 
-struct OutlineItemField {
+public struct OutlineItemField {
     static let text = "text"
     static let notes = "_note"
     static let completed = "_status"
@@ -30,9 +31,9 @@ struct OutlineItemField {
     static let expanded = "_expanded"
 }
 
-class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hashable {
+public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hashable {
 
-    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
+    public static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
         lhs.id == rhs.id
     }
 
@@ -42,44 +43,44 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
 
     // MARK: - Publically available data
 
-    @Published var id: UUID = UUID()
+    @Published public var id: UUID = UUID()
 
-    @Published var text: String = "" {
+    @Published public var text: String = "" {
         didSet { itemChanged() }
     }
-    @Published var notes: String = "" {
+    @Published public var notes: String = "" {
         didSet { itemChanged() }
     }
-    @Published var completed: Bool = false {
+    @Published public var completed: Bool = false {
         didSet {
             completedDate = completed ? Date.now : nil
             itemChanged()
         }
     }
-    @Published var starred: Bool = false {
+    @Published public var starred: Bool = false {
         didSet { itemChanged() }
     }
 
-    @Published var visible: Bool = false
-    @Published var isExpanded: Bool = false
+    @Published public var visible: Bool = false
+    @Published public var isExpanded: Bool = false
 
     // MARK: - Internal state
 
-    var parent: OutlineItem?
-    var children: [OutlineItem] = []
-    var attributes: [String: String] = [:]
+    public var parent: OutlineItem?
+    public var children: [OutlineItem] = []
+    public var attributes: [String: String] = [:]
 
-    var hasChildren: Bool { return children.count != 0 }
+    public var hasChildren: Bool { return children.count != 0 }
 
-    var hasChanged: Bool = false
-    var description: String { return text }
-    var createdDate: Date?
-    var updatedDate: Date?
-    var completedDate: Date?
+    public var hasChanged: Bool = false
+    public var description: String { return text }
+    public var createdDate: Date?
+    public var updatedDate: Date?
+    public var completedDate: Date?
 
     // MARK: - Initialisation
 
-    init() {
+    public init() {
         self.parent = nil
 
         text = "New Outline"
@@ -90,7 +91,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
         createdDate = Date.now
     }
 
-    init(fromOutlineNode: XMLElement, withParent: OutlineItem?) {
+    public init(fromOutlineNode: XMLElement, withParent: OutlineItem?) {
         self.parent = withParent
 
         populateFromAttributes(fromElement: fromOutlineNode)
@@ -108,7 +109,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     /// be set to that of the source item.
     ///
     /// - Parameter from: The OutlineItem to be copied.
-    init(from: OutlineItem) {
+    public init(from: OutlineItem) {
         self.parent = from.parent
         hasChanged = true
         isExpanded = false
@@ -124,7 +125,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
 
     // MARK: - Public methods
 
-    func clearChangedIndicator() {
+    public func clearChangedIndicator() {
         hasChanged = false
         if hasChildren {
             for child in children {
@@ -136,7 +137,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     /// Checks whether this itemor any of it's child items have been changed.
     ///
     /// - Returns: True if this or a child item has been changed, else false
-    func hasDataChanged() -> Bool {
+    public func hasDataChanged() -> Bool {
         if hasChanged { return true }
 
         let hasChanged = children.first(where: { $0.hasDataChanged() })
@@ -148,7 +149,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     ///
     /// - Parameter parent: The parent item of the current one, to which we will
     /// add our XML.
-    func renderXML(_ parent: XMLElement) {
+    public func renderXML(_ parent: XMLElement) {
         let itemNode = XMLElement(name: "outline")
 
         for attr in createAttributes() {
@@ -172,9 +173,9 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     }
 
     /// Set the expansion state of this node and all of it's child nodes to expanded or collapsed.
-    /// 
+    ///
     /// - Parameter state: Expand or Collapse the nodes
-    func setExpansionState(to state: NodeExpansionState) {
+    public func setExpansionState(to state: NodeExpansionState) {
         if hasChildren {
             for child in children {
                 child.setExpansionState(to: state)
@@ -192,7 +193,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     ///   insert above, below or as a child of the current item.
     ///
     /// - Returns: The new node that was created.
-    func addNewNode(node: OutlineItem, relativePosition: NodeInsertionPoint = .below) -> OutlineItem {
+    public func addNewNode(node: OutlineItem, relativePosition: NodeInsertionPoint = .below) -> OutlineItem {
 
         let newNode = node
         newNode.hasChanged = true
@@ -221,7 +222,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     }
 
     /// Deletes this item and all of it's child items from the hierarchy.
-    func delete() -> OutlineItem? {
+    public func delete() -> OutlineItem? {
         var nextNode: OutlineItem?
 
         if let parentNode = parent,
@@ -252,9 +253,9 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     }
 
     /// Returns the NSItemProvider required for drag and drop move
-    /// 
+    ///
     /// - Returns: An NSItemProvider instance initialised with our object id.
-    func providerEncode() -> NSItemProvider {
+    public func providerEncode() -> NSItemProvider {
         NSItemProvider(object: id.uuidString as NSString)
     }
 
@@ -262,7 +263,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     ///
     /// - Parameter id: The id of the OutlineItem to locate
     /// - Returns: The OutlineItem, if found, else nil
-    func findById(_ id: UUID) -> OutlineItem? {
+    public func findById(_ id: UUID) -> OutlineItem? {
         if self.id == id { return self }
         for child in children {
             if let found = child.findById(id) { return found }
@@ -375,7 +376,7 @@ class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hash
     }
 
     // MARK: - Sample record
-    static var example: OutlineItem {
+    public static var example: OutlineItem {
         let sample = OutlineItem()
         sample.text = "Sample item title text"
         sample.notes = "Sample notes for the sample outline item\n\nWith additional text."

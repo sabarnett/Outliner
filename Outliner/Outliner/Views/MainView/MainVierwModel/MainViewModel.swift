@@ -8,6 +8,7 @@
 
 import Foundation
 import OutlinerViews
+import OutlinerFile
 
 class MainViewModel: ObservableObject, Identifiable {
     var id: UUID = UUID()
@@ -57,7 +58,11 @@ class MainViewModel: ObservableObject, Identifiable {
         }
         
         outlineFileUrl = outline
-        treeFile = OpmlFile(fromUrl: outline)
+        do {
+            treeFile = try OpmlFile(fromUrl: outline)
+        } catch OpmlFileErrors.loadError(let message) {
+            Alerts.loadError(message: message)
+        } catch { }
         
         if let root = treeFile.outline.outlineBody {
             root.visible = true
@@ -101,7 +106,12 @@ class MainViewModel: ObservableObject, Identifiable {
     @discardableResult
     func save() -> String? {
         if outlineFileUrl.path != "newFile" {
-            treeFile.saveOutline()
+            do {
+                try treeFile.saveOutline()
+            } catch OpmlFileErrors.saveError(let message) {
+                Alerts.saveError(message: message)
+                return nil
+            } catch {}
             notify.showPopup(.success, title: "File saved", description: "Outline file has been saved")
             return outlineFileUrl.path
         } else {
@@ -120,7 +130,12 @@ class MainViewModel: ObservableObject, Identifiable {
 
         if let saveFile = FileHelpers.selectOutlineFileToSave(withTitle: "Save outline to...") {
             outlineFileUrl = saveFile
-            treeFile.saveOutline(to: saveFile)
+            do {
+                try treeFile.saveOutline(to: saveFile)
+            } catch OpmlFileErrors.saveError(let message) {
+                Alerts.saveError(message: message)
+                return (oldFilePath: oldFile.path, newFilePath: nil)
+            } catch {}
             windowTitle = treeFile.fileNameWithExtension
             notify.showPopup(.success, title: "File saved", description: "Outline file has been saved")
 

@@ -2,13 +2,14 @@
 // File: TreeFilter.swift
 // Package: Outline Tester
 // Created by: Steven Barnett on 24/01/2024
-// 
+//
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
 
 import SwiftUI
+import OutlinerFile
 
-struct TreeFilterOptions {
+public struct TreeFilterOptions {
     var searchFor: String = ""
     var searchFields: SearchAppliesTo = .titleAndNotes
     var typeFilter: DetailViewType = .outline
@@ -16,11 +17,11 @@ struct TreeFilterOptions {
     var hasTextFilter: Bool { !searchFor.isEmpty }
 }
 
-struct TreeFilter {
+public struct TreeFilter {
     
     @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
-    func listNodes(fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions) -> [OutlineItem] {
+    public func listNodes(fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions) -> [OutlineItem] {
         
         var result = [OutlineItem]()
         
@@ -60,7 +61,7 @@ struct TreeFilter {
         Double(recentDuration) * 60 * 60 * 24
     }
     
-    func textFilter(_ node: OutlineItem, _ options: TreeFilterOptions) -> Bool {
+    private func textFilter(_ node: OutlineItem, _ options: TreeFilterOptions) -> Bool {
         
         if options.hasTextFilter == false { return true }
         
@@ -75,7 +76,7 @@ struct TreeFilter {
         }
     }
     
-    func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
+    private func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
         switch ofType {
         case .outline:
             return true

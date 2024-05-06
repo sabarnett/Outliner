@@ -23,11 +23,6 @@
 		E82BDD262ACB5013004797E9 /* WriteLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82BDD252ACB5013004797E9 /* WriteLog.swift */; };
 		E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83310422A938BED0067C504 /* SettingsViewModel.swift */; };
 		E8345E5A2A910B1400E36B82 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8345E592A910B1400E36B82 /* SettingsView.swift */; };
-		E8473DA12AF0063D00D9627D /* OpmlFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8473DA02AF0063D00D9627D /* OpmlFile.swift */; };
-		E8473DA32AF0064400D9627D /* NodeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8473DA22AF0064400D9627D /* NodeHelpers.swift */; };
-		E8473DA72AF0064C00D9627D /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8473DA42AF0064C00D9627D /* OutlineItem.swift */; };
-		E8473DA82AF0064C00D9627D /* OutlineBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8473DA52AF0064C00D9627D /* OutlineBody.swift */; };
-		E8473DA92AF0064C00D9627D /* OutlineHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8473DA62AF0064C00D9627D /* OutlineHeader.swift */; };
 		E8473DAB2AF009C800D9627D /* MacOutliner.outline in Resources */ = {isa = PBXBuildFile; fileRef = E8473DAA2AF009C800D9627D /* MacOutliner.outline */; };
 		E84D0AB92BA5F84100716028 /* OutlineItemCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84D0AB82BA5F84100716028 /* OutlineItemCheckBox.swift */; };
 		E84D0ABB2BA5F90200716028 /* OutlineItemNodeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84D0ABA2BA5F90200716028 /* OutlineItemNodeTitle.swift */; };
@@ -47,7 +42,6 @@
 		E87906822A88E13400259501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E87906812A88E13400259501 /* Assets.xcassets */; };
 		E87906852A88E13400259501 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E87906842A88E13400259501 /* Preview Assets.xcassets */; };
 		E88552A22AB0E80D00740562 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88552A12AB0E80D00740562 /* Menus.swift */; };
-		E88DE7EB2B82114C00084E95 /* TreeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88DE7EA2B82114C00084E95 /* TreeStats.swift */; };
 		E893853B2AA22B9200D225F5 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893853A2AA22B9200D225F5 /* SidebarView.swift */; };
 		E893853D2AA22BA100D225F5 /* OutlineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893853C2AA22BA100D225F5 /* OutlineDetailView.swift */; };
 		E89800302A8BC59000AE8656 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898002F2A8BC59000AE8656 /* Constants.swift */; };
@@ -63,11 +57,15 @@
 		E8C433702BC52D370074E13C /* MainViewModel.structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4336F2BC52D370074E13C /* MainViewModel.structure.swift */; };
 		E8C88B4D2B275CAE0091F431 /* OpeningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C88B4C2B275CAE0091F431 /* OpeningView.swift */; };
 		E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D456372B345A3400CE2A93 /* FileMenu.swift */; };
+		E8D65DC92BE3DA660077585C /* OutlinerFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D65DC82BE3DA660077585C /* OutlinerFile.framework */; };
+		E8D65DCA2BE3DA660077585C /* OutlinerFile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8D65DC82BE3DA660077585C /* OutlinerFile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8D65DCE2BE3DB4B0077585C /* SearchAppliesTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DCD2BE3DB4B0077585C /* SearchAppliesTo.swift */; };
+		E8D65DD02BE3DB5F0077585C /* TreeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DCF2BE3DB5F0077585C /* TreeFilter.swift */; };
+		E8D65DD22BE3DB880077585C /* TreeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DD12BE3DB880077585C /* TreeStats.swift */; };
 		E8DBC7F12AAA0CB400EC3559 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */; };
 		E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E349092BB868D200C778A6 /* ContextMenuItems.swift */; };
 		E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */; };
 		E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */; };
-		E8E742512BC2C874007F4B57 /* SearchAppliesTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */; };
 		E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */; };
 		E8EA24642AACA7F5001210F4 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA24632AACA7F5001210F4 /* DisplayMode.swift */; };
 		E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDBD6F2B5BDBA1001F1306 /* OpeningWindowButtonsView.swift */; };
@@ -81,7 +79,6 @@
 		E8F88BBC2AC42F040072B972 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F88BBB2AC42F040072B972 /* Notifications.swift */; };
 		E8F8DD5A2B71126600653F02 /* ViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8DD592B71126600653F02 /* ViewMenu.swift */; };
 		E8FC41A72B99CD060089DED6 /* RecentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC41A62B99CD060089DED6 /* RecentFile.swift */; };
-		E8FD66F22B616185004F7812 /* TreeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FD66F12B616185004F7812 /* TreeFilter.swift */; };
 		E8FE12A02B6008260079959E /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE129F2B6008260079959E /* ListDetailView.swift */; };
 		E8FF50462B6A8B43005823D3 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF50452B6A8B43005823D3 /* View+Extensions.swift */; };
 		E8FF50482B6A8D04005823D3 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF50472B6A8D04005823D3 /* NoteView.swift */; };
@@ -96,6 +93,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E8D65DCA2BE3DA660077585C /* OutlinerFile.framework in Embed Frameworks */,
 				E8580C002BDFF4CC00EA4DCE /* OutlinerViews.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -120,11 +118,6 @@
 		E82BDD252ACB5013004797E9 /* WriteLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteLog.swift; sourceTree = "<group>"; };
 		E83310422A938BED0067C504 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E8345E592A910B1400E36B82 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		E8473DA02AF0063D00D9627D /* OpmlFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpmlFile.swift; sourceTree = "<group>"; };
-		E8473DA22AF0064400D9627D /* NodeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeHelpers.swift; sourceTree = "<group>"; };
-		E8473DA42AF0064C00D9627D /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
-		E8473DA52AF0064C00D9627D /* OutlineBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineBody.swift; sourceTree = "<group>"; };
-		E8473DA62AF0064C00D9627D /* OutlineHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineHeader.swift; sourceTree = "<group>"; };
 		E8473DAA2AF009C800D9627D /* MacOutliner.outline */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MacOutliner.outline; sourceTree = "<group>"; };
 		E84D0AB82BA5F84100716028 /* OutlineItemCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemCheckBox.swift; sourceTree = "<group>"; };
 		E84D0ABA2BA5F90200716028 /* OutlineItemNodeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemNodeTitle.swift; sourceTree = "<group>"; };
@@ -143,7 +136,6 @@
 		E87906842A88E13400259501 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E87906862A88E13400259501 /* Outliner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Outliner.entitlements; sourceTree = "<group>"; };
 		E88552A12AB0E80D00740562 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
-		E88DE7EA2B82114C00084E95 /* TreeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeStats.swift; sourceTree = "<group>"; };
 		E893853A2AA22B9200D225F5 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		E893853C2AA22BA100D225F5 /* OutlineDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDetailView.swift; sourceTree = "<group>"; };
 		E898002F2A8BC59000AE8656 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -159,12 +151,15 @@
 		E8C4336F2BC52D370074E13C /* MainViewModel.structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.structure.swift; sourceTree = "<group>"; };
 		E8C88B4C2B275CAE0091F431 /* OpeningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningView.swift; sourceTree = "<group>"; };
 		E8D456372B345A3400CE2A93 /* FileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMenu.swift; sourceTree = "<group>"; };
+		E8D65DC82BE3DA660077585C /* OutlinerFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OutlinerFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8D65DCD2BE3DB4B0077585C /* SearchAppliesTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppliesTo.swift; sourceTree = "<group>"; };
+		E8D65DCF2BE3DB5F0077585C /* TreeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilter.swift; sourceTree = "<group>"; };
+		E8D65DD12BE3DB880077585C /* TreeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeStats.swift; sourceTree = "<group>"; };
 		E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E8DFDBB22BDFF06100D5FD44 /* OutlinerViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OutlinerViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E349092BB868D200C778A6 /* ContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItems.swift; sourceTree = "<group>"; };
 		E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowActionButtons.swift; sourceTree = "<group>"; };
 		E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowRecentFilesView.swift; sourceTree = "<group>"; };
-		E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppliesTo.swift; sourceTree = "<group>"; };
 		E8E7FDF82B2A084D0092AEB6 /* OutlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineManager.swift; sourceTree = "<group>"; };
 		E8EA24632AACA7F5001210F4 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
 		E8EDBD6F2B5BDBA1001F1306 /* OpeningWindowButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowButtonsView.swift; sourceTree = "<group>"; };
@@ -178,7 +173,6 @@
 		E8F88BBB2AC42F040072B972 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E8F8DD592B71126600653F02 /* ViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMenu.swift; sourceTree = "<group>"; };
 		E8FC41A62B99CD060089DED6 /* RecentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentFile.swift; sourceTree = "<group>"; };
-		E8FD66F12B616185004F7812 /* TreeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilter.swift; sourceTree = "<group>"; };
 		E8FE129F2B6008260079959E /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		E8FF50452B6A8B43005823D3 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		E8FF50472B6A8D04005823D3 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -191,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D65DC92BE3DA660077585C /* OutlinerFile.framework in Frameworks */,
 				E86F7AE72B6BE30500CA3EB8 /* MarkdownKitProcess in Frameworks */,
 				E8580BFF2BDFF4CC00EA4DCE /* OutlinerViews.framework in Frameworks */,
 				E86F7AE52B6BE30500CA3EB8 /* MarkdownKit in Frameworks */,
@@ -270,14 +265,9 @@
 		E8473D972AF002CF00D9627D /* OutlineStructure */ = {
 			isa = PBXGroup;
 			children = (
-				E8473DA02AF0063D00D9627D /* OpmlFile.swift */,
-				E8473DA22AF0064400D9627D /* NodeHelpers.swift */,
-				E8473DA52AF0064C00D9627D /* OutlineBody.swift */,
-				E8473DA62AF0064C00D9627D /* OutlineHeader.swift */,
-				E8473DA42AF0064C00D9627D /* OutlineItem.swift */,
-				E8FD66F12B616185004F7812 /* TreeFilter.swift */,
-				E88DE7EA2B82114C00084E95 /* TreeStats.swift */,
 				E80D574A2BA1E7FC00649C95 /* NodeMover.swift */,
+				E8D65DCF2BE3DB5F0077585C /* TreeFilter.swift */,
+				E8D65DD12BE3DB880077585C /* TreeStats.swift */,
 			);
 			path = OutlineStructure;
 			sourceTree = "<group>";
@@ -409,7 +399,6 @@
 		E8CD080C2AAE20D600436631 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				E8E742502BC2C874007F4B57 /* SearchAppliesTo.swift */,
 				E871CF552B7C00890067F9D2 /* DetailViewType.swift */,
 				E879067F2A88E13400259501 /* MainView.swift */,
 				E8C433732BC5325D0074E13C /* MainVierwModel */,
@@ -417,6 +406,7 @@
 				E81646312B654CF4003CB585 /* OutlineDetail */,
 				E81646362B654E02003CB585 /* ListDetailView */,
 				E871CF4D2B7BFA890067F9D2 /* NotePreview */,
+				E8D65DCD2BE3DB4B0077585C /* SearchAppliesTo.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -436,6 +426,7 @@
 		E8DFDBB12BDFF06100D5FD44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8D65DC82BE3DA660077585C /* OutlinerFile.framework */,
 				E8580BFE2BDFF4CC00EA4DCE /* OutlinerViews.framework */,
 				E8DFDBB22BDFF06100D5FD44 /* OutlinerViews.framework */,
 			);
@@ -602,27 +593,26 @@
 				E80C4E472AE1590500ADC2CB /* Alerts.swift in Sources */,
 				E8BDD5CF2AFBDD5600672DCE /* TreeNodeParent.swift in Sources */,
 				E8FE12A02B6008260079959E /* ListDetailView.swift in Sources */,
-				E8E742512BC2C874007F4B57 /* SearchAppliesTo.swift in Sources */,
 				E8345E5A2A910B1400E36B82 /* SettingsView.swift in Sources */,
 				E80B8D142A8BB1D8000F361A /* AppDelegate.swift in Sources */,
 				E8040BB92AC35CFE00A164BB /* UTType+Extensions.swift in Sources */,
 				E8F30BA32A8FB411005D41E7 /* AboutView.swift in Sources */,
 				E828E9CC2B9620D700DF8477 /* ThemeSettings.swift in Sources */,
 				E8FF89532B78FDAE008CF353 /* NodeEdit.swift in Sources */,
+				E8D65DD22BE3DB880077585C /* TreeStats.swift in Sources */,
 				E8EA24642AACA7F5001210F4 /* DisplayMode.swift in Sources */,
 				E81646302B654854003CB585 /* OutlineDetailToolBarView.swift in Sources */,
-				E8473DA82AF0064C00D9627D /* OutlineBody.swift in Sources */,
 				E893853D2AA22BA100D225F5 /* OutlineDetailView.swift in Sources */,
 				E81A2A812AC1B1D000965A2A /* FileHelpers.swift in Sources */,
 				E871CF522B7BFFFE0067F9D2 /* SidebarViewTypeButton.swift in Sources */,
 				E8C000682B922101008BFFD3 /* ThemedFontViewModifier.swift in Sources */,
-				E88DE7EB2B82114C00084E95 /* TreeStats.swift in Sources */,
 				E8F8DD5A2B71126600653F02 /* ViewMenu.swift in Sources */,
 				E8BDD5D32AFBDDDF00672DCE /* OutlineItemView.swift in Sources */,
 				E8F30BA02A8FB1E7005D41E7 /* Bundle+Extensions.swift in Sources */,
 				E871CF4F2B7BFAB90067F9D2 /* NodeViewViewModel.swift in Sources */,
 				E8BDD5D12AFBDDAE00672DCE /* TreeNodeView.swift in Sources */,
 				E81ED28A2B94719900458A55 /* ThemeFontWeights.swift in Sources */,
+				E8D65DCE2BE3DB4B0077585C /* SearchAppliesTo.swift in Sources */,
 				E8C433702BC52D370074E13C /* MainViewModel.structure.swift in Sources */,
 				E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */,
 				E89800302A8BC59000AE8656 /* Constants.swift in Sources */,
@@ -634,7 +624,6 @@
 				E81646332B654D1C003CB585 /* OutlineActionButton.swift in Sources */,
 				E8EDBD792B5BEDB6001F1306 /* AdvancedSettings.swift in Sources */,
 				E87906802A88E13400259501 /* MainView.swift in Sources */,
-				E8473DA32AF0064400D9627D /* NodeHelpers.swift in Sources */,
 				E8C000642B92208B008BFFD3 /* ThemeItemType.swift in Sources */,
 				E8F0B9A32B93687900F8F74F /* ThemeStorage.swift in Sources */,
 				E8FF50482B6A8D04005823D3 /* NoteView.swift in Sources */,
@@ -642,12 +631,12 @@
 				E871CF542B7C00490067F9D2 /* SidebarViewTypeHeading.swift in Sources */,
 				E8F88BBC2AC42F040072B972 /* Notifications.swift in Sources */,
 				E84D0ABD2BA5F9B800716028 /* OutlineItemNodeNotes.swift in Sources */,
-				E8473DA12AF0063D00D9627D /* OpmlFile.swift in Sources */,
 				E8C88B4D2B275CAE0091F431 /* OpeningView.swift in Sources */,
 				E871CF4C2B7BF2450067F9D2 /* NodeEditViewModel.swift in Sources */,
 				E80D574B2BA1E7FC00649C95 /* NodeMover.swift in Sources */,
 				E8E7FDF92B2A084D0092AEB6 /* OutlineManager.swift in Sources */,
 				E8C0006C2B922456008BFFD3 /* ThemeDefinitions.swift in Sources */,
+				E8D65DD02BE3DB5F0077585C /* TreeFilter.swift in Sources */,
 				E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */,
 				E84D0AB92BA5F84100716028 /* OutlineItemCheckBox.swift in Sources */,
 				E8D456382B345A3400CE2A93 /* FileMenu.swift in Sources */,
@@ -659,9 +648,6 @@
 				E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */,
 				E8EDBD722B5BDBE8001F1306 /* OpeningWindowLogoView.swift in Sources */,
 				E871CF562B7C00890067F9D2 /* DetailViewType.swift in Sources */,
-				E8473DA72AF0064C00D9627D /* OutlineItem.swift in Sources */,
-				E8FD66F22B616185004F7812 /* TreeFilter.swift in Sources */,
-				E8473DA92AF0064C00D9627D /* OutlineHeader.swift in Sources */,
 				E8EDBD752B5BECA5001F1306 /* GeneralSettings.swift in Sources */,
 				E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */,
 				E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */,

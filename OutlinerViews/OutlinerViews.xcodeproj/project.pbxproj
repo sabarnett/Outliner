@@ -40,6 +40,7 @@
 		E8D357AB2BE01E6A00B6F5F7 /* HSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSplit.swift; sourceTree = "<group>"; };
 		E8D357AD2BE01E9100B6F5F7 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
 		E8D357AF2BE01EB200B6F5F7 /* SplitConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitConstraints.swift; sourceTree = "<group>"; };
+		E8D65DD62BE3DD610077585C /* OutlinerFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OutlinerFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DFDB9A2BDFEDF500D5FD44 /* OutlinerViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OutlinerViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DFDB9D2BDFEDF500D5FD44 /* OutlinerViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutlinerViews.h; sourceTree = "<group>"; };
 		E8DFDB9E2BDFEDF500D5FD44 /* OutlinerViews.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = OutlinerViews.docc; sourceTree = "<group>"; };
@@ -81,11 +82,20 @@
 			path = Splitter;
 			sourceTree = "<group>";
 		};
+		E8D65DD52BE3DD610077585C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8D65DD62BE3DD610077585C /* OutlinerFile.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E8DFDB902BDFEDF400D5FD44 = {
 			isa = PBXGroup;
 			children = (
 				E8DFDB9C2BDFEDF500D5FD44 /* OutlinerViews */,
 				E8DFDB9B2BDFEDF500D5FD44 /* Products */,
+				E8D65DD52BE3DD610077585C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

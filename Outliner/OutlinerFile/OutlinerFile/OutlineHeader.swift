@@ -1,18 +1,18 @@
 // Project: MacOutliner
 //
-// Copyright © 2019 Steven Barnett. All rights reserved. 
+// Copyright © 2019 Steven Barnett. All rights reserved.
 //
 
 import Foundation
 
-class OutlineHeader {
+public class OutlineHeader {
     public var title: String = ""
     public var expansionState: String = ""
     
     private var creationDate: String = ""
     private var lastSavedDate: String = ""
 
-    init(fromDocument doc: XMLDocument) {
+    public init(fromDocument doc: XMLDocument) {
         if let headerNode = NodeHelpers.getFirstNode(fromDocument: doc, forPath: "/opml/head") {
             self.title = NodeHelpers.getStringValue(fromNode: headerNode, forName: "title")
             self.expansionState = NodeHelpers.getStringValue(fromNode: headerNode, forName: "expansionState")
@@ -26,7 +26,7 @@ class OutlineHeader {
         }
     }
     
-    func renderXML(_ parent: XMLElement) {
+    public func renderXML(_ parent: XMLElement) {
         lastSavedDate = Date.now.ISO8601Format()
         
         let headNode = XMLElement(name: "head")

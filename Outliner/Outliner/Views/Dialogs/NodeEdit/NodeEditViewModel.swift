@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OutlinerFile
 
 class NodeEditViewModel: ObservableObject, Identifiable {
     

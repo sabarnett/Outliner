@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OutlinerFile
 
 struct ListDetailView: View {
     

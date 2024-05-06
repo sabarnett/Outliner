@@ -3,12 +3,12 @@
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
 // Created by Steven Barnett on 29/01/2019
-// 
+//
 
 import Foundation
 import OutlinerViews
 
-class OpmlFile {
+public class OpmlFile {
 
     private var fileUrl: URL
 
@@ -16,14 +16,14 @@ class OpmlFile {
     
     public var outline: OutlineBody!
     public var header: OutlineHeader!
-
-    var fileNameWithExtension: String { return fileUrl.lastPathComponent }
-    var fileNameWithoutExtension: String { return fileUrl.deletingPathExtension().lastPathComponent }
+    
+    public var fileNameWithExtension: String { return fileUrl.lastPathComponent }
+    public var fileNameWithoutExtension: String { return fileUrl.deletingPathExtension().lastPathComponent }
     
     // MARK: - Initialisation
     
     /// Initialise an empty (new) outline file
-    init() {
+    public init() {
         fileUrl = URL(string: "newFile")!
         
         let doc = XMLDocument()
@@ -34,12 +34,11 @@ class OpmlFile {
     /// Initialise an outline from a file.
     ///
     /// - Parameter fromUrl: The URL of the file to load
-    init(fromUrl: URL) {
+    public init(fromUrl: URL) throws {
         fileUrl = fromUrl
 
-        guard let doc = loadDocument(url: fromUrl) else {
-            print("Document load failure")
-            return
+        guard let doc = try loadDocument(url: fromUrl) else {
+            throw OpmlFileErrors.loadError(message: "Load failed for document.")
         }
 
         self.header = OutlineHeader(fromDocument: doc)
@@ -55,13 +54,13 @@ class OpmlFile {
     ///
     /// - Parameter targetUrl: The URL of the file to save to. If not specified we
     /// use the URL of the file that was loaded.
-    func saveOutline(to targetUrl: URL? = nil) {
+    public func saveOutline(to targetUrl: URL? = nil) throws {
         
         if let targetUrl { fileUrl = targetUrl }
         
         let rootDoc = createDocument()
         let content = formatDocument(rootDoc)
-        writeDocument(content)
+        try writeDocument(content)
         
         // Clear the updated flags
         outline.outlineBody?.clearChangedIndicator()
@@ -69,24 +68,36 @@ class OpmlFile {
     
     /// Renders the XML for an outline file and returns it as a string.
     ///
+    /// - Parameter root: Optional root OutlineItem or nil to use thw whole file.
+    /// - Returns:  A string representation of the OpmlFile
+    ///
     /// By default, the XML is for the entire outline. However, you can pass an optional
     /// OutlineItem and the XML will be rendered using that as t he root node. This gives
     /// a partial rendering of the file. This XML can be used to create a subset file or to
     /// create a string containing the subset that can be copied to the clipboard.
     ///
-    /// - Parameter root: Optional root OutlineItem or nil to use thw whole file.
-    /// - Returns:  A string representation of the OpmlFile
-    func outlineXML(forRoot root: OutlineItem? = nil) -> String {
+    /// When you are ready to paste the data, you can use the ``itemsFromXML(xml:)`` function
+    /// to extract the tree structure of ``OutlineItem`` nodes.
+    public func outlineXML(forRoot root: OutlineItem? = nil) -> String {
         let rootDoc = createDocument(forRoot: root)
         let content = formatDocument(rootDoc)
 
         return content
     }
     
-    func itemsFromXML(xml: String) -> OutlineItem? {
-        guard let doc = loadDocument(xml: xml) else {
-            print("Document load failure")
-            return nil
+    /// Converts a string containing an outline file definition into a tree structure of
+    /// outline items.
+    ///
+    /// - Parameter xml: The XML definition of the outline file
+    /// - Returns: The root node of the tree structure
+    ///
+    /// This function is used when we want to copy and paste a structure. The copy
+    /// function will create an XML string by calling the outlineXML function. This converts
+    /// all or part of a tree structure to XML. The paste function will call ``itemsFromXML(xml:)``
+    /// to convert the extracted data back into a tree structure of OutlineItems.
+    public func itemsFromXML(xml: String) throws -> OutlineItem? {
+        guard let doc = try loadDocument(xml: xml) else {
+            throw OpmlFileErrors.loadError(message: "Document failed to load - check the file format.")
         }
 
         let outline = OutlineBody(fromDocument: doc)
@@ -95,26 +106,24 @@ class OpmlFile {
     
     // MARK: - Private helpers
     
-    private func loadDocument(url: URL) -> XMLDocument? {
+    private func loadDocument(url: URL) throws -> XMLDocument? {
 
         let options = XMLNode.Options()
         do {
             let fileContent = try String(contentsOfFile: url.path)
             return try XMLDocument(xmlString: fileContent, options: options)
         } catch {
-            Alerts.loadError(message: error.localizedDescription)
-            return nil
+            throw OpmlFileErrors.loadError(message: error.localizedDescription)
         }
     }
     
-    private func loadDocument(xml: String) -> XMLDocument? {
+    private func loadDocument(xml: String) throws -> XMLDocument? {
 
         let options = XMLNode.Options()
         do {
             return try XMLDocument(xmlString: xml, options: options)
         } catch {
-            Alerts.loadError(message: error.localizedDescription)
-            return nil
+            throw OpmlFileErrors.loadError(message: error.localizedDescription)
         }
     }
 
@@ -144,12 +153,18 @@ class OpmlFile {
                       .replacingOccurrences(of: "#NewLine#", with: "&#xA;")
     }
     
-    private func writeDocument(_ document: String) {
+    private func writeDocument(_ document: String) throws {
         let outputURL = URL(fileURLWithPath: fileUrl.path)
         do {
             try document.write(to: outputURL, atomically: true, encoding: .utf8)
         } catch {
-            Alerts.saveError(message: error.localizedDescription)
+            throw OpmlFileErrors.saveError(message: error.localizedDescription)
+//            Alerts.saveError(message: error.localizedDescription)
         }
     }
+}
+
+public enum OpmlFileErrors: Error {
+    case saveError(message: String)
+    case loadError(message: String)
 }
