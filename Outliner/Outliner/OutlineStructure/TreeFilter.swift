@@ -21,31 +21,16 @@ public struct TreeFilter {
     
     @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
-    public func listNodes(fromTree tree: OutlineItem?, withOptions options: TreeFilterOptions) -> [OutlineItem] {
+    public func listNodes(fromTree tree: OpmlFile, withOptions options: TreeFilterOptions) -> [OutlineItem] {
         
         var result = [OutlineItem]()
         
-        if let rootNode = tree, rootNode.hasChildren {
-            for child in rootNode.children {
-                filterItems(&result, node: child, withOptions: options)
-            }
+        for item in tree where shouldKeep(item, options: options) {
+            result.append(item)
         }
-        
         return result
     }
-    
-    private func filterItems(_ matchingItems: inout [OutlineItem], node: OutlineItem, withOptions options: TreeFilterOptions) {
-        if shouldKeep(node, options: options) {
-            matchingItems.append(node)
-        }
-        
-        if node.hasChildren {
-            for child in node.children {
-                filterItems(&matchingItems, node: child, withOptions: options)
-            }
-        }
-    }
-    
+
     private func shouldKeep(_ node: OutlineItem, options: TreeFilterOptions) -> Bool {
         
         if textFilter(node, options) == false { return false }

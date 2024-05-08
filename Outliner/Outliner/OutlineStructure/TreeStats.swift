@@ -18,28 +18,15 @@ struct TreeStats {
         nodeCount - completeCount
     }
     
-    mutating func calculate(forTree tree: OutlineItem?) {
+    mutating func calculate(forTree tree: OpmlFile) {
         nodeCount = 0
         starredCount = 0
         completeCount = 0
         
-        if let rootNode = tree, rootNode.hasChildren {
-            for child in rootNode.children {
-                calculateStats(node: child)
-            }
-        }
-    }
-    
-    mutating private func calculateStats(node: OutlineItem) {
-
-        nodeCount += 1
-        starredCount += node.starred ? 1 : 0
-        completeCount += node.completed ? 1 : 0
-        
-        if node.hasChildren {
-            for child in node.children {
-                calculateStats(node: child)
-            }
+        for item in tree {
+            nodeCount += 1
+            if item.starred { starredCount += 1 }
+            if item.completed { completeCount += 1 }
         }
     }
 }

@@ -84,7 +84,7 @@ class MainViewModel: ObservableObject, Identifiable {
     func calculateStatistics() {
         DispatchQueue.global(qos: .userInitiated).async {
             var calc = TreeStats()
-            calc.calculate(forTree: self.tree)
+            calc.calculate(forTree: self.treeFile)
 
             DispatchQueue.main.async {
                 self.nodeCount = calc.nodeCount

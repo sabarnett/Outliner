@@ -8,6 +8,11 @@
 import Foundation
 import OutlinerViews
 
+public enum OpmlFileErrors: Error {
+    case saveError(message: String)
+    case loadError(message: String)
+}
+
 public class OpmlFile {
 
     private var fileUrl: URL
@@ -159,12 +164,69 @@ public class OpmlFile {
             try document.write(to: outputURL, atomically: true, encoding: .utf8)
         } catch {
             throw OpmlFileErrors.saveError(message: error.localizedDescription)
-//            Alerts.saveError(message: error.localizedDescription)
         }
     }
 }
 
-public enum OpmlFileErrors: Error {
-    case saveError(message: String)
-    case loadError(message: String)
+extension OpmlFile: Sequence {
+    public func makeIterator() -> TreeIterator {
+        return TreeIterator(root: outline.outlineBody)
+    }
+}
+
+public struct TreeIterator: IteratorProtocol {
+    
+    let root: OutlineItem?
+    var current: OutlineItem?
+
+    init(root: OutlineItem?) {
+        self.root = root
+    }
+    
+    mutating public func next() -> OutlineItem? {
+        // If we don't have a current yet, then set it to the root
+        // node and return that. This is the start of the iterator
+        guard let current = self.current else {
+            if root == nil || root?.hasChildren == false {
+                // There is no tree or it is completely empty.
+                return nil
+            }
+            self.current = root?.children.first
+            return self.current
+        }
+        
+        // If the current item has children, then we step into
+        // the first child.
+        if current.hasChildren {
+            self.current = current.children.first!
+            return self.current
+        }
+        
+        // There are no children in the current node, so we need to
+        // find it's sibling in the parent node.
+        self.current = nextSibbling(current: current)
+        return self.current
+    }
+    
+    func nextSibbling(current: OutlineItem) -> OutlineItem? {
+        // If we do not have a parent, then we're done, so
+        // return nil to indicate that's the case
+        guard let parent = current.parent else {
+            return nil
+        }
+        
+        // Find rthe current node in the parent's children
+        guard let parentIndex = parent.children.firstIndex(where: {$0.id == current.id}) else {
+            return nil
+        }
+        
+        // Is there a sibbling node after the current one?
+        if parent.children.count > parentIndex + 1 {
+            let newCurrent = parent.children[parentIndex + 1]
+            return newCurrent
+        }
+        
+        // No more sibblings, so look to the parent
+        return nextSibbling(current: parent)
+    }
 }
