@@ -9,13 +9,18 @@
 import SwiftUI
 
 // swiftlint:disable identifier_name
-public enum AlertResponse {
-    case yes
-    case no
-    case delete
-    case cancel
+public enum AlertResponseSaveDiscard {
     case save
     case discard
+}
+public enum AlertResponseDeleteCancel {
+    case cancel
+    case delete
+}
+public enum AlertResponseGeneric {
+    case yes
+    case no
+    case cancel
 }
 // swiftlint:enable identifier_name
 

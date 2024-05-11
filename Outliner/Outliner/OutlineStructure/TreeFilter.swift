@@ -9,15 +9,14 @@
 import SwiftUI
 import OutlinerFile
 
-public struct TreeFilterOptions {
-    var searchFor: String = ""
-    var searchFields: SearchAppliesTo = .titleAndNotes
-    var typeFilter: DetailViewType = .outline
-    
-    var hasTextFilter: Bool { !searchFor.isEmpty }
-}
-
 public struct TreeFilter {
+    public struct TreeFilterOptions {
+        var searchFor: String = ""
+        var searchFields: SearchAppliesTo = .titleAndNotes
+        var typeFilter: DetailViewType = .outline
+        
+        var hasTextFilter: Bool { !searchFor.isEmpty }
+    }
     
     @AppStorage(Constants.durationForRecentFilters) var recentDuration: Int = 5
     
@@ -31,7 +30,7 @@ public struct TreeFilter {
         return result
     }
 
-    private func shouldKeep(_ node: OutlineItem, options: TreeFilterOptions) -> Bool {
+    fileprivate func shouldKeep(_ node: OutlineItem, options: TreeFilterOptions) -> Bool {
         
         if textFilter(node, options) == false { return false }
         return typeFilter(node, options.typeFilter)
@@ -42,11 +41,11 @@ public struct TreeFilter {
     // days to a number of seconds.
     //
     // duration * Mins * Hrs * Days
-    private var timeInterval: Double {
+    fileprivate var timeInterval: Double {
         Double(recentDuration) * 60 * 60 * 24
     }
     
-    private func textFilter(_ node: OutlineItem, _ options: TreeFilterOptions) -> Bool {
+    fileprivate func textFilter(_ node: OutlineItem, _ options: TreeFilterOptions) -> Bool {
         
         if options.hasTextFilter == false { return true }
         
@@ -61,7 +60,7 @@ public struct TreeFilter {
         }
     }
     
-    private func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
+    fileprivate func typeFilter(_ node: OutlineItem, _ ofType: DetailViewType) -> Bool {
         switch ofType {
         case .outline:
             return true

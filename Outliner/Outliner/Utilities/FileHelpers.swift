@@ -60,7 +60,7 @@ struct FileHelpers {
 
     // MARK: - Private helpers
     
-    private func selectSingleInputFile(ofType fileTypes: [UTType], withTitle windowTitle: String?) -> URL? {
+    fileprivate func selectSingleInputFile(ofType fileTypes: [UTType], withTitle windowTitle: String?) -> URL? {
 
         let openPrompt = createOpenPanel(ofType: fileTypes, withTitle: windowTitle)
 
@@ -76,9 +76,9 @@ struct FileHelpers {
         return nil
     }
     
-    private func createOpenPanel(ofType: [UTType],
-                                 withTitle: String?,
-                                 allowsMultiple: Bool = false) -> NSOpenPanel {
+    fileprivate func createOpenPanel(ofType: [UTType],
+                                     withTitle: String?,
+                                     allowsMultiple: Bool = false) -> NSOpenPanel {
 
         let openPrompt = NSOpenPanel()
 
@@ -95,7 +95,7 @@ struct FileHelpers {
         return openPrompt
     }
     
-    public func selectSaveFile(ofType fileTypes: [UTType], withTitle windowTitle: String?) -> URL? {
+    fileprivate func selectSaveFile(ofType fileTypes: [UTType], withTitle windowTitle: String?) -> URL? {
 
         let openPrompt = createSavePanel(ofType: fileTypes, withTitle: windowTitle)
 
@@ -109,7 +109,7 @@ struct FileHelpers {
         return nil
     }
 
-    private func createSavePanel(ofType: [UTType], withTitle: String?) -> NSSavePanel {
+    fileprivate func createSavePanel(ofType: [UTType], withTitle: String?) -> NSSavePanel {
 
         let openPrompt = NSSavePanel()
 

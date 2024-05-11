@@ -131,6 +131,12 @@ class OutlineManager: ObservableObject {
         }
     }
     
+    /// Find the recent file information for a file with a given URL
+    ///
+    /// - Parameter file: The URL of the file we want the information for.
+    ///
+    /// - Returns: The ``RecentFile`` information for the file if it has been
+    /// opened before and we still have the details for it. Otherwise, nil.
     func recentFile(for file: URL?) -> RecentFile? {
         if let file {
             return recentFiles.first(where: {$0.fileURL.path == file.path })

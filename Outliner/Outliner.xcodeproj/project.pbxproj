@@ -63,6 +63,8 @@
 		E8D65DD02BE3DB5F0077585C /* TreeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DCF2BE3DB5F0077585C /* TreeFilter.swift */; };
 		E8D65DD22BE3DB880077585C /* TreeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DD12BE3DB880077585C /* TreeStats.swift */; };
 		E8DBC7F12AAA0CB400EC3559 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */; };
+		E8DF2BE92BEFBABE00D2F7AB /* OutlinePasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DF2BE82BEFBABE00D2F7AB /* OutlinePasteboard.swift */; };
+		E8DF2BEB2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DF2BEA2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift */; };
 		E8E3490A2BB868D200C778A6 /* ContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E349092BB868D200C778A6 /* ContextMenuItems.swift */; };
 		E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */; };
 		E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6065D2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift */; };
@@ -156,6 +158,8 @@
 		E8D65DCF2BE3DB5F0077585C /* TreeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilter.swift; sourceTree = "<group>"; };
 		E8D65DD12BE3DB880077585C /* TreeStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeStats.swift; sourceTree = "<group>"; };
 		E8DBC7F02AAA0CB400EC3559 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		E8DF2BE82BEFBABE00D2F7AB /* OutlinePasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinePasteboard.swift; sourceTree = "<group>"; };
+		E8DF2BEA2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinePasteboardWrapper.swift; sourceTree = "<group>"; };
 		E8DFDBB22BDFF06100D5FD44 /* OutlinerViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OutlinerViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E349092BB868D200C778A6 /* ContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItems.swift; sourceTree = "<group>"; };
 		E8E606572B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningWindowActionButtons.swift; sourceTree = "<group>"; };
@@ -255,7 +259,7 @@
 				E81A2A802AC1B1D000965A2A /* FileHelpers.swift */,
 				E8F88BBB2AC42F040072B972 /* Notifications.swift */,
 				E80C4E462AE1590500ADC2CB /* Alerts.swift */,
-				E858D4122ADAD3EA0001FA3B /* PasteBoard.swift */,
+				E8DF2BE72BEFBA9B00D2F7AB /* Pasteboard */,
 				E8E52FEA2BADE04F003B0877 /* OutlineFileManager */,
 				E8C000622B921F2F008BFFD3 /* Themes */,
 			);
@@ -421,6 +425,16 @@
 				E8FFE30C2BBD8E0300EFA7B1 /* EditMenu.swift */,
 			);
 			path = Menus;
+			sourceTree = "<group>";
+		};
+		E8DF2BE72BEFBA9B00D2F7AB /* Pasteboard */ = {
+			isa = PBXGroup;
+			children = (
+				E858D4122ADAD3EA0001FA3B /* PasteBoard.swift */,
+				E8DF2BE82BEFBABE00D2F7AB /* OutlinePasteboard.swift */,
+				E8DF2BEA2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift */,
+			);
+			path = Pasteboard;
 			sourceTree = "<group>";
 		};
 		E8DFDBB12BDFF06100D5FD44 /* Frameworks */ = {
@@ -595,6 +609,7 @@
 				E8FE12A02B6008260079959E /* ListDetailView.swift in Sources */,
 				E8345E5A2A910B1400E36B82 /* SettingsView.swift in Sources */,
 				E80B8D142A8BB1D8000F361A /* AppDelegate.swift in Sources */,
+				E8DF2BE92BEFBABE00D2F7AB /* OutlinePasteboard.swift in Sources */,
 				E8040BB92AC35CFE00A164BB /* UTType+Extensions.swift in Sources */,
 				E8F30BA32A8FB411005D41E7 /* AboutView.swift in Sources */,
 				E828E9CC2B9620D700DF8477 /* ThemeSettings.swift in Sources */,
@@ -650,6 +665,7 @@
 				E871CF562B7C00890067F9D2 /* DetailViewType.swift in Sources */,
 				E8EDBD752B5BECA5001F1306 /* GeneralSettings.swift in Sources */,
 				E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */,
+				E8DF2BEB2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift in Sources */,
 				E8E6065E2B28F7A400C7A1E4 /* OpeningWindowRecentFilesView.swift in Sources */,
 				E82BDD262ACB5013004797E9 /* WriteLog.swift in Sources */,
 				E8C4336E2BC52C9B0074E13C /* MainViewModel.pasteboard.swift in Sources */,

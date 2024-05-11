@@ -36,7 +36,7 @@ struct ListDetailView: View {
     }
 
     var listItems: [OutlineItem] {
-        let searchOptions = TreeFilterOptions(
+        let searchOptions = TreeFilter.TreeFilterOptions(
             searchFor: vm.searchFor.trimmingCharacters(in: .whitespacesAndNewlines),
             searchFields: searchAppliesTo,
             typeFilter: detailViewStyle

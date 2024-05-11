@@ -36,7 +36,7 @@ extension MainViewModel {
     }
 
     func pasteFromPasteboard() {
-        guard let pasteData = PasteBoard.pop() else { return }
+        guard let pasteData: OutlinePasteboard = PasteBoard.pop() else { return }
         guard let selection,
               let parent = selection.parent,
               let selectionIndex = parent.children.firstIndex(where: {$0.id == selection.id })

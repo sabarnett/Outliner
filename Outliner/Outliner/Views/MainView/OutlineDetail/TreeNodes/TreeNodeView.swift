@@ -41,7 +41,7 @@ struct TreeNodeView: View {
 extension TreeNodeView {
     
     fileprivate func handleNodeDrop(_ index: Int, _ items: [NSItemProvider]) {
-        var moveRelative: NodeMoveRelativeTo = .above
+        var moveRelative: NodeMoveRelativePosition = .above
         var targetIndex = index
         
         if index >= node.children.count {

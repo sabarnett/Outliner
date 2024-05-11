@@ -119,7 +119,7 @@ extension MainViewModel {
     }
 
     @MainActor
-    func move(_ source: OutlineItem, to targetNode: OutlineItem, inserting: NodeMoveRelativeTo) {
+    func move(_ source: OutlineItem, to targetNode: OutlineItem, inserting: NodeMoveRelativePosition) {
         let mover = NodeMover()
         mover.move(source, to: targetNode, inserting: inserting, inTree: self.tree!)
         

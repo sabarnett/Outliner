@@ -13,7 +13,7 @@ extension MainViewModel {
 
     // MARK: Search functionality for the List views
     
-    func outlineItemsListFilter(withOptions options: TreeFilterOptions) -> [OutlineItem] {
+    func outlineItemsListFilter(withOptions options: TreeFilter.TreeFilterOptions) -> [OutlineItem] {
         let filter = TreeFilter()
         return filter.listNodes(fromTree: treeFile, withOptions: options)
     }
@@ -28,7 +28,7 @@ extension MainViewModel {
         }
         
         DispatchQueue.global(qos: .userInitiated).async {
-            let searchOptions = TreeFilterOptions(
+            let searchOptions = TreeFilter.TreeFilterOptions(
                 searchFor: searchFor,
                 searchFields: appliesTo,
                 typeFilter: .outline

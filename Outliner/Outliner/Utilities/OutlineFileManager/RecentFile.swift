@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+/// When a file is opened, we create a RecentFile entry for it and save it so that file can be reopened
+/// from the opening screen or the recent files menu item. When the file is closed, we also save some
+/// additional data about the window size and position, so we can restore it next time the file is
+/// opened.
+///
+/// The data is persisted in JSON format so we can store multiple data points as a single string of data.
 class RecentFile: Identifiable, Codable {
 
     var id: UUID = UUID()
