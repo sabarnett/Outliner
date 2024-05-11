@@ -11,9 +11,11 @@ import SwiftUI
 class ThemeManager {
 
     // MARK: - Local storage
+    
     private var themeDefinitions: ThemeDefinitions
     
     // MARK: - Singleton initialisation
+    
     public static let shared: ThemeManager = ThemeManager()
     private init() {
         themeDefinitions = ThemeStorage().loadThemes()
@@ -50,6 +52,10 @@ class ThemeManager {
         return nil
     }
     
+    /// Update a theme. We locate the existing theme in the themes list and replace it with the new theme. An
+    /// update will automatically cause the themes list to be saved.
+    ///
+    /// - Parameter theme: The theme to be updated.
     public func updateTheme(to theme: ThemeDefinition) {
         guard let themeIndex = themeDefinitions.definitions.firstIndex(where: {$0.id == theme.id}) else { return }
         themeDefinitions.definitions[themeIndex] = theme

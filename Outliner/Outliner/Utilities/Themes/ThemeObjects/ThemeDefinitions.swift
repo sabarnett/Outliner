@@ -43,6 +43,7 @@ struct ThemeDefinition: Codable, Identifiable {
     }
     
     // MARK: - Class helper functions
+    
     public static var example: ThemeDefinition {
         ThemeDefinition(id: .itemTitle, fontFamily: "Default", size: 14, weight: .regular)
     }

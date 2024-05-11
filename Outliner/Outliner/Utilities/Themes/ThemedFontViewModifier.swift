@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+/// Provides a view modifier to set the themed font to use for text items in
+/// a view. 
 struct ThemedFont: ViewModifier {
     
     var themeItem: ThemeItemType = .itemTitle
