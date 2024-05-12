@@ -17,7 +17,10 @@ struct OutlinerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OpeningView()                    
+            // The opening window is not a data window. It is a front end
+            // starter window designed to give the user a quick way to
+            // reopen files.
+            OpeningView()
                 .onAppear { setDisplayMode() }
                 .environmentObject(outlineManager)
         }

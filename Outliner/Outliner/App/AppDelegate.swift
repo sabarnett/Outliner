@@ -15,7 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @AppStorage(Constants.closeAppWhenLastWindowCloses) var closeAppWhenLastWindowCloses: Bool = true
     
     private var aboutBoxWindowController: NSWindowController?
-
+    
+    /// Displays a custom about box. The supplied one allows some minor
+    /// customisation, but this gives us a free pass to create whatever we want
+    /// in our about box.
     func showAboutWnd() {
         if aboutBoxWindowController == nil {
             let window = NSWindow()
@@ -28,7 +31,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
     }
-
+    
+    /// The user can elect to close the app when the last data window closes or to leave the
+    /// app open so they can open another file.
+    ///
+    /// - Returns: True if we should close the app else false.
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return closeAppWhenLastWindowCloses
     }

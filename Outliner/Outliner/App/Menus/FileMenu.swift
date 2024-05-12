@@ -17,14 +17,13 @@ public struct FileCommands: Commands {
     @AppStorage(Constants.recentFileCount) var recentFileCount = 5
     
     var requiresSave: Bool {
-        if let mainViewModel {
-            return mainViewModel.requiresSave
-        }
-        return false
+        guard let mainViewModel else { return false }
+        return mainViewModel.requiresSave
     }
     
     public var body: some Commands {
         
+        // File->New is replaced with File->New Outline
         CommandGroup(replacing: CommandGroupPlacement.newItem) {
             Button("New Outline") {
                 outlineManager.createNew()
@@ -32,6 +31,10 @@ public struct FileCommands: Commands {
             Divider()
         }
 
+        // File->Open Outline
+        // File->Reopen Outline
+        // File->Save Outline
+        // File->Save Outline-as
         CommandGroup(after: CommandGroupPlacement.newItem) {
             Button("Open Outline...") {
                 if let selectedFile = FileHelpers.selectSingleDataFile(withTitle: "Select an outline file") {

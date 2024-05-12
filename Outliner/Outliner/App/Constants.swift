@@ -40,6 +40,7 @@ struct Constants {
     static let alternatingRows = "alternatingRows"
     static let closeAppWhenLastWindowCloses = "closeAppWhenLastWindowCloses"
     static let searchAppliesTo = "searchAppliesTo"
+    static let showInspector = "showInspector"
     
     // Note preview
     static let notePreviewPrefixHtml = """

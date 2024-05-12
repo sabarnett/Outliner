@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct ViewCommands: Commands {
     
-    @AppStorage("showInspector") private var showInspector: Bool = true
+    @AppStorage(Constants.showInspector) private var showInspector: Bool = true
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .auto
 
     public var body: some Commands {
