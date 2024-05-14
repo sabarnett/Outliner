@@ -28,6 +28,7 @@ extension MainViewModel {
         if cut {
             self.objectWillChange.send()
             self.selection = selection.delete()
+            calculateStatistics()
         }
         
         notify.showPopup(.success,
@@ -48,6 +49,7 @@ extension MainViewModel {
             parent.children.insert(leg, at: selectionIndex + 1)
             parent.hasChanged = true
             self.selection = leg
+            calculateStatistics()
 
             notify.showPopup(.success,
                              title: "Paste Complete",
@@ -62,10 +64,7 @@ extension MainViewModel {
     }
     
     func hasOutlineValue() -> Bool {
-        if PasteBoard.contains(type: .outlinePasteboardType) {
-            return true
-        }
-        return false
+        PasteBoard.contains(type: .outlinePasteboardType)
     }
     
     func clearPasteBoard() {

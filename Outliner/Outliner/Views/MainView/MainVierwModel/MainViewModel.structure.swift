@@ -13,39 +13,35 @@ import OutlinerFile
 extension MainViewModel {
     
     func expandSelectedItem() {
-        if let selection {
-            selection.setExpansionState(to: .expanded)
-        }
+        guard let selection else { return }
+        selection.setExpansionState(to: .expanded)
     }
 
     func collapseSelectedItem() {
-        if let selection {
-            selection.setExpansionState(to: .collapsed)
-        }
+        guard let selection else { return }
+        selection.setExpansionState(to: .collapsed)
     }
     
     func addAbove() {
-        let newNode = OutlineItem()
-        newNode.text = "New Node Above"
-        newNode.notes = "Inserted Node \(Date.now.description)"
-        
+        let newNode = newOutlineItem()
         editItem = NodeEditViewModel(node: newNode, editActtion: .addAbove, onSave: editComplete)
     }
     
     func addBelow() {
-        let newNode = OutlineItem()
-        newNode.text = "New Node Below"
-        newNode.notes = "Inserted Node \(Date.now.description)"
-        
+        let newNode = newOutlineItem()
         editItem = NodeEditViewModel(node: newNode, editActtion: .addBelow, onSave: editComplete)
     }
     
     func addChild() {
-        let newNode = OutlineItem()
-        newNode.text = "New Node Child"
-        newNode.notes = "Inserted Node \(Date.now.description)"
-        
+        let newNode = newOutlineItem()
         editItem = NodeEditViewModel(node: newNode, editActtion: .addChild, onSave: editComplete)
+    }
+    
+    private func newOutlineItem() -> OutlineItem {
+        let newNode = OutlineItem()
+        newNode.text = "New Item"
+        newNode.notes = "Inserted \(Date.now.description)"
+        return newNode
     }
     
     func duplicateItem() {
@@ -80,6 +76,7 @@ extension MainViewModel {
         } else {
             print("Nothing found")
         }
+        calculateStatistics()
     }
     
     func deleteSelectedItem() {
@@ -132,6 +129,7 @@ extension MainViewModel {
         }
     }
     
+    /// We can only indent if we are not the first child in our parent.
     func canIndent(item: OutlineItem? = nil) -> Bool {
         let testItem = item ?? selection
         guard let testItem,
@@ -151,6 +149,7 @@ extension MainViewModel {
         move(selection, to: target, inserting: .child)
     }
     
+    /// We can only promote if we are not at the top most level
     func canPromote(item: OutlineItem? = nil) -> Bool {
         let testItem = item ?? selection
         guard let testItem,

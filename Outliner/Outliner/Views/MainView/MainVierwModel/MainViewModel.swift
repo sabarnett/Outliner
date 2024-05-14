@@ -49,7 +49,8 @@ class MainViewModel: ObservableObject, Identifiable {
     }
     
     func load(outline: URL?) {
-        guard let outline = outline else {
+        guard let outline else {
+            // Initialise an empty outline
             tree = treeFile.outline.outlineBody!
             windowTitle = treeFile.fileNameWithExtension
 
@@ -62,8 +63,10 @@ class MainViewModel: ObservableObject, Identifiable {
             treeFile = try OpmlFile(fromUrl: outline)
         } catch OpmlFileErrors.loadError(let message) {
             Alerts.loadError(message: message)
+            return
         } catch { }
         
+        // Open the first level down by default.
         if let root = treeFile.outline.outlineBody {
             root.visible = true
             if root.hasChildren {

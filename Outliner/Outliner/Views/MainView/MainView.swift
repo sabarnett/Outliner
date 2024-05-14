@@ -11,17 +11,16 @@ import OutlinerViews
 
 struct MainView: View {
     
-    @Environment(\.openWindow) private var openWindow
     @EnvironmentObject var outlineManager: OutlineManager
     
     @StateObject var vm: MainViewModel = MainViewModel()
     @State var outlineFile: URL?
-    @State var windowNumber: Int = 0
-    @State var detailViewStyle: DetailViewType = .outline
-    @State private var columnsVisible = NavigationSplitViewVisibility.all
     
-    @State private var splitValue: CGFloat = 0.7
-    @State private var hide = SideHolder()
+    @State private var windowNumber: Int = 0
+    @State private var detailViewStyle: DetailViewType = .outline
+    @State private var columnsVisible = NavigationSplitViewVisibility.all
+    @State private var noteSplitterValue: CGFloat = 0.7
+    @State private var hiddenNotePane = SideHolder()
     
     var body: some View {
         ZStack {
@@ -32,26 +31,28 @@ struct MainView: View {
                 }
             }.frame(width: 0, height: 0)
             
-            NavigationSplitView(columnVisibility: $columnsVisible,
-                                sidebar: {
-                SidebarView(vm: vm, detailView: $detailViewStyle)
-                    .frame(minWidth: Constants.mainWindowSidebarMinWidth)
-            }, detail: {
-                
-                Split(primary: {
-                    detailView()
-                }, secondary: {
-                    notePreviewView()
+            NavigationSplitView(
+                columnVisibility: $columnsVisible,
+                sidebar: {
+                    SidebarView(vm: vm, detailView: $detailViewStyle)
+                        .frame(minWidth: Constants.mainWindowSidebarMinWidth)
+                },
+                detail: {
+                    Split(primary: {
+                        detailView()
+                    }, secondary: {
+                        notePreviewView()
+                    }
+                    )
+                    .hide(hiddenNotePane)
+                    .fraction(noteSplitterValue)
+                    .constraints(minPFraction: 0.25, minSFraction: 0.1)
+                    .splitter(Splitter.invisible)
+                    .styling(invisibleThickness: 8)
+                    .onDrag({ newFraction in
+                        noteSplitterValue = newFraction
+                    })
                 })
-                .hide(hide)
-                .fraction(splitValue)
-                .constraints(minPFraction: 0.25, minSFraction: 0.1)
-                .splitter(Splitter.invisible)
-                .styling(invisibleThickness: 8)
-                .onDrag({ newFraction in
-                    splitValue = newFraction
-                })
-            })
             .frame(minWidth: Constants.mainWindowMinWidth,
                    minHeight: Constants.mainWindowMinHeight)
             .focusedSceneObject(vm)
@@ -66,7 +67,9 @@ struct MainView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigation) {
                     Button(action: {
-                        columnsVisible = columnsVisible == .all ? .detailOnly : .all
+                        withAnimation {
+                            columnsVisible = columnsVisible == .all ? .detailOnly : .all
+                        }
                     }, label: {
                         Image(systemName: "sidebar.left")
                     })
@@ -75,7 +78,7 @@ struct MainView: View {
                 ToolbarItemGroup(placement: .primaryAction) {
                     Button(action: {
                         withAnimation {
-                            hide.toggle()
+                            hiddenNotePane.toggle()
                         }
                     }, label: {
                         Image(systemName: "sidebar.right")
@@ -88,10 +91,10 @@ struct MainView: View {
             
             .onAppear {
                 if let recentFile = outlineManager.recentFile(for: outlineFile) {
-                    hide.side = recentFile.previewOpen
+                    hiddenNotePane.side = recentFile.previewOpen
                     ? SplitSide(rawValue: "secondary")
                     : nil
-                    splitValue = recentFile.previewWidth
+                    noteSplitterValue = recentFile.previewWidth
                 }
             }
             .task {
@@ -102,7 +105,7 @@ struct MainView: View {
     }
     
     /// A window is closing, which may, or may not, be ours. If it's ours, we
-    /// need to prompt the usrer t save their changes if any have been made.
+    /// need to prompt the user to save their changes if any have been made.
     ///
     /// - Parameter value: The notification parameters from the notification centre
     func windowClosing(value: NotificationCenter.Publisher.Output) {
@@ -139,6 +142,7 @@ struct MainView: View {
         }
     }
     
+    /// Optionally save the file if it has changed
     func promptForSave() {
         if vm.requiresSave && Alerts.saveChangesPrompt() == .save {
             vm.save()
@@ -147,11 +151,12 @@ struct MainView: View {
         vm.reset()
     }
     
+    /// Save the current state of the window so we can restore it next time this file is opened.
     func saveWindow() {
         if let outlineFile {
             outlineManager.close(file: outlineFile,
-                                 previewOpen: hide.side != nil,
-                                 previewWidth: splitValue)
+                                 previewOpen: hiddenNotePane.side != nil,
+                                 previewWidth: noteSplitterValue)
         }
     }
 }
