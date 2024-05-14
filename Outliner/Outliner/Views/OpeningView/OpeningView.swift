@@ -27,9 +27,9 @@ struct OpeningView: View {
         .frame(width: 680, height: 420)
         .presentedWindowStyle(.hiddenTitleBar)
         .overlay(alignment: .topLeading) {
-            Button(action: {
-                dismiss()
-            }, label: {
+            Button(
+                action: { dismiss() },
+                label: {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundStyle(.gray.opacity(0.5))
                     .scaleEffect(1.3)
@@ -42,7 +42,7 @@ struct OpeningView: View {
     }
     
     private func setWindowStyles(_ window: NSWindow?) {
-        if let window = window {
+        if let window {
             window.standardWindowButton(.closeButton)?.isHidden = true
             window.standardWindowButton(.miniaturizeButton)?.isHidden = true
             window.standardWindowButton(.zoomButton)?.isHidden = true

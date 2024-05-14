@@ -28,7 +28,7 @@ struct OpeningWindowRecentFilesView: View {
                 ForEach(recentFiles, id: \.self) { file in
                     OpeningWindowRecentFileView(
                         recentFile: file.fileName,
-                        recentFilePath: file.fileURL.absoluteString
+                        recentFilePath: file.filePath
                     )
                     .help(file.fileURL.path)
                     .contentShape(Rectangle())
@@ -45,8 +45,12 @@ struct OpeningWindowRecentFilesView: View {
                     })
                     
                     .contextMenu {
-                        Button("Remove From List") {
+                        Button("Remove From Recent Files List") {
                             outlineManager.removeFromRecents(file.fileURL)
+                        }
+                        Divider()
+                        Button("Open Folder In Finder") {
+                            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: file.filePath)
                         }
                     }
                 }

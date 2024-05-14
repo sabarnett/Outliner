@@ -16,9 +16,7 @@ struct OpeningWindowActionButtons: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             openNewButton()
-            Divider()
             openExistingButton()
-            Divider()
             exitButton()
         }
         .padding(.bottom, 25)
@@ -35,6 +33,7 @@ struct OpeningWindowActionButtons: View {
                 outlineManager.createNew()
                 dismiss()
             }
+            Divider()
         }
     }
     
@@ -50,6 +49,7 @@ struct OpeningWindowActionButtons: View {
                     dismiss()
                 }
             }
+            Divider()
         }
     }
     
@@ -58,7 +58,8 @@ struct OpeningWindowActionButtons: View {
             OpeningWindowButtonTextView(
                 actionText: "Close the application",
                 description: "Close the outliner without opening a file.",
-                                        systemName: "book.closed.fill")
+                systemName: "book.closed.fill"
+            )
             .onTapGesture {
                 NSApplication.shared.terminate(nil)
                 dismiss()

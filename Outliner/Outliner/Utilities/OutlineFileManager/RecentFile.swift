@@ -20,6 +20,7 @@ class RecentFile: Identifiable, Codable {
     
     var fileURL: URL
     var fileName: String { fileURL.lastPathComponent.replacing("%20", with: " ") }
+    var filePath: String { fileURL.deletingLastPathComponent().path }
     
     var width: CGFloat
     var height: CGFloat
@@ -28,7 +29,7 @@ class RecentFile: Identifiable, Codable {
     
     var previewOpen: Bool
     var previewWidth: CGFloat
-
+    
     init(file: URL) {
         fileURL = file
         
