@@ -11,7 +11,7 @@ import OutlinerViews
 
 struct OutlineDetailView: View {
     
-    @AppStorage(Constants.searchAppliesTo) var searchAppliesTo: SearchAppliesTo = .titleAndNotes
+    @AppStorage(Constants.searchAppliesTo) private var searchAppliesTo: SearchAppliesTo = .titleAndNotes
     @AppStorage(Constants.alternatingRows) private var alternatingRows: Bool = true
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var vm: MainViewModel

@@ -18,29 +18,35 @@ struct OutlineItemOverlayIcons: View {
         HStack {
             Spacer()
             
-            Image(systemName: node.starred ? "star.fill" : "star")
-                .scaleEffect(1.4)
-                .foregroundStyle( node.starred ? Color.accentColor : Color.secondary)
-                .opacity(0.8)
-                .onTapGesture {
-                    node.starred.toggle()
-                    vm.starredCount += node.starred ? 1 : -1
+            OutlineItemOverlayIcon(imageName: node.starred ? "star.fill" : "star", 
+                                   highlighted: node.starred) {
+                node.starred.toggle()
+                vm.starredCount += node.starred ? 1 : -1
+            }
+            OutlineItemOverlayIcon(imageName: node.notes.isEmpty ? "doc" : "doc.text", 
+                                   highlighted: node.notes.isEmpty) {
+                if !node.notes.isEmpty {
+                    vm.showNote(node)
                 }
-            Image(systemName: node.notes.isEmpty ? "doc" : "doc.text")
-                .scaleEffect(1.4)
-                .foregroundStyle( node.notes.isEmpty ? Color.secondary : Color.accentColor)
-                .opacity(0.8)
-                .onTapGesture {
-                    if !node.notes.isEmpty {
-                        vm.showNote(node)
-                    }
-                }
-            Image(systemName: "square.and.pencil")
-                .scaleEffect(1.4)
-                .foregroundStyle(.primary.opacity(0.8))
-                .onTapGesture {
+            }
+            OutlineItemOverlayIcon(imageName: "square.and.pencil",
+                                   highlighted: true) {
                     vm.editNode(node)
                 }
         }
+    }
+}
+
+struct OutlineItemOverlayIcon: View {
+    let imageName: String
+    let highlighted: Bool
+    let onTapped: () -> Void
+    
+    var body: some View {
+        Image(systemName: imageName)
+            .scaleEffect(1.4)
+            .foregroundStyle( highlighted ? Color.accentColor : Color.secondary)
+            .opacity(0.8)
+            .onTapGesture(perform: onTapped)
     }
 }

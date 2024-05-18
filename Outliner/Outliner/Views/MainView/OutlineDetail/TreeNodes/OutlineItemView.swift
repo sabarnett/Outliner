@@ -14,7 +14,7 @@ struct OutlineItemView: View {
     @EnvironmentObject var vm: MainViewModel
     @ObservedObject var node: OutlineItem
     
-    @State var titleEditEnabled: Bool = false
+    @State private var titleEditEnabled: Bool = false
     @State internal var isTargeted: Bool = false
     
     var body: some View {

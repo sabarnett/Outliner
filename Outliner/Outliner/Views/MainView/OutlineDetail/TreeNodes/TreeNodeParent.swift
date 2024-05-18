@@ -19,14 +19,14 @@ struct TreeNodeParent: View {
         DisclosureGroup(isExpanded: $node.isExpanded) {
             TreeNodeView(node: node)
                 .padding(.leading, 8)
-            
         } label: {
             Group {
                 OutlineItemView(node: node)
+                    .onDrag({ node.providerEncode() },
+                            preview: {  NodeMovePreview(node: node) })
                     .contextMenu(menuItems: {
                         ContextMenuItems(node: node)
                     })
-                
             }
         }
     }
