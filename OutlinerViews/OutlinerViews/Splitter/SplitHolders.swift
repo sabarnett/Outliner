@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 /// An ObservableObject that `Split` view observes to change what its `layout` is.
 ///

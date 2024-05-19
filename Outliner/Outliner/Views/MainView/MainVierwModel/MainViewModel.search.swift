@@ -15,7 +15,16 @@ extension MainViewModel {
     
     func outlineItemsListFilter(withOptions options: TreeFilter.TreeFilterOptions) -> [OutlineItem] {
         let filter = TreeFilter()
-        return filter.listNodes(fromTree: treeFile, withOptions: options)
+        let items = filter.listNodes(fromTree: treeFile, withOptions: options)
+        
+        if let selection {
+            let selectionIndex = items.firstIndex(where: {$0.id == selection.id})
+            if selectionIndex == nil {
+                self.selection = nil
+            }
+        }
+        
+        return items
     }
 
     // MARK: Search functionality for the OUTLINE view
