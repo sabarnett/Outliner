@@ -17,7 +17,8 @@ struct ContextMenuItems: View {
     
     var body: some View {
         Group {
-            Text(node.text).font(.title2)
+            Text(node.text).font(.title)
+            Text("Children: \(node.count)").font(.title2)
             Divider()
             
             editMenu
@@ -124,6 +125,13 @@ struct ContextMenuItems: View {
             vm.deleteSelectedItem()
         }
     }
+}
+
+#Preview {
+    Menu("Menu", content: {
+        ContextMenuItems(node: OutlineItem.example)
+            .environmentObject(MainViewModel())
+    })
 }
 
 enum OutlineItemSort: String, CaseIterable, Identifiable, CustomStringConvertible {

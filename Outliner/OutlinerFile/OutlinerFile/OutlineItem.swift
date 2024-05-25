@@ -133,6 +133,20 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
             }
         }
     }
+    
+    /// Count the number of children for this item. This includes the children of the
+    /// children all the way down the hierarchy.
+    /// 
+    /// - Returns: A count of the children of this item.
+    public var count: Int {
+        var counter: Int = self.children.count
+        
+        for child in children {
+            counter += child.count
+        }
+        
+        return counter
+    }
 
     /// Checks whether this itemor any of it's child items have been changed.
     ///

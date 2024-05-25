@@ -59,6 +59,7 @@ struct NoteViewPreview: View {
             
             HilightedTextView(text: node.text, highlight: vm.highlightText)
                 .themedFont(for: .nodePreviewTitle)
+            Text("Children: \(node.count)")
             
             previewDisplay()
             
