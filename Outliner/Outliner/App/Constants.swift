@@ -67,7 +67,25 @@ struct Constants {
   </body>
 </html>
 """
+
+    // Note printing
+    static let notePrintPrefixHtml = """
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>$$title$$</title>
+      <meta charset="UTF-8">
+      <style>
+      </style>
+    </head>
+  <body>
+"""
     
+    static let notePrintSuffixHtml = """
+  </body>
+</html>
+"""
+
     // Pasteboard related
     static let outlinePasteboardType: String = "uk.co.sabarnett.OutlinePasteboardType"
 }

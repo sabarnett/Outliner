@@ -41,6 +41,8 @@ class MainViewModel: ObservableObject, Identifiable {
     @Published var listId: UUID = UUID()
     @Published var scrollTo: UUID?
     
+    @Published var windowNumber: Int = 0
+    
     // MARK: - Initialisation
     
     init() {

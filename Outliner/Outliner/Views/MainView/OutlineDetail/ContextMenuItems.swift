@@ -33,6 +33,9 @@ struct ContextMenuItems: View {
             
             Divider()
             deleteMenu
+            
+            Divider()
+            printMenu
         }
     }
     
@@ -124,6 +127,18 @@ struct ContextMenuItems: View {
             vm.selection = node
             vm.deleteSelectedItem()
         }
+    }
+    
+    private var printMenu: some View {
+        Menu(content: {
+            Button("Print current item") {
+                vm.selection = node
+                vm.printSelected() }
+            
+            Button("Print item and children") {
+                vm.selection = node
+                vm.printSelectedLeg() }
+        }, label: { Text("Print")})
     }
 }
 

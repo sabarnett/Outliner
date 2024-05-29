@@ -16,7 +16,6 @@ struct MainView: View {
     @StateObject var vm: MainViewModel = MainViewModel()
     @State var outlineFile: URL?
     
-    @State private var windowNumber: Int = 0
     @State private var detailViewStyle: DetailViewType = .outline
     @State private var columnsVisible = NavigationSplitViewVisibility.all
     @State private var noteSplitterValue: CGFloat = 0.7
@@ -26,7 +25,7 @@ struct MainView: View {
         ZStack {
             HostingWindowFinder { window in
                 if let window = window {
-                    windowNumber = window.windowNumber
+                    vm.windowNumber = window.windowNumber
                     window.setFrameAutosaveName("")
                 }
             }.frame(width: 0, height: 0)
@@ -110,7 +109,7 @@ struct MainView: View {
     /// - Parameter value: The notification parameters from the notification centre
     func windowClosing(value: NotificationCenter.Publisher.Output) {
         guard let win = value.object as? NSWindow,
-              win.windowNumber == windowNumber else { return }
+              win.windowNumber == vm.windowNumber else { return }
         
         promptForSave()
         saveWindow()
