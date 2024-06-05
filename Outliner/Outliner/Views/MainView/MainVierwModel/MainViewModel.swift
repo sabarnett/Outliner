@@ -21,6 +21,8 @@ class MainViewModel: ObservableObject, Identifiable {
     var sortAscending: Bool = false
     
     var notify = PopupNotificationCentre.shared
+    
+    var printView: HTMLPrintView?
 
     @Published var tree: OutlineItem?
     @Published var isLoading: Bool = true

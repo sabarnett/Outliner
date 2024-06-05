@@ -24,6 +24,8 @@
 		E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83310422A938BED0067C504 /* SettingsViewModel.swift */; };
 		E8345E5A2A910B1400E36B82 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8345E592A910B1400E36B82 /* SettingsView.swift */; };
 		E8473DAB2AF009C800D9627D /* MacOutliner.outline in Resources */ = {isa = PBXBuildFile; fileRef = E8473DAA2AF009C800D9627D /* MacOutliner.outline */; };
+		E84CE1E92C10A11A0010522C /* HTMLPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84CE1E82C10A11A0010522C /* HTMLPrintView.swift */; };
+		E84CE1EB2C10AA7B0010522C /* NodeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84CE1EA2C10AA7B0010522C /* NodeList.swift */; };
 		E84D0AB92BA5F84100716028 /* OutlineItemCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84D0AB82BA5F84100716028 /* OutlineItemCheckBox.swift */; };
 		E84D0ABB2BA5F90200716028 /* OutlineItemNodeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84D0ABA2BA5F90200716028 /* OutlineItemNodeTitle.swift */; };
 		E84D0ABD2BA5F9B800716028 /* OutlineItemNodeNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84D0ABC2BA5F9B800716028 /* OutlineItemNodeNotes.swift */; };
@@ -122,6 +124,8 @@
 		E83310422A938BED0067C504 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E8345E592A910B1400E36B82 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E8473DAA2AF009C800D9627D /* MacOutliner.outline */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MacOutliner.outline; sourceTree = "<group>"; };
+		E84CE1E82C10A11A0010522C /* HTMLPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLPrintView.swift; sourceTree = "<group>"; };
+		E84CE1EA2C10AA7B0010522C /* NodeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeList.swift; sourceTree = "<group>"; };
 		E84D0AB82BA5F84100716028 /* OutlineItemCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemCheckBox.swift; sourceTree = "<group>"; };
 		E84D0ABA2BA5F90200716028 /* OutlineItemNodeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemNodeTitle.swift; sourceTree = "<group>"; };
 		E84D0ABC2BA5F9B800716028 /* OutlineItemNodeNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItemNodeNotes.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				E8D636E02BF9F9CC00F5D75D /* NodeViewViewModel.swift */,
 				E820F95E2BA30F66002A9733 /* NodeMovePreview.swift */,
 				E8D636E22BF9FA8600F5D75D /* NoteViewPreview.swift */,
+				E84CE1E82C10A11A0010522C /* HTMLPrintView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 				E81646352B654DF3003CB585 /* Sidebar View */,
 				E81646312B654CF4003CB585 /* OutlineDetail */,
 				E81646362B654E02003CB585 /* ListDetailView */,
+				E84CE1EA2C10AA7B0010522C /* NodeList.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				E80B8D142A8BB1D8000F361A /* AppDelegate.swift in Sources */,
 				E8DF2BE92BEFBABE00D2F7AB /* OutlinePasteboard.swift in Sources */,
 				E8040BB92AC35CFE00A164BB /* UTType+Extensions.swift in Sources */,
+				E84CE1E92C10A11A0010522C /* HTMLPrintView.swift in Sources */,
 				E8F30BA32A8FB411005D41E7 /* AboutView.swift in Sources */,
 				E828E9CC2B9620D700DF8477 /* ThemeSettings.swift in Sources */,
 				E8FF89532B78FDAE008CF353 /* NodeEdit.swift in Sources */,
@@ -659,6 +666,7 @@
 				E8EDBD702B5BDBA1001F1306 /* OpeningWindowButtonsView.swift in Sources */,
 				E8EDBD722B5BDBE8001F1306 /* OpeningWindowLogoView.swift in Sources */,
 				E871CF562B7C00890067F9D2 /* DetailViewType.swift in Sources */,
+				E84CE1EB2C10AA7B0010522C /* NodeList.swift in Sources */,
 				E8EDBD752B5BECA5001F1306 /* GeneralSettings.swift in Sources */,
 				E83310432A938BED0067C504 /* SettingsViewModel.swift in Sources */,
 				E8DF2BEB2BEFBACD00D2F7AB /* OutlinePasteboardWrapper.swift in Sources */,
