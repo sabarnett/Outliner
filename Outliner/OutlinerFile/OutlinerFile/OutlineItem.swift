@@ -163,7 +163,7 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
     ///
     /// - Parameter parent: The parent item of the current one, to which we will
     /// add our XML.
-    public func renderXML(_ parent: XMLElement) {
+    public func renderXML(_ parent: XMLElement, includeChildren: Bool = true) {
         let itemNode = XMLElement(name: "outline")
 
         for attr in createAttributes() {
@@ -179,7 +179,7 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
         }
 
         parent.addChild(itemNode)
-        if hasChildren {
+        if hasChildren && includeChildren {
             for child in children {
                 child.renderXML(itemNode)
             }

@@ -83,8 +83,8 @@ public class OpmlFile {
     ///
     /// When you are ready to paste the data, you can use the ``itemsFromXML(xml:)`` function
     /// to extract the tree structure of ``OutlineItem`` nodes.
-    public func outlineXML(forRoot root: OutlineItem? = nil) -> String {
-        let rootDoc = createDocument(forRoot: root)
+    public func outlineXML(forRoot root: OutlineItem? = nil, includeChildren: Bool = true) -> String {
+        let rootDoc = createDocument(forRoot: root, includeChildren: includeChildren)
         let content = formatDocument(rootDoc)
 
         return content
@@ -132,7 +132,7 @@ public class OpmlFile {
         }
     }
 
-    private func createDocument(forRoot root: OutlineItem? = nil) -> XMLDocument {
+    private func createDocument(forRoot root: OutlineItem? = nil, includeChildren: Bool = true) -> XMLDocument {
         let rootElement = XMLElement(name: "opml")
         let rootDoc = XMLDocument(rootElement: rootElement)
         
@@ -141,7 +141,7 @@ public class OpmlFile {
             let topLevel = OutlineItem()
             topLevel.children.append(root)
             let outlineBody = OutlineBody(fromItem: topLevel)
-            outlineBody.renderXML(rootElement)
+            outlineBody.renderXML(rootElement, includeChildren: includeChildren)
         } else {
             self.outline.renderXML(rootElement)
         }

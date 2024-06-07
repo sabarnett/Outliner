@@ -96,4 +96,17 @@ extension Alerts {
             message: "You cannot move an item to a position below itself."
         )
     }
+    
+    // MARK: - Export messages
+    
+    /// Displayed when we were unable to export to a file. The reason for the error is
+    /// included in the message.
+    ///
+    /// - Parameter message: The failure reason
+    public static func exportError(message: String) {
+        Alerts().openAlert(
+            title: "Export Error",
+            message: "We were unable to export the outline. The system reported:\n\n\(message)"
+        )
+    }
 }

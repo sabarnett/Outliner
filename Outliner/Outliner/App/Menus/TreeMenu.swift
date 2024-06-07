@@ -65,6 +65,33 @@ public struct TreeCommands: Commands {
             Button("Delete Item") { mainViewModel?.deleteSelectedItem() }
             .disabled(!hasSelection)
 
+            Divider()
+            
+            Menu(content: {
+                Button("Print current item") {
+                    mainViewModel?.printSelected()
+                }
+                
+                Button("Print item and children") {
+                    mainViewModel?.printSelectedLeg()
+                }
+            }, label: { Text("Print")}
+            )
+            .disabled(!hasSelection)
+
+            Menu(content: {
+                Menu(content: {
+                    Button("To HTML") { mainViewModel?.exportSelectionToHTML() }
+                    Button("To XML") { mainViewModel?.exportSelectionToXML() }
+                }, label: { Text("Current Item") })
+                Menu(content: {
+                    Button("To HTML") { mainViewModel?.exportLegToHTML() }
+                    Button("To XML") { mainViewModel?.exportLegToXML() }
+                }, label: { Text("Current Item and Children") })
+            }, label: { Text("Export")}
+            )
+            .disabled(!hasSelection)
+
         }
     }
 }

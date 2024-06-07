@@ -35,6 +35,24 @@ struct FileHelpers {
         return FileHelpers().selectSaveFile(ofType: outlineTypes, withTitle: windowTitle)
     }
     
+    /// Prompts the user for the name and location to save the data to in HTML format
+    ///
+    /// - Parameter windowTitle: An optional title to display on the save panel.
+    ///
+    /// - Returns: nil of the user cancells else the URL of the file to save.
+    public static func selectHTMLFileToSave(withTitle windowTitle: String?) -> URL? {
+        FileHelpers().selectSaveFile(ofType: [.html], withTitle: windowTitle)
+    }
+    
+    /// Prompts the user for the name and location to save the data to in XML format
+    ///
+    /// - Parameter windowTitle: An optional title to display on the save panel.
+    ///
+    /// - Returns: nil of the user cancells else the URL of the file to save.
+    public static func selectXMLFileToSave(withTitle windowTitle: String?) -> URL? {
+        FileHelpers().selectSaveFile(ofType: [.xml], withTitle: windowTitle)
+    }
+
     // MARK: - Folder selection
     
     /// Prompts the user to select a folder.

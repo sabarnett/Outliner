@@ -2,7 +2,7 @@
 // File: ContextMenuItems.swift
 // Package: Outline Tester
 // Created by: Steven Barnett on 30/03/2024
-// 
+//
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
 
@@ -21,44 +21,18 @@ struct ContextMenuItems: View {
             Text("Children: \(node.count)").font(.title2)
             Divider()
             
-            editMenu
-            Divider()
+            editMenu()
+            structureMenu()
+            sortMenu()
             
-            insertMenu
-            duplicateMenu
-            moveMenu
+            deleteMenu()
             
-            Divider()
-            sortMenu
-            
-            Divider()
-            deleteMenu
-            
-            Divider()
-            printMenu
+            printAndExportMenu()
         }
     }
     
-    private var insertMenu: some View {
-        Menu(content: {
-            Button("Add Item Above") {
-                vm.selection = node
-                vm.addAbove()
-            }
-            
-            Button("Add Item Below") {
-                vm.selection = node
-                vm.addBelow()
-            }
-            
-            Button("Add Child Item") {
-                vm.selection = node
-                vm.addChild()
-            }
-        }, label: { Text("Insert") })
-    }
-    
-    private var editMenu: some View {
+    @ViewBuilder
+    private func editMenu() -> some View {
         Menu(content: {
             Button("Edit Item") {
                 vm.editNode(vm.selection!)
@@ -83,7 +57,25 @@ struct ContextMenuItems: View {
         })
     }
     
-    private var duplicateMenu: some View {
+    @ViewBuilder
+    private func structureMenu() -> some View {
+        Menu(content: {
+            Button("Add Item Above") {
+                vm.selection = node
+                vm.addAbove()
+            }
+            
+            Button("Add Item Below") {
+                vm.selection = node
+                vm.addBelow()
+            }
+            
+            Button("Add Child Item") {
+                vm.selection = node
+                vm.addChild()
+            }
+        }, label: { Text("Insert") })
+        
         Menu(content: {
             Button("Current Item") {
                 vm.selection = node
@@ -95,9 +87,7 @@ struct ContextMenuItems: View {
                 vm.duplicateLeg()
             }
         }, label: { Text("Duplicate")})
-    }
-    
-    private var moveMenu: some View {
+
         Menu(content: {
             Button("Move Item Down One Level") {
                 vm.selection = node
@@ -109,9 +99,12 @@ struct ContextMenuItems: View {
                 vm.promoteSelection() }
             .disabled(!(vm.canPromote(item: node)))
         }, label: { Text("Move")})
+        
+        Divider()
     }
-    
-    private var sortMenu: some View {
+
+    @ViewBuilder
+    private func sortMenu() -> some View {
         Menu(content: {
             ForEach(OutlineItemSort.allCases) { sortBy in
                 Button(sortBy.description) {
@@ -120,16 +113,22 @@ struct ContextMenuItems: View {
                 }
             }
         }, label: { Text("Sort Level")})
+        
+        Divider()
     }
-    
-    private var deleteMenu: some View {
+
+    @ViewBuilder
+    private func deleteMenu() -> some View {
         Button("Delete Item") {
             vm.selection = node
             vm.deleteSelectedItem()
         }
+        
+        Divider()
     }
     
-    private var printMenu: some View {
+    @ViewBuilder
+    private func printAndExportMenu() -> some View {
         Menu(content: {
             Button("Print current item") {
                 vm.selection = node
@@ -139,6 +138,30 @@ struct ContextMenuItems: View {
                 vm.selection = node
                 vm.printSelectedLeg() }
         }, label: { Text("Print")})
+
+        Menu(content: {
+            Menu(content: {
+                Button("To HTML") {
+                    vm.selection = node
+                    vm.exportSelectionToHTML()
+                }
+                Button("To XML") {
+                    vm.selection = node
+                    vm.exportSelectionToXML()
+                }
+            }, label: { Text("Current Item") })
+            Menu(content: {
+                Button("To HTML") {
+                    vm.selection = node
+                    vm.exportLegToHTML()
+                }
+                Button("To XML") {
+                    vm.selection = node
+                    vm.exportLegToXML()
+                }
+            }, label: { Text("Current Item and Children") })
+        }, label: { Text("Export")}
+        )
     }
 }
 
@@ -207,7 +230,7 @@ enum OutlineItemSort: String, CaseIterable, Identifiable, CustomStringConvertibl
             return { lhs, rhs in
                 let left = lhs.updatedDate ?? Date.distantPast
                 let right = rhs.updatedDate ?? Date.distantPast
-
+                
                 if left == right {
                     return lhs.text.localizedCaseInsensitiveCompare(rhs.text) == .orderedAscending
                 }
@@ -219,7 +242,7 @@ enum OutlineItemSort: String, CaseIterable, Identifiable, CustomStringConvertibl
             return { lhs, rhs in
                 let left = lhs.completedDate ?? Date.distantPast
                 let right = rhs.completedDate ?? Date.distantPast
-
+                
                 if left == right {
                     return lhs.text.localizedCaseInsensitiveCompare(rhs.text) == .orderedAscending
                 }

@@ -29,12 +29,12 @@ public class OutlineBody {
         outlineBody?.clearChangedIndicator()
     }
     
-    public func renderXML(_ parent: XMLElement) {
+    public func renderXML(_ parent: XMLElement, includeChildren: Bool = true) {
         let bodyNode = XMLElement(name: "body")
         
         if let children = outlineBody?.children {
             for item in children {
-                item.renderXML(bodyNode)
+                item.renderXML(bodyNode, includeChildren: includeChildren)
             }
         }
         
