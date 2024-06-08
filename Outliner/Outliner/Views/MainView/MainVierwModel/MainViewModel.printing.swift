@@ -23,6 +23,7 @@ extension MainViewModel {
         
         printView = HTMLPrintView()
         let options = PrintOptions(
+            fileName: treeFile.fileNameWithExtension,
             header: selection.text,
             htmlContent: htmlDocument,
             window: window
@@ -40,6 +41,7 @@ extension MainViewModel {
         
         printView = HTMLPrintView()
         let options = PrintOptions(
+            fileName: treeFile.fileNameWithExtension,
             header: selection.text,
             htmlContent: htmlDocument,
             window: window

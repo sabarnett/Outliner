@@ -10,8 +10,9 @@ import Foundation
 import WebKit
 
 public struct PrintOptions {
+    var fileName: String
     var header: String
-    var footer: String = "\(Bundle.main.appName)\n\(Bundle.main.appVersionLong)"
+    var footer: String = "\(Bundle.main.appName)\(Bundle.main.appVersionLong)"
     var htmlContent: String
     var window: NSWindow
 }
@@ -87,7 +88,8 @@ public class HTMLPrintView: WKWebView, WKNavigationDelegate {
             .foregroundColor: NSColor.black
         ]
         
-        let footerString = NSAttributedString(string: printOptions.footer, attributes: footerAttributes)
+        let footer = "\(printOptions.fileName)\n\(printOptions.footer)"
+        let footerString = NSAttributedString(string: footer, attributes: footerAttributes)
         footerString.draw(at: NSPoint(x: 30, y: 30))
         
         let pageString = NSAttributedString(string: "Page \(pop.currentPage)", attributes: footerAttributes)
