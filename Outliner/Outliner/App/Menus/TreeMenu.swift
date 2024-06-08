@@ -79,19 +79,10 @@ public struct TreeCommands: Commands {
             )
             .disabled(!hasSelection)
 
-            Menu(content: {
-                Menu(content: {
-                    Button("To HTML") { mainViewModel?.exportSelectionToHTML() }
-                    Button("To XML") { mainViewModel?.exportSelectionToXML() }
-                }, label: { Text("Current Item") })
-                Menu(content: {
-                    Button("To HTML") { mainViewModel?.exportLegToHTML() }
-                    Button("To XML") { mainViewModel?.exportLegToXML() }
-                }, label: { Text("Current Item and Children") })
-            }, label: { Text("Export")}
-            )
+            Button("Export") {
+                mainViewModel?.showexport = true
+            }
             .disabled(!hasSelection)
-
         }
     }
 }

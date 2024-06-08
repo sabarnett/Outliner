@@ -139,29 +139,9 @@ struct ContextMenuItems: View {
                 vm.printSelectedLeg() }
         }, label: { Text("Print")})
 
-        Menu(content: {
-            Menu(content: {
-                Button("To HTML") {
-                    vm.selection = node
-                    vm.exportSelectionToHTML()
-                }
-                Button("To XML") {
-                    vm.selection = node
-                    vm.exportSelectionToXML()
-                }
-            }, label: { Text("Current Item") })
-            Menu(content: {
-                Button("To HTML") {
-                    vm.selection = node
-                    vm.exportLegToHTML()
-                }
-                Button("To XML") {
-                    vm.selection = node
-                    vm.exportLegToXML()
-                }
-            }, label: { Text("Current Item and Children") })
-        }, label: { Text("Export")}
-        )
+        Button("Export") {
+            vm.showexport = true
+        }
     }
 }
 

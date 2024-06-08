@@ -45,6 +45,8 @@ class MainViewModel: ObservableObject, Identifiable {
     
     @Published var windowNumber: Int = 0
     
+    @Published var showexport: Bool = false
+    
     // MARK: - Initialisation
     
     init() {

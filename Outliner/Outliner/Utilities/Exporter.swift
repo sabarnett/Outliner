@@ -15,9 +15,34 @@ struct Exporter {
 
     var notify = PopupNotificationCentre.shared
 
+    public func export(
+        treeFile: OpmlFile,
+        selection: OutlineItem,
+        exportFormat: ExportFormat,
+        exportContent: ExportContent
+    ) {
+        switch (exportFormat, exportContent) {
+        case (.html, .single):
+            exportSingleToHtml(item: selection)
+        case (.html, .leg):
+            exportLegToHtml(item: selection)
+            
+        case (.xml, .single):
+            exportSingleToXml(treeFile: treeFile, item: selection)
+        case (.xml, .leg):
+            exportLegToXml(treeFile: treeFile, item: selection)
+            
+        case (.json, .single):
+            exportSingleToJson(treeFile: treeFile, item: selection)
+        case (.json, .leg):
+            exportLegToJson(treeFile: treeFile, item: selection)
+
+        }
+    }
+    
     // MARK: - Export to HTML
     
-    public func exportSingleToHtml(item: OutlineItem) {
+    private func exportSingleToHtml(item: OutlineItem) {
         guard let targetURL = FileHelpers.selectHTMLFileToSave(withTitle: "Save item as HTML to")
         else { return }
         
@@ -31,7 +56,7 @@ struct Exporter {
         }
     }
     
-    public func exportLegToHtml(item: OutlineItem) {
+    private func exportLegToHtml(item: OutlineItem) {
         guard let targetURL = FileHelpers.selectHTMLFileToSave(withTitle: "Save items as HTML to")
         else { return }
 
@@ -51,7 +76,7 @@ struct Exporter {
     
     // MARK: - Export to XML
     
-    public func exportSingleToXml(treeFile: OpmlFile, item: OutlineItem) {
+    private func exportSingleToXml(treeFile: OpmlFile, item: OutlineItem) {
         guard let targetURL = FileHelpers.selectXMLFileToSave(withTitle: "Save item in XML format to")
         else { return }
 
@@ -64,7 +89,7 @@ struct Exporter {
         }
     }
     
-    public func exportLegToXml(treeFile: OpmlFile, item: OutlineItem) {
+    private func exportLegToXml(treeFile: OpmlFile, item: OutlineItem) {
         guard let targetURL = FileHelpers.selectXMLFileToSave(withTitle: "Save items in XML format to")
         else { return }
 
@@ -75,6 +100,13 @@ struct Exporter {
         } catch {
             Alerts.exportError(message: error.localizedDescription)
         }
+    }
+    
+    // MARK: - Export to JSON
+    private func exportSingleToJson(treeFile: OpmlFile, item: OutlineItem) {
+    }
+    
+    private func exportLegToJson(treeFile: OpmlFile, item: OutlineItem) {
     }
     
     // MARK: - Print helpers
@@ -116,4 +148,39 @@ struct Exporter {
         return "\(prefix)\n\(formattedNote)\n\(suffix)"
     }
 
+}
+
+enum ExportContent: CaseIterable, Identifiable, CustomStringConvertible {
+    case single
+    case leg
+    
+    var id: String { self.description }
+    
+    var description: String {
+        switch self {
+        case .single:
+            return "Current Item"
+        case .leg:
+            return "Current Item and Children"
+        }
+    }
+}
+
+enum ExportFormat: CaseIterable, Identifiable, CustomStringConvertible {
+    case html
+    case xml
+    case json
+    
+    var id: String { self.description }
+    
+    var description: String {
+        switch self {
+        case .html:
+            return "HTML"
+        case .xml:
+            return "XML"
+        case .json:
+            return "JSON"
+        }
+    }
 }

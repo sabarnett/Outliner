@@ -55,6 +55,7 @@ struct MainView: View {
             .frame(minWidth: Constants.mainWindowMinWidth,
                    minHeight: Constants.mainWindowMinHeight)
             .focusedSceneObject(vm)
+            
             .sheet(item: $vm.viewNote) { node in
                 NoteView(vm: node)
             }
@@ -63,6 +64,9 @@ struct MainView: View {
                 NodeEdit(vm: editNode)
             }
             
+            .sheet(isPresented: $vm.showexport) {
+                Export(vm: vm)
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigation) {
                     Button(action: {
