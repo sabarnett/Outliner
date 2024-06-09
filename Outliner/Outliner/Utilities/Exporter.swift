@@ -104,9 +104,43 @@ struct Exporter {
     
     // MARK: - Export to JSON
     private func exportSingleToJson(treeFile: OpmlFile, item: OutlineItem) {
+        guard let targetURL = FileHelpers.selectJSONFileToSave(withTitle: "Save items in JSON format to")
+        else { return }
+
+        let tempItem = OutlineItem()
+        tempItem.text = item.text
+        tempItem.notes = item.notes
+        
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(tempItem),
+           let jsonText = String(data: jsonData, encoding: .utf8) {
+            do {
+                try jsonText.write(to: targetURL, atomically: true, encoding: .utf8)
+                notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            } catch {
+                Alerts.exportError(message: error.localizedDescription)
+            }
+        } else {
+            Alerts.exportError(message: "There was nothing to export")
+        }
     }
     
     private func exportLegToJson(treeFile: OpmlFile, item: OutlineItem) {
+        guard let targetURL = FileHelpers.selectJSONFileToSave(withTitle: "Save items in JSON format to")
+        else { return }
+        
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(item),
+           let jsonText = String(data: jsonData, encoding: .utf8) {
+            do {
+                try jsonText.write(to: targetURL, atomically: true, encoding: .utf8)
+                notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            } catch {
+                Alerts.exportError(message: error.localizedDescription)
+            }
+        } else {
+            Alerts.exportError(message: "There was nothing to export")
+        }
     }
     
     // MARK: - Print helpers

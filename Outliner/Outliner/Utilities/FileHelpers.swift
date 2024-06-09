@@ -52,6 +52,15 @@ struct FileHelpers {
     public static func selectXMLFileToSave(withTitle windowTitle: String?) -> URL? {
         FileHelpers().selectSaveFile(ofType: [.xml], withTitle: windowTitle)
     }
+    
+    /// Prompts the user for the name and location to save the data to in JSON format
+    ///
+    /// - Parameter windowTitle: An optional title to display on the save panel.
+    ///
+    /// - Returns: nil of the user cancells else the URL of the file to save.
+    public static func selectJSONFileToSave(withTitle windowTitle: String?) -> URL? {
+        FileHelpers().selectSaveFile(ofType: [.json], withTitle: windowTitle)
+    }
 
     // MARK: - Folder selection
     

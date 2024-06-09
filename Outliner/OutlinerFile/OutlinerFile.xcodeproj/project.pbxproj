@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E83977912C15A85900D45947 /* OutlineItem.encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83977902C15A85900D45947 /* OutlineItem.encodable.swift */; };
 		E8D65DB42BE3D72A0077585C /* OutlinerFile.h in Headers */ = {isa = PBXBuildFile; fileRef = E8D65DB32BE3D72A0077585C /* OutlinerFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8D65DBB2BE3D75A0077585C /* OpmlFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DBA2BE3D75A0077585C /* OpmlFile.swift */; };
 		E8D65DBD2BE3D7C50077585C /* NodeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D65DBC2BE3D7C50077585C /* NodeHelpers.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E83977902C15A85900D45947 /* OutlineItem.encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineItem.encodable.swift; sourceTree = "<group>"; };
 		E8D65DB02BE3D72A0077585C /* OutlinerFile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OutlinerFile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D65DB32BE3D72A0077585C /* OutlinerFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutlinerFile.h; sourceTree = "<group>"; };
 		E8D65DBA2BE3D75A0077585C /* OpmlFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpmlFile.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				E8D65DC02BE3D8670077585C /* OutlineHeader.swift */,
 				E8D65DC22BE3D8A70077585C /* OutlineItem.swift */,
 				E8D65DD32BE3DBEE0077585C /* Notifications.swift */,
+				E83977902C15A85900D45947 /* OutlineItem.encodable.swift */,
 			);
 			path = OutlinerFile;
 			sourceTree = "<group>";
@@ -107,7 +110,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					E8D65DAF2BE3D72A0077585C = {
 						CreatedOnToolsVersion = 15.3;
@@ -152,6 +155,7 @@
 				E8D65DBF2BE3D8110077585C /* OutlineBody.swift in Sources */,
 				E8D65DBB2BE3D75A0077585C /* OpmlFile.swift in Sources */,
 				E8D65DBD2BE3D7C50077585C /* NodeHelpers.swift in Sources */,
+				E83977912C15A85900D45947 /* OutlineItem.encodable.swift in Sources */,
 				E8D65DC12BE3D8670077585C /* OutlineHeader.swift in Sources */,
 				E8D65DC32BE3D8A70077585C /* OutlineItem.swift in Sources */,
 			);
@@ -195,6 +199,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -261,6 +266,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -292,6 +298,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MH62Y8D74P;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -328,6 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MH62Y8D74P;
 				DYLIB_COMPATIBILITY_VERSION = 1;

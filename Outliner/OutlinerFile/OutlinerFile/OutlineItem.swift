@@ -40,7 +40,7 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
     public func hash(into hasher: inout Hasher) {
         return hasher.combine(id)
     }
-
+    
     // MARK: - Publically available data
 
     @Published public var id: UUID = UUID()
