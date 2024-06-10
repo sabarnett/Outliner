@@ -110,8 +110,13 @@ struct Exporter {
         let tempItem = OutlineItem()
         tempItem.text = item.text
         tempItem.notes = item.notes
+        tempItem.starred = item.starred
+        tempItem.createdDate = item.createdDate
+        tempItem.updatedDate = item.updatedDate
+        tempItem.completedDate = item.completedDate
         
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         if let jsonData = try? encoder.encode(tempItem),
            let jsonText = String(data: jsonData, encoding: .utf8) {
             do {
@@ -130,6 +135,7 @@ struct Exporter {
         else { return }
         
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         if let jsonData = try? encoder.encode(item),
            let jsonText = String(data: jsonData, encoding: .utf8) {
             do {
