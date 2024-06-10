@@ -8,29 +8,6 @@
 import Foundation
 import Combine
 
-public enum NodeExpansionState {
-    case expanded
-    case collapsed
-}
-
-public enum NodeInsertionPoint {
-    case above
-    case below
-    case child
-}
-
-public struct OutlineItemField {
-    static let text = "text"
-    static let notes = "_note"
-    static let completed = "_status"
-    static let completedDate = "_completed"
-    static let starred = "_star"
-    static let starredDate = "_stardate"
-    static let createdDate = "_created"
-    static let updatedDate = "_updated"
-    static let expanded = "_expanded"
-}
-
 public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObject, Hashable {
 
     public static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
@@ -116,9 +93,9 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
 
         text = from.text
         notes = from.notes
-        completed = from.completed
         starred = from.starred
         children = []
+        completedDate = from.completedDate
         createdDate = Date.now
         updatedDate = Date.now
     }
@@ -295,98 +272,6 @@ public class OutlineItem: CustomStringConvertible, Identifiable, ObservableObjec
         let notificationName = Notification.Name(AppNotifications.RefreshPreviewNotification)
         let notification = Notification(name: notificationName, object: nil, userInfo: nil)
         NotificationCenter.default.post(notification)
-    }
-
-    // MARK: - Private helpers - load the item
-
-    fileprivate func populateFromAttributes(fromElement: XMLElement) {
-
-        self.attributes = NodeHelpers.loadAttributes(fromElement: fromElement)
-
-        text = attributes[OutlineItemField.text] ?? ""
-        notes = attributes[OutlineItemField.notes] ?? ""
-        completed = (attributes[OutlineItemField.completed] ?? "") == "checked"
-        starred = (attributes[OutlineItemField.starred] ?? "") == "yes"
-        isExpanded = (attributes[OutlineItemField.expanded] ?? "") == "yes"
-
-        createdDate = dateFrom(attributes: attributes, forItem: OutlineItemField.createdDate)
-        updatedDate = dateFrom(attributes: attributes, forItem: OutlineItemField.updatedDate)
-        completedDate = dateFrom(attributes: attributes, forItem: OutlineItemField.completedDate)
-    }
-
-    fileprivate func dateFrom(attributes: [String: String], forItem key: String) -> Date? {
-        if let value = attributes[key] {
-            return try? Date(value, strategy: .iso8601)
-        }
-        return nil
-    }
-
-    fileprivate func loadChildren(fromElement parentNode: XMLElement) {
-
-        let childNodes = parentNode.elements(forName: "outline")
-        if childNodes.count == 0 { return }
-
-        // Load the child nodes if there are any.
-        for node in childNodes {
-            let childNode = OutlineItem(fromOutlineNode: node, withParent: self)
-            children.append(childNode)
-        }
-    }
-
-    // MARK: - Private helpers - save the item
-
-    fileprivate func createAttributes() -> [XMLNode] {
-        var attributeArray: [XMLNode] = []
-
-        attributeArray.append(XMLNode.attribute(withName: OutlineItemField.text, stringValue: text) as! XMLNode)
-        if !notes.isEmpty {
-            // Ok, this is a bit screwy. Creating the node will escape the stuff
-            // we need to escape to make the string safe to write to the XML. What
-            // it doesn't do, that Windows does, is escape the newline character to
-            // &#xA; so we are going to have to do that ourselves. Problem is, if we
-            // do that here, the & will be escaped to &amp; which means it won't be
-            // decoded when we load the file. So, we're adding a placeholder here to be
-            // replaced before the file is written.
-            attributeArray.append(
-                XMLNode.attribute(
-                    withName: "_note",
-                    stringValue: notes.replacingOccurrences(of: "\r", with: "")
-                        .replacingOccurrences(of: "\n", with: "#NewLine#")
-                ) as! XMLNode
-            )
-        }
-        if completed {
-            attributeArray.append(newAttribute(withName: OutlineItemField.completed, value: "checked"))
-        } else {
-            attributes.removeValue(forKey: OutlineItemField.completed)
-        }
-        if starred {
-            attributeArray.append(newAttribute(withName: OutlineItemField.starred, value: "yes"))
-        } else {
-            attributes.removeValue(forKey: OutlineItemField.starred)
-        }
-        if isExpanded {
-            attributeArray.append(newAttribute(withName: OutlineItemField.expanded, value: "yes"))
-        } else {
-            attributes.removeValue(forKey: OutlineItemField.expanded)
-        }
-        addDateAttribute(&attributeArray, from: completedDate, withName: OutlineItemField.completedDate)
-        addDateAttribute(&attributeArray, from: createdDate, withName: OutlineItemField.createdDate)
-        addDateAttribute(&attributeArray, from: updatedDate, withName: OutlineItemField.updatedDate)
-
-        return attributeArray
-    }
-
-    fileprivate func addDateAttribute(_ attributeArray: inout [XMLNode], from dateField: Date?, withName: String) {
-        if let dateField {
-            attributeArray.append(
-                newAttribute(withName: withName, value: dateField.ISO8601Format())
-            )
-        }
-    }
-
-    fileprivate func newAttribute(withName: String, value: String) -> XMLNode {
-        XMLNode.attribute(withName: withName, stringValue: value) as! XMLNode
     }
 
     // MARK: - Sample record
