@@ -16,6 +16,8 @@ struct Exporter {
 
     @AppStorage(Constants.exportOpenInFinder) private var openInFinder: Bool = true
     @AppStorage(Constants.exportOpenFile) private var openFile: Bool = false
+    @AppStorage(Constants.printIncludeTitle) private var includeTitle: Bool = true
+    @AppStorage(Constants.printIncludeSeparator) private var includeSeparator: Bool = true
     
     var notify = PopupNotificationCentre.shared
 
@@ -173,10 +175,11 @@ struct Exporter {
     }
     
     public func htmlDocumentFromLeg(item: OutlineItem) -> String {
+        let separator = includeSeparator ? "\n<hr style=\"width: 50%;\">\n" : ""
         var nodeList = NodeList()
         let fullHtml = nodeList.listNodeAndChildren(from: item)
             .map({ htmlText(node: $0)})
-                            .joined(separator: "\n<hr style=\"width: 50%;\">\n")
+                            .joined(separator: separator)
         
         return buildHtml(formattedNote: fullHtml, title: "Outline Print")
     }
@@ -188,7 +191,9 @@ struct Exporter {
     /// - Parameter node: The node to be converted
     /// - Returns: A string containing the HTML representation of the markdown.
     func htmlText(node: OutlineItem) -> String {
-        let noteText = "# \(node.text)\n\(node.notes)"
+        let noteText = includeTitle
+            ? "# \(node.text)\n\(node.notes)"
+            : node.notes
         
         let markdown = MarkdownParser.standard.parse(noteText)
         return HtmlGenerator.standard.generate(doc: markdown)

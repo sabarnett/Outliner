@@ -45,6 +45,8 @@ struct Constants {
     static let exportOpenFile = "exportOpenFile"
     static let exportDefaultFormat = "exportDeafultFormat"
     static let exportDefaultContent = "exportDefaultContent"
+    static let printIncludeTitle = "printIncludeTitle"
+    static let printIncludeSeparator = "printIncludeSeparator"
     
     // Note preview
     static let notePreviewPrefixHtml = """

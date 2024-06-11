@@ -81,6 +81,7 @@
 		E8EDBD772B5BED51001F1306 /* OutlineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDBD762B5BED51001F1306 /* OutlineSettings.swift */; };
 		E8EDBD792B5BEDB6001F1306 /* AdvancedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDBD782B5BEDB6001F1306 /* AdvancedSettings.swift */; };
 		E8F0B9A32B93687900F8F74F /* ThemeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0B9A22B93687900F8F74F /* ThemeStorage.swift */; };
+		E8F2801D2C18D29300EBDDC9 /* PrintSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F2801C2C18D29300EBDDC9 /* PrintSettings.swift */; };
 		E8F30BA02A8FB1E7005D41E7 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F30B9F2A8FB1E7005D41E7 /* Bundle+Extensions.swift */; };
 		E8F30BA32A8FB411005D41E7 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F30BA22A8FB411005D41E7 /* AboutView.swift */; };
 		E8F37A512C187227000B10A2 /* ExportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F37A502C187227000B10A2 /* ExportSettings.swift */; };
@@ -183,6 +184,7 @@
 		E8EDBD762B5BED51001F1306 /* OutlineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSettings.swift; sourceTree = "<group>"; };
 		E8EDBD782B5BEDB6001F1306 /* AdvancedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettings.swift; sourceTree = "<group>"; };
 		E8F0B9A22B93687900F8F74F /* ThemeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStorage.swift; sourceTree = "<group>"; };
+		E8F2801C2C18D29300EBDDC9 /* PrintSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintSettings.swift; sourceTree = "<group>"; };
 		E8F30B9F2A8FB1E7005D41E7 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E8F30BA22A8FB411005D41E7 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		E8F37A502C187227000B10A2 /* ExportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSettings.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				E8345E592A910B1400E36B82 /* SettingsView.swift */,
+				E8F2801C2C18D29300EBDDC9 /* PrintSettings.swift */,
 				E83310422A938BED0067C504 /* SettingsViewModel.swift */,
 				E8EDBD742B5BECA5001F1306 /* GeneralSettings.swift */,
 				E8EDBD762B5BED51001F1306 /* OutlineSettings.swift */,
@@ -640,6 +643,7 @@
 				E81ED28A2B94719900458A55 /* ThemeFontWeights.swift in Sources */,
 				E8D65DCE2BE3DB4B0077585C /* SearchAppliesTo.swift in Sources */,
 				E8C433702BC52D370074E13C /* MainViewModel.structure.swift in Sources */,
+				E8F2801D2C18D29300EBDDC9 /* PrintSettings.swift in Sources */,
 				E8E606582B28F59C00C7A1E4 /* OpeningWindowActionButtons.swift in Sources */,
 				E89800302A8BC59000AE8656 /* Constants.swift in Sources */,
 				E8B98CBE2B8F6E7A002866CF /* ThemeManager.swift in Sources */,

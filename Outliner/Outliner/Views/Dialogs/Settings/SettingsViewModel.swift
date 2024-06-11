@@ -28,4 +28,8 @@ class SettingsViewModel: ObservableObject {
     @AppStorage(Constants.exportOpenFile) var exportOpenFile: Bool = false
     @AppStorage(Constants.exportDefaultFormat) var exportDefaultFormat: ExportFormat = .html
     @AppStorage(Constants.exportDefaultContent) var exportDefaultContent: ExportContent = .single
+    
+    // Print settings
+    @AppStorage(Constants.printIncludeTitle) var printIncludeTitle: Bool = true
+    @AppStorage(Constants.printIncludeSeparator) var printIncludeSeparator: Bool = true
 }

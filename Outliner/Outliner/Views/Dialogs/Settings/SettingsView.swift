@@ -29,6 +29,11 @@ struct SettingsView: View {
                     Label("Styles", systemImage: "textformat")
                 }
             
+            PrintSettings(settings: settings)
+                .tabItem {
+                    Label("Printing", systemImage: "printer")
+                }
+            
             ExportSettings(settings: settings)
                 .tabItem {
                     Label("Export", systemImage: "square.and.arrow.up")

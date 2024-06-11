@@ -11,10 +11,10 @@ import SwiftUI
 struct ExportSettings: View {
 
     @ObservedObject var settings: SettingsViewModel
+    @State private var includeTitle: Bool = false
     
     var body: some View {
         Form {
-            
             Picker("Default Format", selection: $settings.exportDefaultFormat, content: {
                 ForEach(ExportFormat.allCases) { format in
                     Text(format.description).tag(format)
