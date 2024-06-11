@@ -28,6 +28,11 @@ struct SettingsView: View {
                 .tabItem {
                     Label("Styles", systemImage: "textformat")
                 }
+            
+            ExportSettings(settings: settings)
+                .tabItem {
+                    Label("Export", systemImage: "square.and.arrow.up")
+                }
 
             AdvancedSettings(settings: settings)
                 .tabItem {

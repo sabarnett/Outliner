@@ -10,9 +10,13 @@ import Foundation
 import OutlinerFile
 import OutlinerViews
 import MarkdownKit
+import SwiftUI
 
 struct Exporter {
 
+    @AppStorage(Constants.exportOpenInFinder) private var openInFinder: Bool = true
+    @AppStorage(Constants.exportOpenFile) private var openFile: Bool = false
+    
     var notify = PopupNotificationCentre.shared
 
     public func export(
@@ -51,6 +55,8 @@ struct Exporter {
         do {
             try htmlDocument.write(to: targetURL, atomically: true, encoding: .utf8)
             notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            if openInFinder { openFolder(targetURL) }
+            if openFile { openFile(targetURL) }
         } catch {
             Alerts.exportError(message: error.localizedDescription)
         }
@@ -69,6 +75,8 @@ struct Exporter {
         do {
             try htmlDocument.write(to: targetURL, atomically: true, encoding: .utf8)
             notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            if openInFinder { openFolder(targetURL) }
+            if openFile { openFile(targetURL) }
         } catch {
             Alerts.exportError(message: error.localizedDescription)
         }
@@ -84,6 +92,8 @@ struct Exporter {
         do {
             try document.write(to: targetURL, atomically: true, encoding: .utf8)
             notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            if openInFinder { openFolder(targetURL) }
+            if openFile { openFile(targetURL) }
         } catch {
             Alerts.exportError(message: error.localizedDescription)
         }
@@ -97,6 +107,8 @@ struct Exporter {
         do {
             try document.write(to: targetURL, atomically: true, encoding: .utf8)
             notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+            if openInFinder { openFolder(targetURL) }
+            if openFile { openFile(targetURL) }
         } catch {
             Alerts.exportError(message: error.localizedDescription)
         }
@@ -122,6 +134,8 @@ struct Exporter {
             do {
                 try jsonText.write(to: targetURL, atomically: true, encoding: .utf8)
                 notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+                if openInFinder { openFolder(targetURL) }
+                if openFile { openFile(targetURL) }
             } catch {
                 Alerts.exportError(message: error.localizedDescription)
             }
@@ -141,6 +155,8 @@ struct Exporter {
             do {
                 try jsonText.write(to: targetURL, atomically: true, encoding: .utf8)
                 notify.showPopup(.saved, title: "Export Complete", description: "Export Complete")
+                if openInFinder { openFolder(targetURL) }
+                if openFile { openFile(targetURL) }
             } catch {
                 Alerts.exportError(message: error.localizedDescription)
             }
@@ -188,9 +204,20 @@ struct Exporter {
         return "\(prefix)\n\(formattedNote)\n\(suffix)"
     }
 
+    private func openFolder(_ folder: URL) {
+        if folder.hasDirectoryPath {
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: folder.path)
+        } else {
+            NSWorkspace.shared.activateFileViewerSelecting([folder])
+        }
+    }
+    
+    private func openFile(_ file: URL) {
+        NSWorkspace.shared.open(file)
+    }
 }
 
-enum ExportContent: CaseIterable, Identifiable, CustomStringConvertible {
+enum ExportContent: String, CaseIterable, Identifiable, CustomStringConvertible {
     case single
     case leg
     
@@ -206,7 +233,7 @@ enum ExportContent: CaseIterable, Identifiable, CustomStringConvertible {
     }
 }
 
-enum ExportFormat: CaseIterable, Identifiable, CustomStringConvertible {
+enum ExportFormat: String, CaseIterable, Identifiable, CustomStringConvertible {
     case html
     case xml
     case json

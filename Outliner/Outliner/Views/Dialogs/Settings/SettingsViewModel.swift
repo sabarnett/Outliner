@@ -23,4 +23,9 @@ class SettingsViewModel: ObservableObject {
     // Advanced Settings extra options
     @AppStorage(Constants.closeAppWhenLastWindowCloses) var closeAppWhenLastWindowCloses: Bool = true
 
+    // Export settings
+    @AppStorage(Constants.exportOpenInFinder) var exportOpenInFinder: Bool = true
+    @AppStorage(Constants.exportOpenFile) var exportOpenFile: Bool = false
+    @AppStorage(Constants.exportDefaultFormat) var exportDefaultFormat: ExportFormat = .html
+    @AppStorage(Constants.exportDefaultContent) var exportDefaultContent: ExportContent = .single
 }

@@ -41,6 +41,10 @@ struct Constants {
     static let closeAppWhenLastWindowCloses = "closeAppWhenLastWindowCloses"
     static let searchAppliesTo = "searchAppliesTo"
     static let showInspector = "showInspector"
+    static let exportOpenInFinder = "exportOpenInFinder"
+    static let exportOpenFile = "exportOpenFile"
+    static let exportDefaultFormat = "exportDeafultFormat"
+    static let exportDefaultContent = "exportDefaultContent"
     
     // Note preview
     static let notePreviewPrefixHtml = """

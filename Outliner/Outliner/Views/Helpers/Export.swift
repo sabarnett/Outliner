@@ -13,10 +13,12 @@ struct Export: View {
     
     @Environment(\.dismiss) var dismiss
     
-    var vm: MainViewModel
+    @AppStorage(Constants.exportDefaultFormat) private var exportFormat: ExportFormat = .html
+    @AppStorage(Constants.exportDefaultContent) private var exportContent: ExportContent = .single
+    @AppStorage(Constants.exportOpenInFinder) private var openInFinder: Bool = true
+    @AppStorage(Constants.exportOpenFile) private var openFile: Bool = false
     
-    @State var exportFormat: ExportFormat = .html
-    @State var exportContent: ExportContent = .single
+    var vm: MainViewModel
     
     var body: some View {
         if let selection = vm.selection {
@@ -34,7 +36,17 @@ struct Export: View {
                         Text(content.description).tag(content)
                     }
                 })
+                .padding(.bottom, 20)
                 
+                Toggle(isOn: $openInFinder,
+                       label: {
+                    Text("Open export folder in Finder")
+                })
+                
+                Toggle(isOn: $openFile,
+                       label: {
+                    Text("Open export file in default application")
+                })
             }.padding()
         } else {
             ContentUnavailableView("Nothing To Export",
