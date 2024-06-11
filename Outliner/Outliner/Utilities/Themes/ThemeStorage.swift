@@ -86,6 +86,7 @@ class ThemeStorage {
         let startVersion = themeDefinitions.fileVersion
         
         if themeDef.fileVersion < 1 { themeDef = version1Upgrade(themeDef) }
+        if themeDef.fileVersion < 2 { themeDef = version2Upgrade(themeDef) }
         // More conversions if needed
         
         if themeDef.fileVersion != startVersion {
@@ -116,6 +117,30 @@ class ThemeStorage {
         themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .nodeEditNotes))
         
         themeDef.fileVersion = 1
+        return themeDef
+    }
+    
+    /// Version 2 of the file is the initial set of required themes for the basic app to function.
+    ///
+    /// - Parameter themeDefinitions: The theme definitions structure
+    /// - Returns: The updated theme definitions structure
+    ///
+    /// This upgrade adds printing themes
+    ///
+    fileprivate func version2Upgrade(_ themeDefinitions: ThemeDefinitions) -> ThemeDefinitions {
+        var themeDef = themeDefinitions
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading1))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading2))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading3))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading4))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading5))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .heading6))
+
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .paragraph))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .leadParagraph))
+        themeDef.definitions.append(ThemeDefinition.defaultTheme(for: .body))
+        
+        themeDef.fileVersion = 2
         return themeDef
     }
 }

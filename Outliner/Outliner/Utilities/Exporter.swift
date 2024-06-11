@@ -196,19 +196,60 @@ struct Exporter {
             : node.notes
         
         let markdown = MarkdownParser.standard.parse(noteText)
-        return HtmlGenerator.standard.generate(doc: markdown)
+        var html = HtmlGenerator.standard.generate(doc: markdown)
+            
+        if let range = html.range(of: "<p>") {
+            // Add the lead class to the first paragraph in the computed html
+            html = html.replacingCharacters(in: range, with: "<p class='lead'>")
+        }
+        return html
     }
     
     func buildHtml(formattedNote: String, title: String) -> String {
         
+        let styleSheet = buildStyles()
         let prefix = Constants.notePrintPrefixHtml
             .replacingOccurrences(of: "$$title$$", with: title)
+            .replacingOccurrences(of: "$$styleSheet$$", with: styleSheet)
         
         let suffix = Constants.notePrintSuffixHtml
         
         return "\(prefix)\n\(formattedNote)\n\(suffix)"
     }
 
+    private func buildStyles() -> String {
+        let styles: [String] = [
+            styleFor(selector: "h1", style: .heading1),
+            styleFor(selector: "h2", style: .heading2),
+            styleFor(selector: "h3", style: .heading3),
+            styleFor(selector: "h4", style: .heading4),
+            styleFor(selector: "h5", style: .heading5),
+            styleFor(selector: "h6", style: .heading6),
+            styleFor(selector: "body", style: .body),
+            styleFor(selector: "p", style: .paragraph),
+            styleFor(selector: ".lead", style: .leadParagraph)
+        ]
+        
+        return styles.joined(separator: "\n")
+    }
+    
+    private func styleFor(selector: String, style: ThemeItemType) -> String {
+        // Get the themeitem for the type.
+        guard let themeDef = ThemeManager.shared.theme(for: style) else { return "" }
+        
+        let fontFamily = themeDef.fontFamily == "Default"
+            ? "Helvetica"
+            : themeDef.fontFamily
+
+        let baseDefinition = " { font-family: \"$ff$\"; font-size: $fs$; font-weight: $fw$; }"
+        let styleDef = selector + baseDefinition
+            .replacingOccurrences(of: "$ff$", with: fontFamily)
+            .replacingOccurrences(of: "$fs$", with: "\(themeDef.fontSize)")
+            .replacingOccurrences(of: "$fw$", with: themeDef.fontWeight.description)
+        
+        return styleDef
+    }
+    
     private func openFolder(_ folder: URL) {
         if folder.hasDirectoryPath {
             NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: folder.path)

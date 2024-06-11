@@ -18,28 +18,58 @@ struct ThemeSettings: View {
     @State private var fontWeight: ThemeFontWeight = .regular
     @State private var listId: UUID = UUID()
     
+    @State private var styleType: Int = 0
+    
     var body: some View {
         VStack {
-            List(ThemeItemType.allCases) { themeType in
-                Text(themeType.description)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .themedFont(for: themeType)
-                    .tag(themeType)
-                    .onTapGesture {
-                        selection = themeType
-                        
-                        theme = ThemeManager.shared.theme(for: themeType) ?? ThemeDefinition.example
-                        fontFamily = theme.fontFamily
-                        fontSize = Int(theme.fontSize)
-                        fontWeight = theme.fontWeight
-                    }
-                    .listRowBackground(themeType == selection
-                                       ? Color.accentColor.opacity(0.2)
-                                       : Color.clear)
+            Picker("", selection: $styleType) {
+                Text("Display").tag(0)
+                Text("Print").tag(1)
+            }.pickerStyle(.segmented)
+            
+            if styleType == 0 {
+                List(ThemeItemType.viewTypes) { themeType in
+                    Text(themeType.description)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .themedFont(for: themeType)
+                        .tag(themeType)
+                        .onTapGesture {
+                            selection = themeType
+                            
+                            theme = ThemeManager.shared.theme(for: themeType) ?? ThemeDefinition.example
+                            fontFamily = theme.fontFamily
+                            fontSize = Int(theme.fontSize)
+                            fontWeight = theme.fontWeight
+                        }
+                        .listRowBackground(themeType == selection
+                                           ? Color.accentColor.opacity(0.2)
+                                           : Color.clear)
+                }
+                .id(listId)
+                .frame(minHeight: 300)
+            } else {
+                List(ThemeItemType.printTypes) { themeType in
+                    Text(themeType.description)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .themedFont(for: themeType)
+                        .tag(themeType)
+                        .onTapGesture {
+                            selection = themeType
+                            
+                            theme = ThemeManager.shared.theme(for: themeType) ?? ThemeDefinition.example
+                            fontFamily = theme.fontFamily
+                            fontSize = Int(theme.fontSize)
+                            fontWeight = theme.fontWeight
+                        }
+                        .listRowBackground(themeType == selection
+                                           ? Color.accentColor.opacity(0.2)
+                                           : Color.clear)
+                }
+                .id(listId)
+                .frame(minHeight: 300)
             }
-            .id(listId)
-            .frame(minHeight: 300)
             
             HStack {
                 FontPicker(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight)

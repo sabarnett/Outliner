@@ -48,6 +48,7 @@ struct ThemeDefinition: Codable, Identifiable {
         ThemeDefinition(id: .itemTitle, fontFamily: "Default", size: 14, weight: .regular)
     }
     
+    // swiftlint:disable cyclomatic_complexity
     public static func defaultTheme(for theme: ThemeItemType) -> ThemeDefinition {
         switch theme {
         case .itemTitle:
@@ -70,7 +71,28 @@ struct ThemeDefinition: Codable, Identifiable {
             return ThemeDefinition(id: .nodeEditTitle, size: 20, weight: .regular)
         case .nodeEditNotes:
             return ThemeDefinition(id: .nodeEditNotes, size: 15, weight: .regular)
+            
+        // Printing specific
+        case .heading1:
+            return ThemeDefinition(id: .heading1, size: 32, weight: .black)
+        case .heading2:
+            return ThemeDefinition(id: .heading2, size: 28, weight: .black)
+        case .heading3:
+            return ThemeDefinition(id: .heading3, size: 26, weight: .black)
+        case .heading4:
+            return ThemeDefinition(id: .heading4, size: 22, weight: .regular)
+        case .heading5:
+            return ThemeDefinition(id: .heading5, size: 18, weight: .regular)
+        case .heading6:
+            return ThemeDefinition(id: .heading6, size: 16, weight: .regular)
+        case .paragraph:
+            return ThemeDefinition(id: .paragraph, size: 16, weight: .regular)
+        case .leadParagraph:
+            return ThemeDefinition(id: .leadParagraph, size: 16, weight: .light)
+        case .body:
+            return ThemeDefinition(id: .body, size: 16, weight: .regular)
         }
+        // swiftlint:enable cyclomatic_complexity
     }
 
     // MARK: - The public interface for the theme definition

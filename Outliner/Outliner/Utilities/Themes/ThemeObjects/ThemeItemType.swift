@@ -21,6 +21,17 @@ enum ThemeItemType: String, CaseIterable, Identifiable, CustomStringConvertible 
     case nodeEditTitle
     case nodeEditNotes
     
+    // Print specific
+    case heading1
+    case heading2
+    case heading3
+    case heading4
+    case heading5
+    case heading6
+    case paragraph
+    case leadParagraph
+    case body
+
     // MARK: - Identifiable
     var id: String { self.description }
     
@@ -47,6 +58,25 @@ enum ThemeItemType: String, CaseIterable, Identifiable, CustomStringConvertible 
             return "Item Editor Title"
         case .nodeEditNotes:
             return "Item Editor Notes"
+            
+        case .heading1:
+            return "Heading 1"
+        case .heading2:
+            return "Heading 2"
+        case .heading3:
+            return "Heading 3"
+        case .heading4:
+            return "Heading 4"
+        case .heading5:
+            return "Heading 5"
+        case .heading6:
+            return "Heading 6"
+        case .paragraph:
+            return "Paragraph"
+        case .leadParagraph:
+            return "Leading Paragraph"
+        case .body:
+            return "Default text"
         }
     }
     
@@ -59,5 +89,18 @@ enum ThemeItemType: String, CaseIterable, Identifiable, CustomStringConvertible 
     }
     var isSidebarType: Bool {
         self == .sidebarButton || self == .sidebarCounter || self == .sidebarHeading
+    }
+    
+    // View/Print separators
+    static var viewTypes: [ThemeItemType] {
+        [ .itemTitle, .itemNotes,
+          .sidebarHeading, .sidebarButton, .sidebarCounter,
+          .nodePreviewTitle, .nodePreviewBody, .nodePreviewStatistics, .nodeEditTitle, .nodeEditNotes
+        ]
+    }
+    
+    static var printTypes: [ThemeItemType] {
+        [.heading1, .heading2, .heading3, .heading4, .heading5, .heading6,
+         .paragraph, .leadParagraph, .body]
     }
 }
