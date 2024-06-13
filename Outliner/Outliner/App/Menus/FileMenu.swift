@@ -31,6 +31,20 @@ public struct FileCommands: Commands {
             Divider()
         }
 
+        CommandGroup(replacing: .printItem) {
+            Menu(content: {
+                Button("Print current item") {
+                    mainViewModel?.printSelected()
+                }
+                
+                Button("Print item and children") {
+                    mainViewModel?.printSelectedLeg()
+                }
+            }, label: { Text("Print")}
+            )
+            .disabled(mainViewModel?.selection == nil)
+        }
+        
         // File->Open Outline
         // File->Reopen Outline
         // File->Save Outline
