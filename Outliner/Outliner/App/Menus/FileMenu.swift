@@ -45,6 +45,13 @@ public struct FileCommands: Commands {
             .disabled(mainViewModel?.selection == nil)
         }
         
+        CommandGroup(replacing: .importExport) {
+            Button("Export") {
+                mainViewModel?.showexport = true
+            }
+            .disabled(mainViewModel?.selection == nil)
+        }
+        
         // File->Open Outline
         // File->Reopen Outline
         // File->Save Outline
