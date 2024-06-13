@@ -245,7 +245,7 @@ struct Exporter {
         let styleDef = selector + baseDefinition
             .replacingOccurrences(of: "$ff$", with: fontFamily)
             .replacingOccurrences(of: "$fs$", with: "\(themeDef.fontSize)")
-            .replacingOccurrences(of: "$fw$", with: themeDef.fontWeight.description)
+            .replacingOccurrences(of: "$fw$", with: themeDef.fontWeight.htmlWeight)
         
         return styleDef
     }

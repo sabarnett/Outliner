@@ -48,6 +48,29 @@ enum ThemeFontWeight: String, Codable, CaseIterable, Identifiable, CustomStringC
     }
     
     // MARK: - Public interface
+    var htmlWeight: String {
+        switch self {
+        case .black:
+            return "750"
+        case .bold:
+            return "700"
+        case .heavy:
+            return "800"
+        case .light:
+            return "200"
+        case .medium:
+            return "300"
+        case .regular:
+            return "400"
+        case .semibold:
+            return "600"
+        case .thin:
+            return "200"
+        case .ultraLight:
+            return "100"
+        }
+    }
+    
     var fontWeight: Font.Weight {
         switch self {
         case .black:
