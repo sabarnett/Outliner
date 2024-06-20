@@ -83,6 +83,7 @@ struct Constants {
       <meta charset="UTF-8">
       <style>
 $$styleSheet$$
+
       </style>
     </head>
   <body>
