@@ -21,35 +21,39 @@ public struct EditMenu: Commands {
     }
     
     public var body: some Commands {
-        CommandGroup(replacing: .pasteboard) {
-            Button("Edit Item") {
-                if let mainViewModel, 
-                    let selection = mainViewModel.selection {
-                    mainViewModel.editNode(selection)
+        if mainViewModel?.editItem != nil {
+            EmptyCommands()
+        } else {
+            CommandGroup(replacing: .pasteboard) {
+                Button("Edit Item") {
+                    if let mainViewModel,
+                        let selection = mainViewModel.selection {
+                        mainViewModel.editNode(selection)
+                    }
                 }
+                .keyboardShortcut("e", modifiers: .command)
+                .disabled(!hasSelection)
+                
+                Divider()
+                
+                Button("Cut") {
+                    mainViewModel?.copyToPasteBoard(cut: true)
+                }
+                .keyboardShortcut("x", modifiers: .command)
+                .disabled(!hasSelection)
+                
+                Button("Copy") {
+                    mainViewModel?.copyToPasteBoard()
+                }
+                .keyboardShortcut("c", modifiers: .command)
+                .disabled(!hasSelection)
+                
+                Button("Paste") {
+                    mainViewModel?.pasteFromPasteboard()
+                }
+                .keyboardShortcut("v", modifiers: .command)
+                .disabled(!hasSelection)
             }
-            .keyboardShortcut("e", modifiers: .command)
-            .disabled(!hasSelection)
-            
-            Divider()
-            
-            Button("Cut") {
-                mainViewModel?.copyToPasteBoard(cut: true)
-            }
-            .keyboardShortcut("x", modifiers: .command)
-            .disabled(!hasSelection)
-
-            Button("Copy") {
-                mainViewModel?.copyToPasteBoard()
-            }
-            .keyboardShortcut("c", modifiers: .command)
-            .disabled(!hasSelection)
-
-            Button("Paste") {
-                mainViewModel?.pasteFromPasteboard()
-            }
-            .keyboardShortcut("v", modifiers: .command)
-            .disabled(!hasSelection)
         }
     }
 }
