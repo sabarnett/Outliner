@@ -11,7 +11,6 @@ import SwiftUI
 struct ExportSettings: View {
 
     @ObservedObject var settings: SettingsViewModel
-    @State private var includeTitle: Bool = false
     
     var body: some View {
         Form {

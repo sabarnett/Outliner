@@ -29,5 +29,5 @@ struct PrintSettings: View {
 }
 
 #Preview {
-    ExportSettings(settings: SettingsViewModel())
+    PrintSettings(settings: SettingsViewModel())
 }
