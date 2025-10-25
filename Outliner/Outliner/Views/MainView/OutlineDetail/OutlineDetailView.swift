@@ -25,7 +25,9 @@ struct OutlineDetailView: View {
             } else {
                 HSplitView(content: {
                     VStack {
-                        OutlineDetailToolBarView(vm: vm)
+                        // TODO: This code is causing sizing errors.
+                        // To be investigated
+//                        OutlineDetailToolBarView(vm: vm)
                         
                         ScrollViewReader { proxy in
                             List {
@@ -49,19 +51,19 @@ struct OutlineDetailView: View {
                             vm.performOutlineSearch(searchFor: vm.searchFor,
                                 lookingIn: searchAppliesTo)
                         }
-                    }.padding(.top, 50)
+                    }
+                    .padding(.top, 8)
                 })
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
     }
     
     @ViewBuilder
     func searchBar() -> some View {
         SearchBar(text: $vm.searchFor)
-            .frame(width: 360)
-        
+            .frame(minWidth: 220)
+
         if vm.searchResultCount > 0 {
             Text("\(vm.searchResultCount) matches")
                 .font(.caption)
@@ -84,7 +86,6 @@ struct OutlineDetailView: View {
         .padding(.leading, -8)
         .help("Find next")
         .disabled(!vm.canSearchNext)
-
     }
 }
 

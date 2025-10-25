@@ -18,7 +18,7 @@ struct SidebarView: View {
     @State private var listId: UUID = UUID()
 
     var body: some View {
-        VStack(alignment: .leading) {
+//        VStack(alignment: .leading) {
             List {
                 Section(content: {
                     SidebarViewTypeButton(viewType: .outline,
@@ -53,15 +53,15 @@ struct SidebarView: View {
                     SidebarViewTypeHeading(heading: "Recent")
                 })
             }
-            .listStyle(.bordered)
+            .listStyle(.plain)
             .listSectionSeparator(.hidden)
             .listRowInsets(.none)
             .id(listId)
+            .onReceive(AppNotifications.refreshSidebar) { _ in
+                listId = UUID()
+            }
         }
-        .onReceive(AppNotifications.refreshSidebar) { _ in
-            listId = UUID()
-        }
-    }
+//    }
 }
 
 struct SidebarView_Previews: PreviewProvider {

@@ -14,7 +14,7 @@ struct Constants {
     static let mainWindowHeight: CGFloat = 500
     static let mainWindowMinWidth: CGFloat = 160
     static let mainWindowMinHeight: CGFloat = 160
-    static let mainWindowSidebarMinWidth: CGFloat = 200
+    static let mainWindowSidebarMinWidth: CGFloat = 220
 
     // About box
     static let homeUrl: URL = URL(string: "http://www.sabarnett.co.uk")!
@@ -47,7 +47,10 @@ struct Constants {
     static let exportDefaultContent = "exportDefaultContent"
     static let printIncludeTitle = "printIncludeTitle"
     static let printIncludeSeparator = "printIncludeSeparator"
-    
+    static let sidebarVisible = "sidebarVisible"
+    static let previewVisible = "previewVisible"
+    static let previewWidth = "previewWidth"
+
     // Note preview
     static let notePreviewPrefixHtml = """
 <!DOCTYPE html>
