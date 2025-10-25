@@ -66,7 +66,15 @@ struct MainView: View {
                         Image(systemName: "sidebar.left")
                     })
                 }
-                
+
+                OutlineDetailToolbarItems(
+                    vm: vm
+                )
+
+//                ToolbarItemGroup(placement: .principal) {
+//                    OutlineDetailToolbarItems(vm: vm)
+//                }
+
                 ToolbarItemGroup(placement: .primaryAction) {
                     Button(action: {
                         withAnimation {

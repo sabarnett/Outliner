@@ -8,36 +8,34 @@
 
 import SwiftUI
 
-struct OutlineDetailToolBarView: View {
-    
+struct OutlineDetailToolbarItems: ToolbarContent {
+
     @ObservedObject var vm: MainViewModel
-    
-    var body: some View {
-        HStack(alignment: .center) {
-            expandAllButton().padding(.trailing, -10)
+
+    var body: some ToolbarContent {
+        ToolbarItemGroup(placement: .principal) {
+            expandAllButton()
             collapseButton()
+        }
 
-            Spacer().frame(width: 22)
-            
-            addAboveButton().padding(.trailing, -10)
-            addBelowButton().padding(.trailing, -10)
-            addChildButton().padding(.trailing, -10)
-            duplicateItemButton().padding(.trailing, -10)
+        ToolbarItemGroup(placement: .principal) {
+            addAboveButton()
+            addBelowButton()
+            addChildButton()
+            duplicateItemButton()
             duplicateLegButton()
+        }
 
-            Spacer().frame(width: 22)
-            
-            indentButton().padding(.trailing, -10)
+        ToolbarItemGroup(placement: .principal) {
+            indentButton()
             promoteButton()
+        }
 
-            Spacer().frame(width: 22)
-            
+        ToolbarItemGroup(placement: .principal) {
             deleteItemButton()
         }
-        .padding(.top, 8)
-        .frame(maxWidth: .infinity)
     }
-    
+
     private func expandAllButton() -> some View {
         OutlineActionButton(
             imageName: "tree_expand_all",
@@ -48,7 +46,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
     private func collapseButton() -> some View {
         OutlineActionButton(
             imageName: "tree_collapse",
@@ -59,7 +57,8 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
+    // Group 2
     private func addAboveButton() -> some View {
         OutlineActionButton(
             imageName: "tree_add_above",
@@ -70,7 +69,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
     private func addBelowButton() -> some View {
         OutlineActionButton(
             imageName: "tree_add_below",
@@ -81,7 +80,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
     private func addChildButton() -> some View {
         OutlineActionButton(
             imageName: "tree_add_child",
@@ -92,7 +91,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
     private func duplicateLegButton() -> some View {
         OutlineActionButton(
             imageName: "duplicate_leg",
@@ -103,7 +102,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
     private func duplicateItemButton() -> some View {
         OutlineActionButton(
             imageName: "duplicate_single",
@@ -114,7 +113,8 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-    
+
+    // Group 3
     private func indentButton() -> some View {
         OutlineActionButton(
             imageName: "tree_indent",
@@ -125,7 +125,7 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(!vm.canIndent())
     }
-    
+
     private func promoteButton() -> some View {
         OutlineActionButton(
             imageName: "tree_promote",
@@ -137,6 +137,7 @@ struct OutlineDetailToolBarView: View {
         .disabled(!vm.canPromote())
     }
 
+    // Group 4
     private func deleteItemButton() -> some View {
         OutlineActionButton(
             imageName: "tree_delete",
@@ -147,8 +148,4 @@ struct OutlineDetailToolBarView: View {
         }
         .disabled(vm.selection == nil)
     }
-}
-
-#Preview {
-    OutlineDetailToolBarView(vm: MainViewModel())
 }

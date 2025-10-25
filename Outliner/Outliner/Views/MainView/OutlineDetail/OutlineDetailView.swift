@@ -25,10 +25,6 @@ struct OutlineDetailView: View {
             } else {
                 HSplitView(content: {
                     VStack {
-                        // TODO: This code is causing sizing errors.
-                        // To be investigated
-//                        OutlineDetailToolBarView(vm: vm)
-                        
                         ScrollViewReader { proxy in
                             List {
                                 TreeNodeView(node: vm.tree!)
@@ -53,6 +49,13 @@ struct OutlineDetailView: View {
                         }
                     }
                     .padding(.top, 8)
+//                    .toolbar {
+//                        ToolbarItemGroup(placement: .principal) {
+//                            Button("One") { }
+//                            Button("Two") { }
+//                            Button("Three") { }
+//                        }
+//                    }
                 })
             }
         }
