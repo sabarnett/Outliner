@@ -16,7 +16,7 @@ extension Alerts {
     ///
     /// - Returns: .save if the user wants to save or .discard
     public static func saveChangesPrompt() -> AlertResponseSaveDiscard {
-        let captions = ["Save", "Discard"]
+        let captions = ["Save", "*Discard"]
         let result = Alerts().openAlert(title: "Save Changes?",
                            message: "You have unsaved changes. Do you want to save your changes of discard them?",
                            buttonTitles: captions)
@@ -69,7 +69,7 @@ extension Alerts {
     ///
     /// - Returns: .delete or .cancel depending on which buton the user clicks.
     public static func confirmDelete(of itemName: String) -> AlertResponseDeleteCancel {
-        let captions = ["Delete", "Keep"]
+        let captions = ["*Delete", "Keep"]
         let result = Alerts().openAlert(title: "Delete Item(s)?",
                            message: "Are you sure you want to delete '\(itemName)' and all of it's child items?",
                            buttonTitles: captions)

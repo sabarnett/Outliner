@@ -71,10 +71,6 @@ struct MainView: View {
                     vm: vm
                 )
 
-//                ToolbarItemGroup(placement: .principal) {
-//                    OutlineDetailToolbarItems(vm: vm)
-//                }
-
                 ToolbarItemGroup(placement: .primaryAction) {
                     Button(action: {
                         withAnimation {

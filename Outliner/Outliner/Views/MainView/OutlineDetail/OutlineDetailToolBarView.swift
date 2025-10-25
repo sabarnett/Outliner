@@ -16,6 +16,7 @@ struct OutlineDetailToolbarItems: ToolbarContent {
         ToolbarItemGroup(placement: .principal) {
             expandAllButton()
             collapseButton()
+            Divider()
         }
 
         ToolbarItemGroup(placement: .principal) {
@@ -24,11 +25,13 @@ struct OutlineDetailToolbarItems: ToolbarContent {
             addChildButton()
             duplicateItemButton()
             duplicateLegButton()
+            Divider()
         }
 
         ToolbarItemGroup(placement: .principal) {
             indentButton()
             promoteButton()
+            Divider()
         }
 
         ToolbarItemGroup(placement: .principal) {

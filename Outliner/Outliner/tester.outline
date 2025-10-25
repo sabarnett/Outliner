@@ -4,7 +4,7 @@
         <title>New Item</title>
         <expansionState></expansionState>
         <dateCreated></dateCreated>
-        <dateLastSaved>2025-10-25T11:03:34Z</dateLastSaved>
+        <dateLastSaved>2025-10-25T14:09:34Z</dateLastSaved>
     </head>
     <body>
         <outline text='New Outline' _expanded='yes'>
@@ -14,9 +14,7 @@
                     <outline text='Test item child' _note='Inserted 2025-10-25 10:50:51 +0000' _expanded='yes' _created='2025-10-25T11:03:15Z' _updated='2025-10-25T11:03:15Z'></outline>
                 </outline>
             </outline>
-            <outline text='Test Print Node' _note='Inserted 2025-10-20 17:37:45 +0000' _expanded='yes' _created='2025-10-20T17:37:45Z' _updated='2025-10-20T17:37:56Z'>
-                <outline text='Test item child' _note='Inserted 2025-10-25 10:50:51 +0000' _expanded='yes' _created='2025-10-25T10:50:51Z' _updated='2025-10-25T10:50:58Z'></outline>
-            </outline>
+            <outline text='Test Print Node' _note='Inserted 2025-10-20 17:37:45 +0000' _expanded='yes' _created='2025-10-20T17:37:45Z' _updated='2025-10-20T17:37:56Z'></outline>
         </outline>
     </body>
 </opml>

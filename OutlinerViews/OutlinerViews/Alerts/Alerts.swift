@@ -34,20 +34,19 @@ public struct Alerts {
         let alert = NSAlert()
         alert.messageText = title
         alert.informativeText = message
-        
+
         for buttonTitle in buttonTitles {
             if buttonTitle.starts(with: "*") {
                 let button = alert.addButton(withTitle: buttonTitle.replacing("*", with: "", maxReplacements: 1))
-                button.bezelStyle = .rounded
                 button.bezelColor = NSColor.systemRed
             } else {
-                
-                alert.addButton(withTitle: buttonTitle)
+                let button = alert.addButton(withTitle: buttonTitle)
+                button.bezelColor = NSColor.controlBackgroundColor
             }
         }
-        
+
         NSApp.activate(ignoringOtherApps: true)
-        
+
         let response = alert.runModal()
         return response
     }
